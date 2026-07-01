@@ -1,5 +1,5 @@
 import { useState } from "react";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import "./Login.css";
 import api from "../services/api";
 
@@ -7,54 +7,54 @@ import api from "../services/api";
 // const VENDOR_PASSWORD = "vendor123";
 
 function Login() {
+  const navigate = useNavigate();
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const [error, setError] = useState("");
 
-  const isValidEmail = (value) => /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(value);
+  const isValidLoginInput = (value) => value.trim().length >= 2;
 
   const handleLogin = async (e) => {
     e.preventDefault();
 
     if (!email.trim() || !password.trim()) {
-      setError("Please fill in both email and password.");
+      setError("Please fill in both login and password.");
       return;
     }
 
-    if (!isValidEmail(email)) {
-      setError("Please enter a valid email address.");
+    if (!isValidLoginInput(email)) {
+      setError("Please enter a valid email or username.");
       return;
     }
 
-    if (password.length < 6) {
-      setError("Password must be at least 6 characters.");
+    if (password.length < 2) {
+      setError("Password must be at least 2 characters.");
       return;
     }
 
     setError("");
     try {
-  const response = await api.post("login/", {
-    email,
-    password,
-  });
+      const payload = { password };
+      if (email.includes("@")) {
+        payload.email = email;
+      } else {
+        payload.username = email;
+      }
 
-  localStorage.setItem("access", response.data.access);
-  localStorage.setItem("refresh", response.data.refresh);
-  localStorage.setItem("user", JSON.stringify(response.data.user));
+      const response = await api.post("login/", payload);
 
-  alert(response.data.message);
+      localStorage.setItem("access", response.data.access);
+      localStorage.setItem("refresh", response.data.refresh);
+      localStorage.setItem("user", JSON.stringify(response.data.user));
 
-  console.log(response.data);
-
-} catch (error) {
-
-  if (error.response) {
-    setError("Invalid email or password.");
-  } else {
-    setError("Server Error");
-  }
-
-}
+      navigate("/dashboard");
+    } catch (err) {
+      if (err.response) {
+        setError("Invalid email or password.");
+      } else {
+        setError("Server Error");
+      }
+    }
   };
 
   return (
@@ -71,10 +71,10 @@ function Login() {
 
           <form onSubmit={handleLogin}>
 
-            <label>Email</label>
+            <label>Email or Username</label>
             <input
-              type="email"
-              placeholder="Enter your email"
+              type="text"
+              placeholder="Enter your email or username"
               value={email}
               onChange={(e) => {
                 setEmail(e.target.value);

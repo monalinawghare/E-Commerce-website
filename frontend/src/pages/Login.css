@@ -23,7 +23,7 @@ body,
   height: 100vh;
   display: flex;
   justify-content: center;
-  align-items: center;`
+  align-items: center;
   background: linear-gradient(135deg, #ed4b0a 0%, #f4c0c4 50%, #cdd13f 100%);
   overflow: hidden;
 }

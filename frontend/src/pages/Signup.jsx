@@ -1,8 +1,10 @@
 import { useState } from "react";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import "./Login.css";
+import api from "../services/api";
 
 function Signup() {
+  const navigate = useNavigate();
   const [username, setUsername] = useState("");
   const [firstName, setFirstName] = useState("");
   const [lastName, setLastName] = useState("");
@@ -10,11 +12,12 @@ function Signup() {
   const [phone, setPhone] = useState("");
   const [password, setPassword] = useState("");
   const [error, setError] = useState("");
+  const [successMessage, setSuccessMessage] = useState("");
 
   const isValidEmail = (value) =>
     /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(value);
 
-  const handleSignup = (e) => {
+  const handleSignup = async (e) => {
     e.preventDefault();
 
     if (
@@ -34,27 +37,40 @@ function Signup() {
       return;
     }
 
-    if (password.length < 6) {
-      setError("Password must be at least 6 characters.");
+    if (password.length < 2) {
+      setError("Password must be at least 2 characters.");
       return;
     }
 
     setError("");
+    setSuccessMessage("");
 
-    console.log({
-      username,
-      first_name: firstName,
-      last_name: lastName,
-      email,
-      phone,
-      password,
-    });
+    try {
+      await api.post("", {
+        username,
+        first_name: firstName,
+        last_name: lastName,
+        email,
+        phone,
+        password,
+      });
 
-    alert("Signup Successful!");
+      setSuccessMessage("Signup successful! Redirecting to login...");
+      setTimeout(() => navigate("/"), 1000); 
+    } catch (err) {
+      if (err.response?.data) {
+        const serverErrors = err.response.data;
+        const firstError = Object.values(serverErrors)[0];
+        setError(Array.isArray(firstError) ? firstError[0] : "Signup failed.");
+      } else {
+        setError("Server Error");
+      }
+    }
   };
 
   const clearError = () => {
     if (error) setError("");
+    if (successMessage) setSuccessMessage("");
   };
 
   return (
@@ -161,6 +177,19 @@ function Signup() {
                 }}
               >
                 {error}
+              </p>
+            )}
+
+            {successMessage && (
+              <p
+                style={{
+                  color: "green",
+                  fontSize: "13px",
+                  marginTop: "15px",
+                  textAlign: "center",
+                }}
+              >
+                {successMessage}
               </p>
             )}
 

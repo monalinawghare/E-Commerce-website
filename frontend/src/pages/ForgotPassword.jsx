@@ -1,6 +1,7 @@
 import { useState } from "react";
 import { Link } from "react-router-dom";
 import "./Login.css";
+import api from "../services/api";
 
 function ForgotPassword() {
   const [formData, setFormData] = useState({
@@ -31,35 +32,26 @@ function ForgotPassword() {
     }
 
     try {
-      const response = await fetch(
-        "http://127.0.0.1:8000/accounts/forgot-password/",
-        {
-          method: "POST",
-          headers: {
-            "Content-Type": "application/json",
-          },
-          body: JSON.stringify({
-            email: formData.email,
-            new_password: formData.new_password,
-          }),
-        }
-      );
+      const response = await api.post("forgot-password/", {
+        email: formData.email,
+        new_password: formData.new_password,
+      });
 
-      const data = await response.json();
-
-      if (response.ok) {
-        setMessage(data.message);
-        setError("");
-        setFormData({
-          email: "",
-          new_password: "",
-          confirmPassword: "",
-        });
-      } else {
-        setError(data.error || "Something went wrong.");
-      }
+      setMessage(response.data.message);
+      setError("");
+      setFormData({
+        email: "",
+        new_password: "",
+        confirmPassword: "",
+      });
     } catch (err) {
-      setError("Server error.");
+      if (err.response?.data) {
+        const serverErrors = err.response.data;
+        const firstError = Object.values(serverErrors)[0];
+        setError(Array.isArray(firstError) ? firstError[0] : "Something went wrong.");
+      } else {
+        setError("Server error.");
+      }
     }
   };
 
