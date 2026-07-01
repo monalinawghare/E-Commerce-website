@@ -1,0 +1,205 @@
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  font-family: "Segoe UI", Arial, sans-serif;
+}
+
+html,
+body,
+#root {
+  width: 100%;
+  height: 100%;
+  overflow: hidden;
+}
+
+/* ---------------- LOGIN CONTAINER ---------------- */
+
+.login-container {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100vh;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background: linear-gradient(135deg, #ed4b0a 0%, #f4c0c4 50%, #cdd13f 100%);
+  overflow: hidden;
+}
+
+/* Background circles */
+
+.login-container::before,
+.login-container::after {
+  content: "";
+  position: absolute;
+  border-radius: 50%;
+  filter: blur(70px);
+  z-index: 0;
+}
+
+.login-container::before {
+  width: 380px;
+  height: 380px;
+  background: rgba(255,255,255,.25);
+  top: -120px;
+  left: -100px;
+}
+
+.login-container::after {
+  width: 320px;
+  height: 320px;
+  background: rgba(155,22,72,.25);
+  bottom: -100px;
+  right: -80px;
+}
+
+/* ---------------- LOGIN BOX ---------------- */
+
+.login-box {
+  position: relative;
+  z-index: 1;
+  width: 850px;
+  background: rgba(255,255,255,.93);
+  backdrop-filter: blur(15px);
+  -webkit-backdrop-filter: blur(15px);
+  border-radius: 20px;
+  padding: 35px 40px;
+  box-shadow: 0 20px 45px rgba(155,22,72,.22);
+  border: 1px solid rgba(255,255,255,.4);
+}
+
+.login-box h1 {
+  text-align: center;
+  color: #9b1648;
+  font-size: 30px;
+  margin-bottom: 25px;
+}
+
+/* ---------------- FORM ---------------- */
+
+.login-box form {
+  text-align: left;
+}
+
+.form-grid {
+  display: grid;
+  grid-template-columns: repeat(2,1fr);
+  gap: 20px;
+}
+
+.form-group {
+  display: flex;
+  flex-direction: column;
+}
+
+.full-width {
+  grid-column: 1 / -1;
+}
+
+.login-box label {
+  margin-bottom: 6px;
+  font-size: 14px;
+  font-weight: 600;
+  color: #333;
+}
+
+.login-box input {
+  width: 100%;
+  padding: 12px 14px;
+  border: 1.5px solid #f4c0c4;
+  border-radius: 10px;
+  outline: none;
+  font-size: 14px;
+  transition: .3s;
+  background: #fafafa;
+}
+
+.login-box input:focus {
+  border-color: #ed4b0a;
+  box-shadow: 0 0 0 4px rgba(237,75,10,.15);
+  background: #fff;
+}
+
+/* ---------------- BUTTON ---------------- */
+
+.login-box button {
+  width: 100%;
+  margin-top: 25px;
+  padding: 14px;
+  border: none;
+  border-radius: 10px;
+  background: linear-gradient(90deg,#9b1648,#ed4b0a,#cdd13f);
+  color: white;
+  font-size: 16px;
+  font-weight: 600;
+  cursor: pointer;
+  transition: .3s;
+}
+
+.login-box button:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 12px 25px rgba(155,22,72,.3);
+}
+
+/* ---------------- SIGNUP TEXT ---------------- */
+
+.signup-text {
+  text-align: center;
+  margin-top: 18px;
+  color: #555;
+}
+
+.signup-text a {
+  color: #ed4b0a;
+  font-weight: bold;
+  text-decoration: none;
+}
+
+.signup-text a:hover {
+  text-decoration: underline;
+}
+
+/* ---------------- NAVBAR ---------------- */
+
+.navbar {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  background: #ed4b0a;
+  padding: 16px;
+  text-align: center;
+  z-index: 1000;
+}
+
+.logo {
+  color: #fff;
+  font-size: 22px;
+  font-weight: bold;
+  letter-spacing: 1px;
+}
+
+/* ---------------- FOOTER ---------------- */
+
+.footer {
+  position: fixed;
+  bottom: 0;
+  left: 0;
+  width: 100%;
+  background: #9b1648;
+  color: white;
+  text-align: center;
+  padding: 12px;
+  font-size: 13px;
+}
+
+/* ---------------- ERROR ---------------- */
+
+.error-message {
+  color: #ed4b0a;
+  text-align: center;
+  margin-top: 15px;
+  font-size: 13px;
+}
