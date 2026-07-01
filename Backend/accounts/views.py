@@ -68,7 +68,7 @@ class ForgotPasswordView(APIView):
                 user.set_password(new_password)
                 user.save()
                 return Response(
-                    {"message": "Password reset successful."},
+                    {"message": "Password reset successfully."},
                     status=status.HTTP_200_OK
                 )
             except CustomUser.DoesNotExist:

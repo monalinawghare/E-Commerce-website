@@ -28,14 +28,32 @@ class RegisterSerializer(serializers.ModelSerializer):
         )
 
 class LoginSerializer(serializers.Serializer):
-    username = serializers.CharField()
+    username = serializers.CharField(required=False, allow_blank=True)
+    email = serializers.EmailField(required=False, allow_blank=True)
     password = serializers.CharField(write_only=True)
 
     def validate(self, attrs):
-        user = authenticate(
-            username=attrs['username'],
-            password=attrs['password']
-        )
+        username = attrs.get('username', '').strip()
+        email = attrs.get('email', '').strip()
+        password = attrs.get('password')
+
+        if not username and not email:
+            raise serializers.ValidationError({
+                'username': 'This field is required.',
+                'email': 'This field is required.'
+            })
+
+        user = None
+        if email:
+            try:
+                user = CustomUser.objects.get(email__iexact=email)
+            except CustomUser.DoesNotExist:
+                user = None
+
+        if not user and username:
+            user = authenticate(username=username, password=password)
+        elif user:
+            user = authenticate(username=user.username, password=password)
 
         if not user:
             raise serializers.ValidationError("Invalid username or password.")
