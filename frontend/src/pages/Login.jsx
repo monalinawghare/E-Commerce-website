@@ -1,9 +1,10 @@
 import { useState } from "react";
 import { Link } from "react-router-dom";
 import "./Login.css";
+import api from "../services/api";
 
-const VENDOR_EMAIL = "vendor@tarsmarket.com";
-const VENDOR_PASSWORD = "vendor123";
+// const VENDOR_EMAIL = "vendor@tarsmarket.com";
+// const VENDOR_PASSWORD = "vendor123";
 
 function Login() {
   const [email, setEmail] = useState("");
@@ -12,7 +13,7 @@ function Login() {
 
   const isValidEmail = (value) => /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(value);
 
-  const handleLogin = (e) => {
+  const handleLogin = async (e) => {
     e.preventDefault();
 
     if (!email.trim() || !password.trim()) {
@@ -31,8 +32,29 @@ function Login() {
     }
 
     setError("");
-    console.log(email, password);
-    alert("Login Successful!");
+    try {
+  const response = await api.post("login/", {
+    email,
+    password,
+  });
+
+  localStorage.setItem("access", response.data.access);
+  localStorage.setItem("refresh", response.data.refresh);
+  localStorage.setItem("user", JSON.stringify(response.data.user));
+
+  alert(response.data.message);
+
+  console.log(response.data);
+
+} catch (error) {
+
+  if (error.response) {
+    setError("Invalid email or password.");
+  } else {
+    setError("Server Error");
+  }
+
+}
   };
 
   return (

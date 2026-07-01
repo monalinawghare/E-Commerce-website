@@ -3,21 +3,64 @@ import { Link } from "react-router-dom";
 import "./Login.css";
 
 function ForgotPassword() {
-  const [email, setEmail] = useState("");
-  const [sent, setSent] = useState(false);
+  const [formData, setFormData] = useState({
+    email: "",
+    new_password: "",
+    confirmPassword: "",
+  });
+
+  const [message, setMessage] = useState("");
   const [error, setError] = useState("");
 
-  const handleReset = (e) => {
+  const handleChange = (e) => {
+    setFormData({
+      ...formData,
+      [e.target.name]: e.target.value,
+    });
+
+    setError("");
+    setMessage("");
+  };
+
+  const handleSubmit = async (e) => {
     e.preventDefault();
 
-    if (!email.trim()) {
-      setError("Please enter your email before submitting.");
+    if (formData.new_password !== formData.confirmPassword) {
+      setError("Passwords do not match.");
       return;
     }
 
-    setError("");
-    console.log(email);
-    setSent(true);
+    try {
+      const response = await fetch(
+        "http://127.0.0.1:8000/accounts/forgot-password/",
+        {
+          method: "POST",
+          headers: {
+            "Content-Type": "application/json",
+          },
+          body: JSON.stringify({
+            email: formData.email,
+            new_password: formData.new_password,
+          }),
+        }
+      );
+
+      const data = await response.json();
+
+      if (response.ok) {
+        setMessage(data.message);
+        setError("");
+        setFormData({
+          email: "",
+          new_password: "",
+          confirmPassword: "",
+        });
+      } else {
+        setError(data.error || "Something went wrong.");
+      }
+    } catch (err) {
+      setError("Server error.");
+    }
   };
 
   return (
@@ -28,35 +71,49 @@ function ForgotPassword() {
 
       <div className="login-container">
         <div className="login-box">
-          <h1>Reset Password</h1>
-          <p>Enter your email and we'll send you a reset link</p>
+          <h1>Forgot Password</h1>
 
-          {sent ? (
-            <p className="signup-text">
-              Reset link sent! Check your inbox.
-            </p>
-          ) : (
-            <form onSubmit={handleReset}>
-              <label>Email</label>
-              <input
-                type="email"
-                placeholder="Enter your email"
-                value={email}
-                onChange={(e) => {
-                  setEmail(e.target.value);
-                  if (error) setError("");
-                }}
-              />
+          <form onSubmit={handleSubmit}>
+            <label>Email</label>
+            <input
+              type="email"
+              name="email"
+              placeholder="Enter your email"
+              value={formData.email}
+              onChange={handleChange}
+              required
+            />
 
-              {error && (
-                <p style={{ color: "#ed4b0a", fontSize: "13px", marginTop: "6px" }}>
-                  {error}
-                </p>
-              )}
+            <label>New Password</label>
+            <input
+              type="password"
+              name="new_password"
+              placeholder="Enter new password"
+              value={formData.new_password}
+              onChange={handleChange}
+              required
+            />
 
-              <button type="submit">Submit</button>
-            </form>
-          )}
+            <label>Confirm Password</label>
+            <input
+              type="password"
+              name="confirmPassword"
+              placeholder="Confirm password"
+              value={formData.confirmPassword}
+              onChange={handleChange}
+              required
+            />
+
+            {error && (
+              <p style={{ color: "#ed4b0a", fontSize: "13px" }}>{error}</p>
+            )}
+
+            {message && (
+              <p style={{ color: "green", fontSize: "13px" }}>{message}</p>
+            )}
+
+            <button type="submit">Reset Password</button>
+          </form>
 
           <p className="signup-text">
             Remembered your password? <Link to="/">Login</Link>
