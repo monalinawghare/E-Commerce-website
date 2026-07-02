@@ -54,11 +54,10 @@ function ForgotPassword() {
       }
     }
   };
-
   return (
     <>
       <nav className="navbar">
-        <div className="logo">TARS MARKET</div>
+        <div className="logo">GrandMart</div>
       </nav>
 
       <div className="login-container">
@@ -113,9 +112,6 @@ function ForgotPassword() {
         </div>
       </div>
 
-      <footer className="footer">
-        © 2026 Tars Market. All rights reserved.
-      </footer>
     </>
   );
 }

@@ -3,7 +3,7 @@ import { Link, useNavigate } from "react-router-dom";
 import "./Login.css";
 import api from "../services/api";
 
-// const VENDOR_EMAIL = "vendor@tarsmarket.com";
+// const VENDOR_EMAIL = "vendor@grandmart.com";
 // const VENDOR_PASSWORD = "vendor123";
 
 function Login() {
@@ -60,14 +60,14 @@ function Login() {
   return (
     <>
       <nav className="navbar">
-        <div className="logo">TARS MARKET</div>
+        <div className="logo">GrandMart</div>
       </nav>
 
       <div className="login-container">
         <div className="login-box">
 
           <h1>Log-in</h1>
-          <p>Welcome to Tars Market</p>
+          <p>Welcome to GrandMart</p>
 
           <form onSubmit={handleLogin}>
 
@@ -115,9 +115,6 @@ function Login() {
         </div>
       </div>
 
-      <footer className="footer">
-        © 2026 Tars Market. All rights reserved.
-      </footer>
     </>
   );
 }

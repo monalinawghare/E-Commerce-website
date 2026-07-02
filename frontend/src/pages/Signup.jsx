@@ -76,7 +76,7 @@ function Signup() {
   return (
     <>
       <nav className="navbar">
-        <div className="logo">TARS MARKET</div>
+        <div className="logo">GrandMart</div>
       </nav>
 
       <div className="login-container">
@@ -205,9 +205,6 @@ function Signup() {
         </div>
       </div>
 
-      <footer className="footer">
-        © 2026 TARS MARKET. All rights reserved.
-      </footer>
     </>
   );
 }

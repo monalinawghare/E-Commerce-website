@@ -37,9 +37,9 @@
 
             {user && (
             <div style={{ marginBottom: "20px" }}>
-                <p><strong>Name:</strong> {user.first_name} {user.last_name}</p>
-                <p><strong>Username:</strong> {user.username}</p>
-                <p><strong>Email:</strong> {user.email}</p>
+                <p><strong>Name:</strong> {user.first_name || ""} {user.last_name || ""}</p>
+                <p><strong>Username:</strong> {user.username || ""}</p>
+                <p><strong>Email:</strong> {user.email || ""}</p>
             </div>
             )}
 
