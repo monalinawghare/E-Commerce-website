@@ -4,15 +4,9 @@ from .views import VendorDashboardView, CustomerDashboardView
 urlpatterns = [
 
     path(
-        'vendor/',
-        VendorDashboardView.as_view(),
-        name='vendor-dashboard'
-    ),
+        'vendor/',VendorDashboardView.as_view(),name='vendor-dashboard'),
 
     path(
-        'customer/',
-        CustomerDashboardView.as_view(),
-        name='customer-dashboard'
-    ),
+        'customer/',CustomerDashboardView.as_view(),name='customer-dashboard'),
 
 ]

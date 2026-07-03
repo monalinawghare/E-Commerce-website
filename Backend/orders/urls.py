@@ -9,25 +9,25 @@ from .views import (
 urlpatterns = [
 
     path(
-        '',
+        'createorder/',
         OrderListCreateView.as_view(),
         name='orders'
     ),
 
     path(
-        '<int:pk>/',
+        'orderdetail/<int:pk>/',
         OrderDetailView.as_view(),
         name='order-detail'
     ),
 
     path(
-        '<int:pk>/cancel/',
+        'cancel/<int:pk>/',
         CancelOrder.as_view(),
         name='cancel-order'
     ),
 
     path(
-        '<int:pk>/status/',
+        'updatestatus/<int:pk>/',
         UpdateOrderStatus.as_view(),
         name='update-order-status'
     ),

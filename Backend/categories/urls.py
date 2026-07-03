@@ -7,14 +7,10 @@ from .views import (
 urlpatterns = [
 
     path(
-        "",
-        CategoryListCreateView.as_view(),
-        name="category-list"
-    ),
+        "addcategory/",CategoryListCreateView.as_view(),
+        name="category-list"),
 
     path(
-        "<int:pk>/",
-        CategoryDetailView.as_view(),
-        name="category-detail"
+        "categorydetail/<int:pk>/",CategoryDetailView.as_view(),name="category-detail"
     ),
 ]

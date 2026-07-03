@@ -1,8 +1,6 @@
 from rest_framework.views import APIView
 from rest_framework.response import Response
-
 from django.db.models import Sum
-
 from products.models import Product
 from categories.models import Category
 from orders.models import Order

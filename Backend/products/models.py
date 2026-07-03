@@ -3,7 +3,6 @@ from categories.models import Category
 
 
 class Product(models.Model):
-
     vendor_name = models.CharField(max_length=100)
     category = models.ForeignKey(
         Category,
