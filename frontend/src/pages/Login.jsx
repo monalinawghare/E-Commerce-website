@@ -47,7 +47,7 @@ function Login() {
       localStorage.setItem("refresh", response.data.refresh);
       localStorage.setItem("user", JSON.stringify(response.data.user));
 
-      navigate("/dashboard");
+      navigate("/home");
     } catch (err) {
       if (err.response) {
         setError("Invalid email or password.");
