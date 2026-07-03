@@ -1,8 +1,10 @@
 import { useState } from "react";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import "./Login.css";
+import api from "../services/api";
 
 function Signup() {
+  const navigate = useNavigate();
   const [username, setUsername] = useState("");
   const [firstName, setFirstName] = useState("");
   const [lastName, setLastName] = useState("");
@@ -10,11 +12,12 @@ function Signup() {
   const [phone, setPhone] = useState("");
   const [password, setPassword] = useState("");
   const [error, setError] = useState("");
+  const [successMessage, setSuccessMessage] = useState("");
 
   const isValidEmail = (value) =>
     /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(value);
 
-  const handleSignup = (e) => {
+  const handleSignup = async (e) => {
     e.preventDefault();
 
     if (
@@ -34,33 +37,51 @@ function Signup() {
       return;
     }
 
+    if (phone.trim().length !== 10 || !/^\d+$/.test(phone.trim())) {
+      setError("Phone number must be exactly 10 digits.");
+      return;
+    }
+
     if (password.length < 6) {
       setError("Password must be at least 6 characters.");
       return;
     }
 
     setError("");
+    setSuccessMessage("");
 
-    console.log({
-      username,
-      first_name: firstName,
-      last_name: lastName,
-      email,
-      phone,
-      password,
-    });
+    try {
+      await api.post("", {
+        username,
+        first_name: firstName,
+        last_name: lastName,
+        email,
+        phone,
+        password,
+      });
 
-    alert("Signup Successful!");
+      setSuccessMessage("Signup successful! Redirecting to login...");
+      setTimeout(() => navigate("/"), 1000); 
+    } catch (err) {
+      if (err.response?.data) {
+        const serverErrors = err.response.data;
+        const firstError = Object.values(serverErrors)[0];
+        setError(Array.isArray(firstError) ? firstError[0] : "Signup failed.");
+      } else {
+        setError("Server Error");
+      }
+    }
   };
 
   const clearError = () => {
     if (error) setError("");
+    if (successMessage) setSuccessMessage("");
   };
 
   return (
     <>
       <nav className="navbar">
-        <div className="logo">TARS MARKET</div>
+        <div className="logo">GrandMart</div>
       </nav>
 
       <div className="login-container">
@@ -129,8 +150,10 @@ function Signup() {
                   type="text"
                   placeholder="Enter phone number"
                   value={phone}
+                  maxLength={10}
                   onChange={(e) => {
-                    setPhone(e.target.value);
+                    const digitsOnly = e.target.value.replace(/\D/g, "");
+                    setPhone(digitsOnly);
                     clearError();
                   }}
                 />
@@ -164,6 +187,19 @@ function Signup() {
               </p>
             )}
 
+            {successMessage && (
+              <p
+                style={{
+                  color: "green",
+                  fontSize: "13px",
+                  marginTop: "15px",
+                  textAlign: "center",
+                }}
+              >
+                {successMessage}
+              </p>
+            )}
+
             <button type="submit">Sign Up</button>
 
             <p className="signup-text">
@@ -176,9 +212,6 @@ function Signup() {
         </div>
       </div>
 
-      <footer className="footer">
-        © 2026 TARS MARKET. All rights reserved.
-      </footer>
     </>
   );
 }

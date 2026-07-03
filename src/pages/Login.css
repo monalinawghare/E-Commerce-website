@@ -5,14 +5,6 @@
   font-family: "Segoe UI", Arial, sans-serif;
 }
 
-html,
-body,
-#root {
-  width: 100%;
-  height: 100%;
-  overflow: hidden;
-}
-
 /* ---------------- LOGIN CONTAINER ---------------- */
 
 .login-container {
@@ -23,11 +15,16 @@ body,
   height: 100vh;
   display: flex;
   justify-content: center;
-  align-items: center;`
+  align-items: center;
   background: linear-gradient(135deg, #ed4b0a 0%, #f4c0c4 50%, #cdd13f 100%);
   overflow: hidden;
 }
-
+.login-container p {
+  text-align: center;
+  color: #9b1648;
+  font-size: 18px;
+  margin-bottom: 20px;
+}
 /* Background circles */
 
 .login-container::before,
@@ -68,6 +65,7 @@ body,
   padding: 35px 40px;
   box-shadow: 0 20px 45px rgba(155,22,72,.22);
   border: 1px solid rgba(255,255,255,.4);
+
 }
 
 .login-box h1 {
@@ -125,7 +123,7 @@ body,
 /* ---------------- BUTTON ---------------- */
 
 .login-box button {
-  width: 100%;
+  width: 50%;
   margin-top: 25px;
   padding: 14px;
   border: none;
@@ -136,6 +134,9 @@ body,
   font-weight: 600;
   cursor: pointer;
   transition: .3s;
+  display: block;
+  margin-left: auto;
+  margin-right: auto;
 }
 
 .login-box button:hover {
@@ -162,6 +163,10 @@ body,
 }
 
 /* ---------------- NAVBAR ---------------- */
+.forgot-password {
+  text-align: right;
+  margin-top: 10px;
+}
 
 .navbar {
   position: fixed;
