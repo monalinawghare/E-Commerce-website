@@ -1,7 +1,18 @@
 from django.db import models
 from products.models import Product
+from accounts.models import CustomUser
+
 
 class Order(models.Model):
+
+    user = models.ForeignKey(
+        CustomUser,
+        on_delete=models.CASCADE,
+        related_name='orders',
+        limit_choices_to={"role": "user"},
+        null=True,
+        blank=True,
+    )
 
     customer_name = models.CharField(max_length=100)
 

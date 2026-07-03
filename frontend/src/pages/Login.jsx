@@ -110,6 +110,11 @@ function Login() {
               <Link to="/signup">Sign Up</Link>
             </p>
 
+            <p className="signup-text">
+              Are you a vendor?{" "}
+              <Link to="/vendor-signup">Register as Vendor</Link>
+            </p>
+
           </form>
 
         </div>

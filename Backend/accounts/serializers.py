@@ -1,6 +1,7 @@
 from rest_framework import serializers
 from django.contrib.auth import authenticate
 from .models import CustomUser
+from .models import VendorProfile
 
 class RegisterSerializer(serializers.ModelSerializer):
     password = serializers.CharField(write_only=True)
@@ -25,7 +26,50 @@ class RegisterSerializer(serializers.ModelSerializer):
             first_name=validated_data.get('first_name', ''),
             last_name=validated_data.get('last_name', ''),
             phone=validated_data.get('phone', ''),
+            role=validated_data.get('role', 'user')
         )
+
+
+class VendorProfileSerializer(serializers.ModelSerializer):
+    class Meta:
+        model = VendorProfile
+        fields = [
+            'shop_name',
+            'shop_address',
+            'gst_number',
+        ]
+
+
+class VendorRegisterSerializer(serializers.Serializer):
+    username = serializers.CharField()
+    password = serializers.CharField(write_only=True)
+    email = serializers.EmailField()
+    first_name = serializers.CharField(required=False, allow_blank=True)
+    last_name = serializers.CharField(required=False, allow_blank=True)
+    phone = serializers.CharField(required=False, allow_blank=True)
+    shop_name = serializers.CharField()
+    shop_address = serializers.CharField()
+    gst_number = serializers.CharField(required=False, allow_blank=True)
+
+    def create(self, validated_data):
+        user = CustomUser.objects.create_user(
+            username=validated_data['username'],
+            email=validated_data['email'],
+            password=validated_data['password'],
+            first_name=validated_data.get('first_name', ''),
+            last_name=validated_data.get('last_name', ''),
+            phone=validated_data.get('phone', ''),
+            role='vendor'
+        )
+
+        VendorProfile.objects.create(
+            user=user,
+            shop_name=validated_data['shop_name'],
+            shop_address=validated_data['shop_address'],
+            gst_number=validated_data.get('gst_number', '')
+        )
+
+        return user
 
 class LoginSerializer(serializers.Serializer):
     username = serializers.CharField(required=False, allow_blank=True)
@@ -62,11 +106,22 @@ class LoginSerializer(serializers.Serializer):
         return attrs
 
 class UserSerializer(serializers.ModelSerializer):
+    vendor_profile = VendorProfileSerializer(read_only=True)
+
     class Meta:
         model = CustomUser
-        exclude = ['password']
-        
-        
+        fields = [
+            "id",
+            "username",
+            "email",
+            "first_name",
+            "last_name",
+            "phone",
+            "role",
+            "vendor_profile",
+        ]
+
+
 class ForgotPasswordSerializer(serializers.Serializer):
     email = serializers.EmailField()
     new_password = serializers.CharField(write_only=True)

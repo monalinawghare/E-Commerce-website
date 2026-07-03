@@ -20,6 +20,9 @@
         if (!user) {
         navigate("/");
         }
+        if (user && user.role === 'vendor') {
+        navigate('/vendor-dashboard');
+        }
     }, [navigate, user]);
 
     const handleLogout = () => {

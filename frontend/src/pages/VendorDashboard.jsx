@@ -15,15 +15,13 @@ function VendorDashboard() {
         }
     });
 
-    const vendorName = user?.username || `${user?.first_name || ""} ${user?.last_name || ""}`.trim() || "";
-
     const [products, setProducts] = useState([]);
     const [categories, setCategories] = useState([]);
+    const [vendorProfile, setVendorProfile] = useState(null);
     const [loading, setLoading] = useState(true);
     const [error, setError] = useState("");
     const [success, setSuccess] = useState("");
     const [form, setForm] = useState({
-        vendor_name: vendorName,
         category: "",
         product_name: "",
         description: "",
@@ -36,10 +34,16 @@ function VendorDashboard() {
         navigate("/");
         return;
         }
+        if (user.role !== 'vendor') {
+        navigate('/home');
+        return;
+        }
 
         const fetchData = async () => {
         try {
-            const [productsRes, categoriesRes] = await Promise.all([
+            const token = localStorage.getItem("access");
+            const [profileRes, productsRes, categoriesRes] = await Promise.all([
+            api.get("profile/", { headers: { Authorization: `Bearer ${token}` } }),
             api.get("products/"),
             api.get("categories/"),
             ]);
@@ -52,9 +56,10 @@ function VendorDashboard() {
             : categoriesRes.data?.results || [];
 
             const vendorProducts = productList.filter(
-            (item) => item.vendor_name === (user.username || user.first_name || "")
+            (item) => Number(item.vendor?.id) === Number(user.id)
             );
 
+            setVendorProfile(profileRes.data.vendor_profile || null);
             setProducts(vendorProducts);
             setCategories(categoryList);
         } catch {
@@ -90,8 +95,8 @@ function VendorDashboard() {
         }
 
         try {
+
         const payload = {
-            vendor_name: form.vendor_name || user?.username || "Vendor",
             category: Number(form.category),
             product_name: form.product_name,
             description: form.description,
@@ -99,12 +104,14 @@ function VendorDashboard() {
             stock: Number(form.stock),
         };
 
-        const response = await api.post("products/", payload);
+        const token = localStorage.getItem("access");
+        const response = await api.post("products/", payload, {
+        headers: { Authorization: `Bearer ${token}` },
+        });
         setProducts((prev) => [response.data, ...prev]);
         setSuccess("Product added successfully.");
         setError("");
         setForm({
-            vendor_name: form.vendor_name,
             category: "",
             product_name: "",
             description: "",
@@ -122,6 +129,15 @@ function VendorDashboard() {
         }
     };
 
+    const inputStyle = {
+    width: "100%",
+    padding: "10px 12px",
+    borderRadius: "8px",
+    border: "1px solid #d1d5db",
+    fontSize: "14px",
+    boxSizing: "border-box",
+    };
+
     return (
         <div style={{ minHeight: "100vh", background: "#f6f7fb", padding: "32px 20px" }}>
         <div style={{ maxWidth: "1100px", margin: "0 auto" }}>
@@ -131,6 +147,15 @@ function VendorDashboard() {
                 <p style={{ margin: "6px 0 0", color: "#6b7280" }}>
                 Welcome back, {user?.first_name || user?.username || "vendor"}
                 </p>
+                {vendorProfile && (
+                <div style={{ marginTop: "12px", color: "#374151" }}>
+                    <p style={{ margin: "4px 0" }}><strong>Shop:</strong> {vendorProfile.shop_name}</p>
+                    <p style={{ margin: "4px 0" }}><strong>Address:</strong> {vendorProfile.shop_address}</p>
+                    {vendorProfile.gst_number && (
+                    <p style={{ margin: "4px 0" }}><strong>GST:</strong> {vendorProfile.gst_number}</p>
+                    )}
+                </div>
+                )}
             </div>
             <button
                 onClick={handleLogout}
@@ -162,19 +187,11 @@ function VendorDashboard() {
                 <h3 style={{ marginTop: 0 }}>Add New Product</h3>
                 <form onSubmit={handleSubmit}>
                 <div style={{ display: "grid", gap: "12px" }}>
-                    <input
-                    type="text"
-                    name="vendor_name"
-                    value={form.vendor_name}
-                    onChange={handleChange}
-                    placeholder="Vendor name"
-                    style={inputStyle}
-                    />
                     <select name="category" value={form.category} onChange={handleChange} style={inputStyle}>
                     <option value="">Select category</option>
                     {categories.map((category) => (
                         <option key={category.id} value={category.id}>
-                        {category.name}
+                        {category.category_name}
                         </option>
                     ))}
                     </select>
@@ -253,15 +270,6 @@ function VendorDashboard() {
         </div>
         </div>
     );
-    }
+}
 
-    const inputStyle = {
-    width: "100%",
-    padding: "10px 12px",
-    borderRadius: "8px",
-    border: "1px solid #d1d5db",
-    fontSize: "14px",
-    boxSizing: "border-box",
-    };
-
-    export default VendorDashboard;
+export default VendorDashboard;
