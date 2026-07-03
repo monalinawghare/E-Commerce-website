@@ -37,8 +37,13 @@ function Signup() {
       return;
     }
 
-    if (password.length < 2) {
-      setError("Password must be at least 2 characters.");
+    if (phone.trim().length !== 10 || !/^\d+$/.test(phone.trim())) {
+      setError("Phone number must be exactly 10 digits.");
+      return;
+    }
+
+    if (password.length < 6) {
+      setError("Password must be at least 6 characters.");
       return;
     }
 
@@ -145,8 +150,10 @@ function Signup() {
                   type="text"
                   placeholder="Enter phone number"
                   value={phone}
+                  maxLength={10}
                   onChange={(e) => {
-                    setPhone(e.target.value);
+                    const digitsOnly = e.target.value.replace(/\D/g, "");
+                    setPhone(digitsOnly);
                     clearError();
                   }}
                 />

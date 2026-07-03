@@ -58,7 +58,7 @@ function Navbar() {
             <Link to="/home" onClick={() => setIsMenuOpen(false)}>Home</Link>
             <Link to="/cart" onClick={() => setIsMenuOpen(false)}>Cart</Link>
             <Link to="/orders" onClick={() => setIsMenuOpen(false)}>Orders</Link>
-            <Link to="/profile" onClick={() => setIsMenuOpen(false)}>Profile</Link>
+            <Link to="/dashboard" onClick={() => setIsMenuOpen(false)}>Profile</Link>
             <Link to="/products" onClick={() => setIsMenuOpen(false)}>Products</Link>
 
             <button className="logout-btn" onClick={handleLogout}>
