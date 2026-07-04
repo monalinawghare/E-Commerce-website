@@ -1,21 +1,22 @@
-    import { useEffect, useState } from "react";
-    import { useNavigate } from "react-router-dom";
+import { useEffect, useState } from "react";
+import { useNavigate } from "react-router-dom";
+import "./UserDashboard.css";
 
-    function UserDashboard() {
-    const navigate = useNavigate();
-    const [user] = useState(() => {
-        const storedUser = localStorage.getItem("user");
-        if (!storedUser) {
-        return null;
-        }
+function UserDashboard() {
+  const navigate = useNavigate();
 
-        try {
-        return JSON.parse(storedUser);
-        } catch {
-        return null;
-        }
-    });
+  const [user] = useState(() => {
+    const storedUser = localStorage.getItem("user");
+    if (!storedUser) return null;
 
+<<<<<<< HEAD
+    try {
+      return JSON.parse(storedUser);
+    } catch {
+      return null;
+    }
+  });
+=======
     useEffect(() => {
         if (!user) {
         navigate("/");
@@ -24,34 +25,107 @@
         navigate('/vendor-dashboard');
         }
     }, [navigate, user]);
+>>>>>>> 633270c86424ca04340271ea57230e72a76c508f
 
-    const handleLogout = () => {
-        localStorage.removeItem("access");
-        localStorage.removeItem("refresh");
-        localStorage.removeItem("user");
-        navigate("/");
-    };
-
-    return (
-        <div style={{ minHeight: "100vh", background: "#f5f5f5", padding: "40px" }}>
-        <div style={{ maxWidth: "700px", margin: "0 auto", background: "white", padding: "30px", borderRadius: "12px", boxShadow: "0 10px 30px rgba(0,0,0,0.08)" }}>
-            <h1 style={{ marginBottom: "10px" }}>Welcome back</h1>
-            <p style={{ color: "#666", marginBottom: "20px" }}>You are now logged in.</p>
-
-            {user && (
-            <div style={{ marginBottom: "20px" }}>
-                <p><strong>Name:</strong> {user.first_name || ""} {user.last_name || ""}</p>
-                <p><strong>Username:</strong> {user.username || ""}</p>
-                <p><strong>Email:</strong> {user.email || ""}</p>
-            </div>
-            )}
-
-            <button onClick={handleLogout} style={{ padding: "10px 16px", border: "none", borderRadius: "8px", background: "#ed4b0a", color: "white", cursor: "pointer" }}>
-            Logout
-            </button>
-        </div>
-        </div>
-    );
+  useEffect(() => {
+    if (!user) {
+      navigate("/");
+      return;
     }
 
-    export default UserDashboard;
+    if (user.role === "vendor") {
+      navigate("/vendor-dashboard");
+    }
+  }, [navigate, user]);
+
+  const handleLogout = () => {
+    localStorage.removeItem("access");
+    localStorage.removeItem("refresh");
+    localStorage.removeItem("user");
+    navigate("/");
+  };
+
+  if (!user) return null;
+
+  return (
+    <div className="dashboard-layout">
+
+      {/* SIDEBAR */}
+      <div className="sidebar">
+
+        <button className="home-btn" onClick={() => navigate("/home")}>
+          🏠 Home
+        </button>
+
+        <div className="profile-mini">
+          <img
+            src={`https://ui-avatars.com/api/?name=${user.first_name}+${user.last_name}&background=9b1648&color=fff`}
+            alt="profile"
+          />
+          <h3>{user.first_name} {user.last_name}</h3>
+          <p>@{user.username}</p>
+        </div>
+
+        <div className="menu">
+          <div onClick={() => navigate("/orders")}>📦 Orders</div>
+          <div onClick={() => navigate("/cart")}>🛒 Cart</div>
+        </div>
+
+        <div className="sidebar-stats">
+          <h4>Quick Stats</h4>
+          <div className="stat-row">
+            <span>Total Orders</span>
+            <span>12</span>
+          </div>
+          <div className="stat-row">
+            <span>Cart Items</span>
+            <span>3</span>
+          </div>
+          <div className="stat-row">
+            <span>Member Since</span>
+            <span>2024</span>
+          </div>
+        </div>
+
+        <div className="sidebar-bottom">
+          <button className="logout-side" onClick={handleLogout}>
+            🚪 Logout
+          </button>
+        </div>
+
+      </div>
+
+      {/* MAIN CONTENT */}
+      <div className="main">
+
+        <div className="welcome-card">
+          <h1>Welcome back 👋</h1>
+          <p>{user.first_name}, manage your account here</p>
+        </div>
+
+        <div className="info-grid">
+
+          <div className="info-box">
+            <h4>Email</h4>
+            <p>{user.email}</p>
+          </div>
+
+          <div className="info-box">
+            <h4>Phone</h4>
+            <p>{user.phone || "Not Added"}</p>
+          </div>
+
+          <div className="info-box">
+            <h4>Username</h4>
+            <p>{user.username}</p>
+          </div>
+
+        </div>
+
+      </div>
+
+    </div>
+  );
+}
+
+export default UserDashboard;

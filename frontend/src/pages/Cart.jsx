@@ -28,6 +28,7 @@ function Cart() {
       return;
     }
 
+  
     const fetchCart = async () => {
       try {
         const token = localStorage.getItem("access");
@@ -189,7 +190,9 @@ function Cart() {
               <span>To Pay</span>
               <span>₹{total.toLocaleString()}</span>
             </div>
-            <button className="checkout-btn">Proceed to Checkout</button>
+           <button className="checkout-btn" onClick={() => navigate("/checkout")}>
+  Proceed to Checkout
+</button>
           </div>
         </div>
       </div>
