@@ -9,12 +9,23 @@ function UserDashboard() {
     const storedUser = localStorage.getItem("user");
     if (!storedUser) return null;
 
+<<<<<<< HEAD
     try {
       return JSON.parse(storedUser);
     } catch {
       return null;
     }
   });
+=======
+    useEffect(() => {
+        if (!user) {
+        navigate("/");
+        }
+        if (user && user.role === 'vendor') {
+        navigate('/vendor-dashboard');
+        }
+    }, [navigate, user]);
+>>>>>>> 633270c86424ca04340271ea57230e72a76c508f
 
   useEffect(() => {
     if (!user) {

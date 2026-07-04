@@ -4,7 +4,7 @@ from rest_framework.views import APIView
 from rest_framework.permissions import IsAuthenticated
 from rest_framework_simplejwt.tokens import RefreshToken
 from .models import CustomUser
-from .serializers import RegisterSerializer, LoginSerializer, UserSerializer,ForgotPasswordSerializer
+from .serializers import RegisterSerializer, LoginSerializer, UserSerializer, ForgotPasswordSerializer, VendorRegisterSerializer
 
 
 class RegisterView(APIView):
@@ -12,9 +12,10 @@ class RegisterView(APIView):
         serializer = RegisterSerializer(data=request.data)
 
         if serializer.is_valid():
-            serializer.save()
+            # force role to user
+            user = serializer.create({**serializer.validated_data, 'role': 'user'})
             return Response(
-                {"message": "User registered successfully."},
+                {"message": "User registered successfully.", "user": UserSerializer(user).data},
                 status=status.HTTP_201_CREATED
             )
 
@@ -75,5 +76,16 @@ class ForgotPasswordView(APIView):
                     {"error": "User with this email does not exist."},
                     status=status.HTTP_404_NOT_FOUND
                 )
+
+        return Response(serializer.errors, status=status.HTTP_400_BAD_REQUEST)
+
+
+class VendorRegisterView(APIView):
+    def post(self, request):
+        serializer = VendorRegisterSerializer(data=request.data)
+
+        if serializer.is_valid():
+            user = serializer.create(serializer.validated_data)
+            return Response({"message": "Vendor registered successfully.", "user": UserSerializer(user).data}, status=status.HTTP_201_CREATED)
 
         return Response(serializer.errors, status=status.HTTP_400_BAD_REQUEST)

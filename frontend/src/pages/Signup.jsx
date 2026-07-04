@@ -51,7 +51,7 @@ function Signup() {
     setSuccessMessage("");
 
     try {
-      await api.post("", {
+      await api.post("register/", {
         username,
         first_name: firstName,
         last_name: lastName,

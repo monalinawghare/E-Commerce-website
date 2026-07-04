@@ -1,10 +1,12 @@
 from rest_framework import generics, status
 from rest_framework.views import APIView
 from rest_framework.response import Response
-from rest_framework.exceptions import ValidationError
+from rest_framework.exceptions import ValidationError, PermissionDenied
+from rest_framework.permissions import IsAuthenticated, AllowAny
 
 from .models import Order
 from .serializers import OrderSerializer
+from accounts.permissions import IsVendor, IsUser
 
 
 # ==========================
@@ -12,9 +14,20 @@ from .serializers import OrderSerializer
 # ==========================
 
 class OrderListCreateView(generics.ListCreateAPIView):
-
-    queryset = Order.objects.all()
     serializer_class = OrderSerializer
+
+    def get_permissions(self):
+        if self.request.method == 'GET':
+            return [IsAuthenticated()]
+        return [IsAuthenticated(), IsUser()]
+
+    def get_queryset(self):
+        user = self.request.user
+        if getattr(user, 'role', '') == 'vendor':
+            # orders that contain products belonging to this vendor
+            return Order.objects.filter(product__vendor=user)
+        # regular user: only their orders
+        return Order.objects.filter(user=user)
 
     def perform_create(self, serializer):
 
@@ -40,10 +53,12 @@ class OrderListCreateView(generics.ListCreateAPIView):
         product.stock -= quantity
         product.save()
 
-        # Save Order
+        # Save Order linked to user
         serializer.save(
             total_price=total_price,
-            status="Pending"
+            status="Pending",
+            user=self.request.user,
+            customer_name=self.request.user.username
         )
 
 
@@ -62,8 +77,10 @@ class OrderDetailView(generics.RetrieveAPIView):
 # ==========================
 
 class CancelOrder(APIView):
-
     def delete(self, request, pk):
+        # only the user who placed the order can cancel it
+        if not request.user.is_authenticated:
+            raise PermissionDenied("Authentication required.")
 
         try:
             order = Order.objects.get(pk=pk)
@@ -74,6 +91,10 @@ class CancelOrder(APIView):
                 {"error": "Order not found"},
                 status=status.HTTP_404_NOT_FOUND
             )
+
+        # ensure the requester is the owner
+        if order.user != request.user and not request.user.is_staff:
+            raise PermissionDenied("You cannot cancel this order.")
 
         # Restore Product Stock
         product = order.product
@@ -98,6 +119,9 @@ class CancelOrder(APIView):
 class UpdateOrderStatus(APIView):
 
     def put(self, request, pk):
+        # Only vendor owning the product or staff can update status
+        if not request.user.is_authenticated:
+            raise PermissionDenied("Authentication required.")
 
         try:
             order = Order.objects.get(pk=pk)
@@ -126,6 +150,10 @@ class UpdateOrderStatus(APIView):
                 },
                 status=status.HTTP_400_BAD_REQUEST
             )
+
+        # Only vendor of the product or staff may update the status
+        if not (request.user.is_staff or order.product.vendor == request.user):
+            raise PermissionDenied("You cannot update this order.")
 
         order.status = status_value
         order.save()

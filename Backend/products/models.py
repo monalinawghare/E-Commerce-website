@@ -1,9 +1,17 @@
 from django.db import models
 from categories.models import Category
+from accounts.models import CustomUser
 
 
 class Product(models.Model):
-    vendor_name = models.CharField(max_length=100)
+    vendor = models.ForeignKey(
+        CustomUser,
+        on_delete=models.CASCADE,
+        related_name="products",
+        limit_choices_to={"role": "vendor"},
+        null=True,
+        blank=True
+    )
     category = models.ForeignKey(
         Category,
         on_delete=models.CASCADE,
