@@ -1,0 +1,91 @@
+.checkout-container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding: 30px;
+  background: #f5f5f5;
+  min-height: 100vh;
+}
+
+.checkout-box {
+  width: 450px;
+  background: white;
+  padding: 25px;
+  border-radius: 12px;
+  box-shadow: 0 4px 12px rgba(0,0,0,0.1);
+}
+
+.checkout-box h2 {
+  text-align: center;
+  margin-bottom: 20px;
+}
+
+.cart-summary {
+  margin-bottom: 20px;
+}
+
+.cart-item {
+  display: flex;
+  justify-content: space-between;
+  padding: 8px 0;
+  border-bottom: 1px solid #eee;
+  font-size: 14px;
+}
+
+.address-box {
+  margin-top: 15px;
+}
+
+.address-box textarea {
+  width: 100%;
+  height: 80px;
+  padding: 10px;
+  border-radius: 8px;
+  border: 1px solid #ccc;
+  resize: none;
+}
+
+.total-box {
+  margin-top: 15px;
+  text-align: right;
+  font-size: 18px;
+  font-weight: bold;
+}
+
+.place-order-btn {
+  width: 100%;
+  padding: 12px;
+  margin-top: 20px;
+  background: #ff5722;
+  color: white;
+  border: none;
+  border-radius: 8px;
+  cursor: pointer;
+  font-size: 16px;
+}
+
+.place-order-btn:hover {
+  background: #e64a19;
+}
+
+.loading {
+  text-align: center;
+  margin-top: 50px;
+}
+
+.payment-box {
+  margin-top: 20px;
+  padding: 10px;
+  border: 1px solid #ddd;
+  border-radius: 8px;
+}
+
+.payment-box h3 {
+  margin-bottom: 10px;
+}
+
+.payment-box label {
+  display: block;
+  margin: 8px 0;
+  cursor: pointer;
+}
