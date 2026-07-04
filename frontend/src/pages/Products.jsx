@@ -1,4 +1,5 @@
 import Navbar from "../components/Navbar";
+import Footer from "../components/Footer";
 import { useNavigate, useSearchParams } from "react-router-dom";
 import { featuredProducts } from "../data/products";
 import "./Products.css";
@@ -123,6 +124,7 @@ function Products() {
                 )}
             </div>
         </div>
+        <Footer />
         </>
     );
 }

@@ -1,6 +1,7 @@
 import "./Orders.css";
 import { Link } from "react-router-dom";
 import Navbar from "../components/Navbar";
+import Footer from "../components/Footer";
 
     function Orders() {
     // Sample orders data 
@@ -81,6 +82,7 @@ import Navbar from "../components/Navbar";
             )}
         </div>
         </div>
+        <Footer />
         </>
     );
     }

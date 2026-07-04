@@ -1,6 +1,7 @@
 import { useState } from "react";
 import { useNavigate, useParams } from "react-router-dom";
 import Navbar from "../components/Navbar";
+import Footer from "../components/Footer";
 import api from "../services/api";
 import { featuredProducts } from "../data/products";
 import "./ProductDetails.css";
@@ -99,6 +100,7 @@ function ProductDetails() {
                     </div>
                 </div>
             </div>
+        <Footer />
         </>
     );
 }

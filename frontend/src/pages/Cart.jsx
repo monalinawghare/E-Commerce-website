@@ -2,6 +2,7 @@ import { useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
 import api from "../services/api";
 import Navbar from "../components/Navbar";
+import Footer from "../components/Footer";
 import "./Cart.css";
 
 function Cart() {
@@ -192,6 +193,7 @@ function Cart() {
           </div>
         </div>
       </div>
+      <Footer />
     </>
   );
 }

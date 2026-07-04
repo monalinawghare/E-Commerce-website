@@ -10,7 +10,7 @@ import Cart from "./pages/Cart";
 import Orders from "./pages/Orders";
 import UserDashboard from "./pages/UserDashboard";
 import VendorDashboard from "./pages/VendorDashboard";
-import Footer from "./components/Footer";
+// import Footer from "./components/Footer";
 
 function App() {
   return (
@@ -30,7 +30,7 @@ function App() {
         <Route path="/dashboard" element={<UserDashboard />} />
         <Route path="/vendor-dashboard" element={<VendorDashboard />} />
       </Routes>
-      <Footer />
+      {/* <Footer /> */}
     </BrowserRouter>
   );
 }

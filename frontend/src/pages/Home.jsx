@@ -1,5 +1,6 @@
 import { useNavigate } from "react-router-dom";
 import Navbar from "../components/Navbar";
+import Footer from "../components/Footer";
 import "./Home.css";
 import Headphones from "../assets/products/Headphones.jpg";
 import Dress from "../assets/products/dress.jpg";
@@ -164,7 +165,7 @@ View Details
 
         </div>
 
-        {/* <Footer /> */}
+        <Footer />
         </>
     );
 }
