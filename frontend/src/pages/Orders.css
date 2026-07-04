@@ -1,0 +1,230 @@
+    .orders-container {
+    background: linear-gradient(
+        135deg,
+        #ed4b0a 0%,
+        #f4c0c4 50%,
+        #cdd13f 100%
+    );
+    min-height: 100vh;
+    padding: 70px 20px 40px;
+    }
+
+    .orders-header {
+    text-align: center;
+    margin-bottom: 50px;
+    color: white;
+    text-shadow: 2px 3px 8px rgba(0, 0, 0, 0.25);
+    }
+
+    .orders-header h1 {
+    font-size: 48px;
+    margin-bottom: 10px;
+    font-weight: 700;
+    }
+
+    .orders-header p {
+    font-size: 18px;
+    margin: 0;
+    opacity: 0.95;
+    }
+
+    .orders-content {
+    max-width: 1100px;
+    margin: 0 auto;
+    background: rgba(255, 255, 255, 0.98);
+    border-radius: 12px;
+    padding: 40px;
+    box-shadow: 0 10px 40px rgba(155, 22, 72, 0.2);
+    }
+
+    /* Orders Table */
+    .orders-table {
+    width: 100%;
+    border-collapse: collapse;
+    margin-bottom: 20px;
+    }
+
+    .orders-table thead {
+    background: linear-gradient(90deg, #9b1648, #ed4b0a);
+    color: white;
+    }
+
+    .orders-table th {
+    padding: 16px 12px;
+    text-align: left;
+    font-weight: 600;
+    font-size: 15px;
+    border: none;
+    }
+
+    .orders-table tbody tr {
+    border-bottom: 1px solid #e8e8e8;
+    transition: background-color 0.3s ease;
+    }
+
+    .orders-table tbody tr:hover {
+    background-color: #f9f9f9;
+    }
+
+    .orders-table td {
+    padding: 16px 12px;
+    font-size: 14px;
+    color: #333;
+    }
+
+    .order-id {
+    font-weight: 600;
+    color: #9b1648;
+    }
+
+    /* Status Badges */
+    .status {
+    display: inline-block;
+    padding: 6px 12px;
+    border-radius: 20px;
+    font-size: 12px;
+    font-weight: 600;
+    text-transform: uppercase;
+    }
+
+    .status-delivered {
+    background-color: #d4edda;
+    color: #155724;
+    }
+
+    .status-in-transit {
+    background-color: #cce5ff;
+    color: #004085;
+    }
+
+    .status-processing {
+    background-color: #fff3cd;
+    color: #856404;
+    }
+
+    .status-cancelled {
+    background-color: #f8d7da;
+    color: #721c24;
+    }
+
+    /* Action Button */
+    .view-btn {
+    display: inline-block;
+    padding: 8px 16px;
+    background: linear-gradient(90deg, #9b1648, #ed4b0a);
+    color: white;
+    text-decoration: none;
+    border-radius: 6px;
+    font-size: 13px;
+    font-weight: 600;
+    transition: transform 0.2s ease, box-shadow 0.2s ease;
+    cursor: pointer;
+    border: none;
+    }
+
+    .view-btn:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 5px 15px rgba(155, 22, 72, 0.3);
+    }
+
+    /* Empty State */
+    .empty-orders {
+    text-align: center;
+    padding: 60px 20px;
+    }
+
+    .empty-orders p {
+    font-size: 20px;
+    color: #666;
+    margin-bottom: 25px;
+    }
+
+    .continue-btn {
+    display: inline-block;
+    padding: 12px 35px;
+    background: linear-gradient(90deg, #9b1648, #ed4b0a);
+    color: white;
+    text-decoration: none;
+    border-radius: 8px;
+    font-weight: 600;
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+    cursor: pointer;
+    }
+
+    .continue-btn:hover {
+    transform: translateY(-3px);
+    box-shadow: 0 8px 20px rgba(155, 22, 72, 0.3);
+    }
+
+    /* Responsive Design */
+    @media (max-width: 768px) {
+    .orders-container {
+        padding: 70px 15px 30px;
+    }
+
+    .orders-header h1 {
+        font-size: 36px;
+    }
+
+    .orders-content {
+        padding: 25px;
+    }
+
+    .orders-table th,
+    .orders-table td {
+        padding: 12px 8px;
+        font-size: 13px;
+    }
+
+    .orders-table th {
+        font-size: 12px;
+    }
+
+    .view-btn {
+        padding: 6px 12px;
+        font-size: 12px;
+    }
+    }
+
+    @media (max-width: 480px) {
+    .orders-container {
+        padding: 60px 10px 20px;
+    }
+
+    .orders-header h1 {
+        font-size: 28px;
+    }
+
+    .orders-header p {
+        font-size: 16px;
+    }
+
+    .orders-content {
+        padding: 15px;
+        border-radius: 8px;
+    }
+
+    .orders-table th,
+    .orders-table td {
+        padding: 10px 5px;
+        font-size: 12px;
+    }
+
+    .view-btn {
+        padding: 5px 10px;
+        font-size: 11px;
+    }
+
+    .empty-orders {
+        padding: 40px 15px;
+    }
+
+    .empty-orders p {
+        font-size: 16px;
+    }
+
+    .continue-btn {
+        padding: 10px 25px;
+        font-size: 14px;
+    }
+    }
