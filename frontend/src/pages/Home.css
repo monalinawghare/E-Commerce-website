@@ -93,6 +93,7 @@
     border: 2px solid white;
     background: transparent;
     color: white;
+    width: 50%;
     }
 
     .outline-btn:hover {
@@ -289,8 +290,10 @@
 }
     /* Button always stays at bottom */
 
-    .product-card button {
-    margin: auto 15px 20px;
+.product-card button {
+    display: block;
+    width: 80%;          /* or 180px if you want a fixed width */
+    margin: 20px auto;
     padding: 14px;
     border: none;
     border-radius: 12px;
@@ -303,17 +306,13 @@
     color: white;
     font-weight: bold;
     cursor: pointer;
-    transition: .3s;
+    transition: 0.3s;
 }
 
-.product-card button:hover{
-    transform: scale(1.03);
-}
-
-    .product-card button:hover {
+.product-card button:hover {
     transform: scale(1.03);
     box-shadow: 0 10px 20px rgba(155, 22, 72, 0.25);
-    }
+}
 
     /* ---------------- OFFER ---------------- */
 
@@ -323,7 +322,7 @@
 
     .offer-banner {
     background: rgba(255,255,255,.85);
-    width: 84%;
+    width: 50%;
     margin: 40px auto 50px;
     border-radius: 25px;
     box-shadow: 0 20px 35px rgba(0,0,0,.15);
@@ -365,6 +364,7 @@
     font-size: 16px;
     font-weight: 600;
     transition: .3s;
+    width: 50%;
     }
 
     .offer-banner button:hover {

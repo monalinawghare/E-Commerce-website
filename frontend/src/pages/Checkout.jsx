@@ -1,7 +1,7 @@
 import { useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
 import api from "../services/api";
-
+import Footer from "../components/Footer";
 import Navbar from "../components/Navbar";
 import "./Checkout.css";
 
@@ -178,9 +178,6 @@ function Checkout() {
                   Cash on Delivery
                 </label>
 
-                <br />
-                <br />
-
                 <label>
                   <input
                     type="radio"
@@ -190,13 +187,7 @@ function Checkout() {
                   />
                   UPI
                 </label>
-
-                <br />
-                <br />
-
               </div>
-
-              
               <div
                 className="total-box"
                 style={{
@@ -236,7 +227,9 @@ function Checkout() {
           )}
         </div>
       </div>
+      <Footer />
     </>
+  
   );
 }
 

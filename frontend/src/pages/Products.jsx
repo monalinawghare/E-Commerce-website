@@ -54,7 +54,7 @@ function Products() {
             {/* Show clear filters button if filters are active */}
             {(selectedCategory || searchQuery) && (
                 <button 
-                    onClick={() => navigate("/products")}
+                    onClick={() => navigate("/home")}
                     style={{
                         padding: "10px 20px",
                         marginBottom: "20px",
@@ -65,7 +65,8 @@ function Products() {
                         cursor: "pointer",
                         fontSize: "14px",
                         display: "block",
-                        margin: "0 auto 20px"
+                        margin: "0 auto 20px",
+                        width : "150px"
                     }}
                 >
                     ← Clear Filters
@@ -115,7 +116,8 @@ function Products() {
                                 border: "none",
                                 borderRadius: "6px",
                                 cursor: "pointer",
-                                fontSize: "16px"
+                                fontSize: "16px",
+                                width : "200px"
                             }}
                         >
                             View All Products

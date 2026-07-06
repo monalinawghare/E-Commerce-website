@@ -10,7 +10,7 @@ urlpatterns = [
         "addcategory/",CategoryListCreateView.as_view(),
         name="category-list"),
 
-    path('categories/', CategoryListCreateView.as_view(), name='categories_list'),
+    path('category_list/', CategoryListCreateView.as_view(), name='categories_list'),
 
     path(
         "categorydetail/<int:pk>/",CategoryDetailView.as_view(),name="category-detail"

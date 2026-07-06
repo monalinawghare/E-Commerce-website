@@ -54,7 +54,7 @@ function Navbar() {
             <span></span>
         </button>
 
-        <div className={`nav-links ${isMenuOpen ? 'active' : ''}`}>
+        <div className={`nav-links $w{isMenuOpen ? 'active' : ''}`}>
             <Link to="/home" onClick={() => setIsMenuOpen(false)}>Home</Link>
             <Link to="/cart" onClick={() => setIsMenuOpen(false)}>Cart</Link>
             <Link to="/orders" onClick={() => setIsMenuOpen(false)}>Orders</Link>

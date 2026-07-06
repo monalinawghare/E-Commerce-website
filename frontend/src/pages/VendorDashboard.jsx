@@ -1,275 +1,286 @@
-import { useEffect, useState } from "react";
-import { useNavigate } from "react-router-dom";
-import api from "../services/api";
+        import { useState } from "react";
+        import { useNavigate } from "react-router-dom";
+        import "./VendorDashboard.css";
 
-function VendorDashboard() {
-    const navigate = useNavigate();
-    const [user] = useState(() => {
-        const storedUser = localStorage.getItem("user");
-        if (!storedUser) return null;
+        export default function VendorDashboard() {
 
-        try {
-        return JSON.parse(storedUser);
-        } catch {
-        return null;
-        }
-    });
+        const navigate = useNavigate();
+        const [active, setActive] = useState("dashboard");
 
-    const [products, setProducts] = useState([]);
-    const [categories, setCategories] = useState([]);
-    const [vendorProfile, setVendorProfile] = useState(null);
-    const [loading, setLoading] = useState(true);
-    const [error, setError] = useState("");
-    const [success, setSuccess] = useState("");
-    const [form, setForm] = useState({
-        category: "",
-        product_name: "",
-        description: "",
-        price: "",
-        stock: "",
-    });
+        const vendor = JSON.parse(localStorage.getItem("user")) || {};
 
-    useEffect(() => {
-        if (!user) {
-        navigate("/");
-        return;
-        }
-        if (user.role !== 'vendor') {
-        navigate('/home');
-        return;
-        }
+        const vendorName =
+        vendor.username ||
+        vendor.name ||
+        vendor.full_name ||
+        "Vendor";
 
-        const fetchData = async () => {
-        try {
-            const token = localStorage.getItem("access");
-            const [profileRes, productsRes, categoriesRes] = await Promise.all([
-            api.get("profile/", { headers: { Authorization: `Bearer ${token}` } }),
-            api.get("products/"),
-            api.get("categories/"),
-            ]);
+        const vendorEmail =
+        vendor.email || "No Email";
 
-            const productList = Array.isArray(productsRes.data)
-            ? productsRes.data
-            : productsRes.data?.results || [];
-            const categoryList = Array.isArray(categoriesRes.data)
-            ? categoriesRes.data
-            : categoriesRes.data?.results || [];
+        const profileLetter = vendorName.charAt(0).toUpperCase();
 
-            const vendorProducts = productList.filter(
-            (item) => Number(item.vendor?.id) === Number(user.id)
-            );
+        const orders = [
+            {
+            id: "#101",
+            product: "Shirt",
+            status: "Delivered",
+            amount: 799,
+            },
+            {
+            id: "#102",
+            product: "Shoes",
+            status: "Pending",
+            amount: 1999,
+            },
+            {
+            id: "#103",
+            product: "Watch",
+            status: "Delivered",
+            amount: 2499,
+            },
+            {
+            id: "#104",
+            product: "Laptop Bag",
+            status: "Delivered",
+            amount: 1599,
+            },
+        ];
 
-            setVendorProfile(profileRes.data.vendor_profile || null);
-            setProducts(vendorProducts);
-            setCategories(categoryList);
-        } catch {
-            setError("Unable to load vendor dashboard data.");
-        } finally {
-            setLoading(false);
-        }
+        const totalRevenue = orders
+            .filter((order) => order.status === "Delivered")
+            .reduce((sum, order) => sum + order.amount, 0);
+
+        const deliveredOrders = orders.filter(
+            (order) => order.status === "Delivered"
+        ).length;
+
+        const pendingOrders = orders.filter(
+            (order) => order.status === "Pending"
+        ).length;
+
+        const handleNavigation = (menu, path = null) => {
+            setActive(menu);
+
+            if (path) {
+            navigate(path);
+            }
         };
-
-        fetchData();
-    }, [navigate, user]);
-
-    const handleLogout = () => {
-        localStorage.removeItem("access");
-        localStorage.removeItem("refresh");
+        const handleLogout = () => {
         localStorage.removeItem("user");
-        navigate("/");
-    };
-
-    const handleChange = (e) => {
-        const { name, value } = e.target;
-        setForm((prev) => ({ ...prev, [name]: value }));
-        if (error) setError("");
-        if (success) setSuccess("");
-    };
-
-    const handleSubmit = async (e) => {
-        e.preventDefault();
-
-        if (!form.product_name || !form.description || !form.category || !form.price || !form.stock) {
-        setError("Please fill in all product fields.");
-        return;
-        }
-
-        try {
-
-        const payload = {
-            category: Number(form.category),
-            product_name: form.product_name,
-            description: form.description,
-            price: Number(form.price),
-            stock: Number(form.stock),
+        navigate("/login");
         };
 
-        const token = localStorage.getItem("access");
-        const response = await api.post("products/", payload, {
-        headers: { Authorization: `Bearer ${token}` },
-        });
-        setProducts((prev) => [response.data, ...prev]);
-        setSuccess("Product added successfully.");
-        setError("");
-        setForm({
-            category: "",
-            product_name: "",
-            description: "",
-            price: "",
-            stock: "",
-        });
-        } catch (err) {
-        const serverError = err.response?.data;
-        if (serverError) {
-            const firstMessage = Object.values(serverError)[0];
-            setError(Array.isArray(firstMessage) ? firstMessage[0] : "Failed to add product.");
-        } else {
-            setError("Server error. Please try again.");
-        }
-        }
-    };
+        return (
+            <>
+        <div className="dashboard">
 
-    const inputStyle = {
-    width: "100%",
-    padding: "10px 12px",
-    borderRadius: "8px",
-    border: "1px solid #d1d5db",
-    fontSize: "14px",
-    boxSizing: "border-box",
-    };
+        <aside className="sidebar">
 
-    return (
-        <div style={{ minHeight: "100vh", background: "#f6f7fb", padding: "32px 20px" }}>
-        <div style={{ maxWidth: "1100px", margin: "0 auto" }}>
-            <div style={{ display: "flex", justifyContent: "space-between", alignItems: "center", marginBottom: "24px" }}>
-            <div>
-                <h1 style={{ margin: 0, color: "#111827" }}>Vendor Dashboard</h1>
-                <p style={{ margin: "6px 0 0", color: "#6b7280" }}>
-                Welcome back, {user?.first_name || user?.username || "vendor"}
-                </p>
-                {vendorProfile && (
-                <div style={{ marginTop: "12px", color: "#374151" }}>
-                    <p style={{ margin: "4px 0" }}><strong>Shop:</strong> {vendorProfile.shop_name}</p>
-                    <p style={{ margin: "4px 0" }}><strong>Address:</strong> {vendorProfile.shop_address}</p>
-                    {vendorProfile.gst_number && (
-                    <p style={{ margin: "4px 0" }}><strong>GST:</strong> {vendorProfile.gst_number}</p>
-                    )}
-                </div>
-                )}
-            </div>
             <button
-                onClick={handleLogout}
-                style={{ padding: "10px 16px", border: "none", borderRadius: "8px", background: "#ed4b0a", color: "white", cursor: "pointer" }}
+            className="home-btn"
+            onClick={() => navigate("/home")}
             >
-                Logout
+            🏠 Home
             </button>
+
+            <div className="sidebar-profile-icon">
+            {profileLetter}
             </div>
 
-            <div style={{ display: "grid", gridTemplateColumns: "repeat(auto-fit, minmax(240px, 1fr))", gap: "16px", marginBottom: "24px" }}>
-            <div style={{ background: "white", borderRadius: "12px", padding: "20px", boxShadow: "0 8px 24px rgba(0,0,0,0.06)" }}>
-                <p style={{ margin: 0, color: "#6b7280" }}>Products Listed</p>
-                <h2 style={{ margin: "8px 0 0", fontSize: "28px" }}>{products.length}</h2>
-            </div>
-            <div style={{ background: "white", borderRadius: "12px", padding: "20px", boxShadow: "0 8px 24px rgba(0,0,0,0.06)" }}>
-                <p style={{ margin: 0, color: "#6b7280" }}>Available Stock</p>
-                <h2 style={{ margin: "8px 0 0", fontSize: "28px" }}>
-                {products.reduce((sum, item) => sum + Number(item.stock || 0), 0)}
-                </h2>
-            </div>
-            <div style={{ background: "white", borderRadius: "12px", padding: "20px", boxShadow: "0 8px 24px rgba(0,0,0,0.06)" }}>
-                <p style={{ margin: 0, color: "#6b7280" }}>Categories</p>
-                <h2 style={{ margin: "8px 0 0", fontSize: "28px" }}>{categories.length}</h2>
-            </div>
+            <div className="vendor-info">
+            <p className="name">{vendorName}</p>
+            <p className="username">@{vendor.username || "vendor"}</p>
             </div>
 
-            <div style={{ display: "grid", gap: "24px", gridTemplateColumns: "1.1fr 0.9fr" }}>
-            <div style={{ background: "white", borderRadius: "12px", padding: "24px", boxShadow: "0 8px 24px rgba(0,0,0,0.06)" }}>
-                <h3 style={{ marginTop: 0 }}>Add New Product</h3>
-                <form onSubmit={handleSubmit}>
-                <div style={{ display: "grid", gap: "12px" }}>
-                    <select name="category" value={form.category} onChange={handleChange} style={inputStyle}>
-                    <option value="">Select category</option>
-                    {categories.map((category) => (
-                        <option key={category.id} value={category.id}>
-                        {category.category_name}
-                        </option>
-                    ))}
-                    </select>
-                    <input
-                    type="text"
-                    name="product_name"
-                    value={form.product_name}
-                    onChange={handleChange}
-                    placeholder="Product name"
-                    style={inputStyle}
-                    />
-                    <textarea
-                    name="description"
-                    value={form.description}
-                    onChange={handleChange}
-                    placeholder="Product description"
-                    rows="3"
-                    style={{ ...inputStyle, resize: "vertical" }}
-                    />
-                    <div style={{ display: "grid", gridTemplateColumns: "1fr 1fr", gap: "12px" }}>
-                    <input
-                        type="number"
-                        name="price"
-                        value={form.price}
-                        onChange={handleChange}
-                        placeholder="Price"
-                        min="1"
-                        step="0.01"
-                        style={inputStyle}
-                    />
-                    <input
-                        type="number"
-                        name="stock"
-                        value={form.stock}
-                        onChange={handleChange}
-                        placeholder="Stock"
-                        min="0"
-                        style={inputStyle}
-                    />
+                <ul className="menu">
+                    <li
+                    className={active === "dashboard" ? "active" : ""}
+                    onClick={() => handleNavigation("dashboard")}
+                    >
+                    Dashboard
+                    </li>
+
+                    <li
+                    className={active === "orders" ? "active" : ""}
+                    onClick={() => navigate("/orders")}
+                    >
+                    Orders
+                    </li>
+
+                    <li
+                    className={active === "products" ? "active" : ""}
+                    onClick={() => navigate("/Products")}
+                    >
+                    Products
+                    </li>
+
+                    <li
+                    className={active === "revenue" ? "active" : ""}
+                    onClick={() => handleNavigation("revenue")}
+                    >
+                    Revenue
+                    </li>
+                    <li onClick={handleLogout}>
+        Logout
+        </li>
+                </ul>
+
+                <div className="vendor-info">
+        <p className="name">{vendorName}</p>
+        <p className="email">{vendorEmail}</p>
+        </div>
+                </aside>
+
+                {/* Main */}
+                <main className="main">
+
+                {/* DASHBOARD */}
+                {active === "dashboard" && (
+                    <>
+                    <div className="topbar">
+                        <h2>Dashboard Overview</h2>
+                        
                     </div>
-                </div>
 
-                {error && <p style={{ color: "#ed4b0a", fontSize: "13px", marginTop: "12px" }}>{error}</p>}
-                {success && <p style={{ color: "#16a34a", fontSize: "13px", marginTop: "12px" }}>{success}</p>}
+                    <div className="cards">
+                        <div className="card">
+                        <h3>Orders</h3>
+                        <p>{orders.length}</p>
+                        </div>
 
-                <button type="submit" style={{ marginTop: "16px", padding: "10px 16px", border: "none", borderRadius: "8px", background: "#111827", color: "white", cursor: "pointer" }}>
-                    Add Product
-                </button>
-                </form>
-            </div>
+                        <div className="card">
+                        <h3>Revenue</h3>
+                        <p>₹{totalRevenue}</p>
+                        </div>
 
-            <div style={{ background: "white", borderRadius: "12px", padding: "24px", boxShadow: "0 8px 24px rgba(0,0,0,0.06)" }}>
-                <div style={{ display: "flex", justifyContent: "space-between", alignItems: "center", marginBottom: "16px" }}>
-                <h3 style={{ margin: 0 }}>Your Products</h3>
-                {loading && <span style={{ color: "#6b7280" }}>Loading...</span>}
-                </div>
+                        <div className="card">
+                        <h3>Products</h3>
+                        <p>35</p>
+                        </div>
+                    </div>
 
-                {!loading && products.length === 0 && (
-                <p style={{ color: "#6b7280" }}>No products added yet.</p>
+                    <div className="bottom">
+                        <div className="box">
+                        <h3>Recent Orders</h3>
+
+                        <table>
+                            <thead>
+                            <tr>
+                                <th>ID</th>
+                                <th>Product</th>
+                                <th>Status</th>
+                                <th>Amount</th>
+                            </tr>
+                            </thead>
+
+                            <tbody>
+                            {orders.map((order) => (
+                                <tr key={order.id}>
+                                <td>{order.id}</td>
+                                <td>{order.product}</td>
+
+                                <td
+                                    className={
+                                    order.status === "Delivered"
+                                        ? "delivered"
+                                        : "pending"
+                                    }
+                                >
+                                    {order.status}
+                                </td>
+
+                                <td>₹{order.amount}</td>
+                                </tr>
+                            ))}
+                            </tbody>
+                        </table>
+                        </div>
+
+                        <div className="box">
+                        <h3>Quick Actions</h3>
+
+                        <button onClick={() => navigate("/add-product")}>
+                            Add Product
+                        </button>
+
+                        <button onClick={() => navigate("/orders")}>
+                            View Orders
+                        </button>
+
+                        <button onClick={() => navigate("/categories")}>
+                            Add Category
+                        </button>
+                        </div>
+                    </div>
+                    </>
                 )}
 
-                <div style={{ display: "grid", gap: "12px" }}>
-                {products.map((product) => (
-                    <div key={product.id} style={{ border: "1px solid #e5e7eb", borderRadius: "10px", padding: "14px" }}>
-                    <div style={{ display: "flex", justifyContent: "space-between", gap: "8px" }}>
-                        <strong>{product.product_name}</strong>
-                        <span style={{ color: "#ed4b0a", fontWeight: 600 }}>${Number(product.price).toFixed(2)}</span>
+                {/* REVENUE */}
+                {active === "revenue" && (
+                    <>
+                    <div className="topbar">
+                        <h2>Revenue Report</h2>
+                        <div className="profile">₹</div>
                     </div>
-                    <p style={{ margin: "6px 0", color: "#6b7280" }}>{product.description}</p>
-                    <small style={{ color: "#111827" }}>Stock: {product.stock}</small>
-                    </div>
-                ))}
-                </div>
-            </div>
-            </div>
-        </div>
-        </div>
-    );
-}
 
-export default VendorDashboard;
+                    <div className="cards">
+                        <div className="card">
+                        <h3>Total Revenue</h3>
+                        <p>₹{totalRevenue}</p>
+                        </div>
+
+                        <div className="card">
+                        <h3>Delivered Orders</h3>
+                        <p>{deliveredOrders}</p>
+                        </div>
+
+                        <div className="card">
+                        <h3>Pending Orders</h3>
+                        <p>{pendingOrders}</p>
+                        </div>
+                    </div>
+
+                    <div className="box" style={{ marginTop: "20px" }}>
+                        <h3>Revenue Details</h3>
+
+                        <table>
+                        <thead>
+                            <tr>
+                            <th>Order ID</th>
+                            <th>Product</th>
+                            <th>Status</th>
+                            <th>Amount</th>
+                            </tr>
+                        </thead>
+
+                        <tbody>
+                            {orders.map((order) => (
+                            <tr key={order.id}>
+                                <td>{order.id}</td>
+                                <td>{order.product}</td>
+
+                                <td
+                                className={
+                                    order.status === "Delivered"
+                                    ? "delivered"
+                                    : "pending"
+                                }
+                                >
+                                {order.status}
+                                </td>
+
+                                <td>₹{order.amount}</td>
+                            </tr>
+                            ))}
+                        </tbody>
+                        </table>
+                    </div>
+                    </>
+                )}
+
+                </main>
+            </div>
+            </>
+        );
+        }

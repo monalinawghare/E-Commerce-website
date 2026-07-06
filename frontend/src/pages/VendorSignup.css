@@ -1,0 +1,156 @@
+
+/* RESET */
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  font-family: "Segoe UI", Arial, sans-serif;
+}
+
+html, body {
+  height: 100%;
+  overflow-x: hidden;
+}
+
+
+.navbar {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  background: #ed4b0a;
+  padding: 14px;
+  text-align: center;
+  z-index: 1000;
+}
+
+.logo {
+  color: white;
+  font-size: 22px;
+  font-weight: bold;
+}
+
+/* MAIN CONTAINER */
+.login-container {
+  min-height: 100vh;
+  width: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: flex-start;
+
+  /* space for fixed navbar */
+  padding: 90px 20px 40px;
+
+  background: linear-gradient(135deg, #ed4b0a, #f4c0c4, #cdd13f);
+}
+
+
+.login-box {
+  width: 100%;
+  max-width: 850px;
+  background: rgba(255, 255, 255, 0.96);
+  padding: 30px;
+  border-radius: 18px;
+  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.15);
+}
+
+
+.login-box h1 {
+  text-align: center;
+  margin-bottom: 20px;
+  color: #9b1648;
+}
+
+.form-grid {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 15px;
+}
+
+.form-group {
+  display: flex;
+  flex-direction: column;
+}
+
+.form-group label {
+  margin-bottom: 5px;
+  font-size: 14px;
+  font-weight: 600;
+  color: #333;
+}
+
+.form-group input {
+  padding: 10px 12px;
+  border: 1px solid #f4c0c4;
+  border-radius: 8px;
+  background: #fafafa;
+  outline: none;
+  transition: 0.3s;
+}
+
+.form-group input:focus {
+  border-color: #ed4b0a;
+  background: white;
+  box-shadow: 0 0 0 3px rgba(237, 75, 10, 0.15);
+}
+
+button {
+  width: 100%;
+  margin-top: 18px;
+  padding: 12px;
+  border: none;
+  border-radius: 8px;
+  background: linear-gradient(90deg, #9b1648, #ed4b0a, #cdd13f);
+  color: white;
+  font-size: 16px;
+  font-weight: bold;
+  cursor: pointer;
+  transition: 0.3s;
+}
+
+button:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 8px 20px rgba(0, 0, 0, 0.2);
+}
+
+.signup-text {
+  text-align: center;
+  margin-top: 15px;
+  color: #555;
+}
+
+.signup-text a {
+  color: #ed4b0a;
+  font-weight: bold;
+  text-decoration: none;
+}
+
+.signup-text a:hover {
+  text-decoration: underline;
+}
+
+.error-message {
+  color: #ed4b0a;
+  text-align: center;
+  margin-top: 10px;
+  font-size: 13px;
+}
+
+
+.success-message {
+  color: green;
+  text-align: center;
+  margin-top: 10px;
+  font-size: 13px;
+}
+
+
+@media (max-width: 768px) {
+  .form-grid {
+    grid-template-columns: 1fr;
+  }
+
+  .login-box {
+    padding: 20px;
+  }
+}

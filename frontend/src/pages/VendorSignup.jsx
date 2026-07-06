@@ -1,6 +1,6 @@
     import { useState } from "react";
     import { Link, useNavigate } from "react-router-dom";
-    import "./Login.css";
+    import "./VendorSignup.css";
     import api from "../services/api";
 
     function VendorSignup() {

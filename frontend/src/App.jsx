@@ -11,14 +11,10 @@ import Cart from "./pages/Cart";
 import Orders from "./pages/Orders";
 import UserDashboard from "./pages/UserDashboard";
 import VendorDashboard from "./pages/VendorDashboard";
-<<<<<<< HEAD
-// import Footer from "./components/Footer";
-=======
 import Checkout from "./pages/Checkout";
-
-import Footer from "./components/Footer";
 import ScrollToTop from "./components/ScrollToTop";
->>>>>>> 72ac5b5b466d492260a1956419dbfdb57cd8df71
+import AddProduct from "./pages/AddProduct";
+import Category from "./pages/Category";
 
 function App() {
   return (
@@ -26,12 +22,10 @@ function App() {
       <ScrollToTop />
       <Routes>
         <Route path="/" element={<Navigate to="/login" replace />} />
-
         <Route path="/login" element={<Login />} />
         <Route path="/signup" element={<Signup />} />
         <Route path="/vendor-signup" element={<VendorSignup />} />
         <Route path="/forgot-password" element={<ForgotPassword />} />
-
         <Route path="/home" element={<Home />} />
         <Route path="/products" element={<Products />} />
         <Route path="/product-details" element={<ProductDetails />} />
@@ -41,13 +35,10 @@ function App() {
         <Route path="/orders" element={<Orders />} />
         <Route path="/dashboard" element={<UserDashboard />} />
         <Route path="/vendor-dashboard" element={<VendorDashboard />} />
+        <Route path="/add-product" element={<AddProduct />} />
+        <Route path="/categories" element={<Category />} />
+        
       </Routes>
-<<<<<<< HEAD
-      {/* <Footer /> */}
-=======
-
-      <Footer />
->>>>>>> 72ac5b5b466d492260a1956419dbfdb57cd8df71
     </BrowserRouter>
   );
 }
