@@ -17,7 +17,6 @@ class Product(models.Model):
         on_delete=models.CASCADE,
         related_name="products"
     )
-
     product_name = models.CharField(max_length=100)
     description = models.TextField()
     price = models.DecimalField(

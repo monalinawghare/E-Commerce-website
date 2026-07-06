@@ -6,6 +6,9 @@ class ProductSerializer(serializers.ModelSerializer):
     vendor = serializers.SerializerMethodField(read_only=True)
 
     def get_vendor(self, obj):
+        if obj.vendor is None:
+            return None
+
         return {
             "id": obj.vendor.id,
             "username": obj.vendor.username,
