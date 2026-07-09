@@ -4,6 +4,7 @@ import api from "../services/api";
 import Footer from "../components/Footer";
 import Navbar from "../components/Navbar";
 import "./Checkout.css";
+import Swal from "sweetalert2";
 
 function Checkout() {
   const navigate = useNavigate();
@@ -14,6 +15,7 @@ function Checkout() {
   const [loading, setLoading] = useState(true);
 
   const token = localStorage.getItem("access");
+  const user = JSON.parse(localStorage.getItem("user"));
 
   useEffect(() => {
     const fetchCart = async () => {
@@ -44,7 +46,7 @@ function Checkout() {
   }, [navigate, token]);
 
   
-  const total = cartItems.reduce((sum, item) => {
+    const total = cartItems.reduce((sum, item) => {
     const price = Number(item.price ?? item.product_price ?? 0);
     const quantity = Number(item.quantity ?? 1);
 
@@ -52,32 +54,34 @@ function Checkout() {
   }, 0);
 
   const placeOrder = async () => {
-    if (!address.trim()) {
-      alert("Please enter your delivery address.");
-      return;
-    }
+  if (!address.trim()) {
+    alert("Please enter your delivery address.");
+    return;
+  }
 
-    if (cartItems.length === 0) {
-      alert("Your cart is empty.");
-      return;
-    }
+  if (cartItems.length === 0) {
+    alert("Your cart is empty.");
+    return;
+  }
 
+  // ---------- CASH ON DELIVERY ----------
+  if (paymentMethod === "COD") {
     try {
-      const orderData = {
-        items: cartItems.map((item) => ({
+      for (const item of cartItems) {
+        const orderData = {
+          customer_name: user.username,
           product: item.product,
           quantity: item.quantity,
-        })),
-        total_price: total,
-        address,
-        payment_method: paymentMethod,
-      };
+          address,
+          payment_method: "COD",
+        };
 
-      await api.post("orders/", orderData, {
-        headers: {
-          Authorization: `Bearer ${token}`,
-        },
-      });
+        await api.post("createorder/", orderData, {
+          headers: {
+            Authorization: `Bearer ${token}`,
+          },
+        });
+      }
 
       await api.delete("cart/", {
         headers: {
@@ -85,14 +89,129 @@ function Checkout() {
         },
       });
 
-      alert("Order placed successfully!");
-
+      Swal.fire({
+        icon: "success",
+        title: "Success",
+        text: "Order placed successfully!",
+        confirmButtonColor: "#8B3A3A",
+    });
       navigate("/orders");
-    } catch (error) {
-      console.error("Order Error:", error);
-      alert("Unable to place order.");
+
+    } catch (err) {
+      console.log(err);
+      Swal.fire({
+        icon: "error",
+        title: "Order Failed",
+        text: "Unable to place order.",
+        confirmButtonColor: "#8B3A3A",
+    });
     }
-  };
+
+    return;
+  }
+
+  // ---------- RAZORPAY ----------
+  try {
+
+    const razorOrder = await api.post(
+      "create-razorpay-order/",
+      {
+        amount: total,
+      },
+      {
+        headers: {
+          Authorization: `Bearer ${token}`,
+        },
+      }
+    );
+
+    const options = {
+
+      key: razorOrder.data.key,
+
+      amount: razorOrder.data.amount,
+
+      currency: razorOrder.data.currency,
+
+      order_id: razorOrder.data.order_id,
+
+      name: "GrandMart",
+
+      description: "Product Purchase",
+
+      handler: async function (response) {
+
+        await api.post(
+          "verify-payment/",
+          {
+            razorpay_order_id: response.razorpay_order_id,
+            razorpay_payment_id: response.razorpay_payment_id,
+            razorpay_signature: response.razorpay_signature,
+          },
+          {
+            headers: {
+              Authorization: `Bearer ${token}`,
+            },
+          }
+        );
+
+        // Create Orders
+        for (const item of cartItems) {
+
+          const orderData = {
+            customer_name: user.username,
+            product: item.product,
+            quantity: item.quantity,
+            address,
+            payment_method: "ONLINE",
+          };
+
+          await api.post("createorder/", orderData, {
+            headers: {
+              Authorization: `Bearer ${token}`,
+            },
+          });
+
+        }
+
+        await api.delete("cart/", {
+          headers: {
+            Authorization: `Bearer ${token}`,
+          },
+        });
+
+        Swal.fire({
+          icon: "success",
+          title: "Payment Successful",
+          text: "Your order has been placed successfully.",
+          confirmButtonText: "OK",
+        });
+
+        navigate("/orders");
+      },
+
+      theme: {
+        color: "#f37254",
+      },
+
+    };
+
+    const razor = new window.Razorpay(options);
+
+    razor.open();
+
+  } catch (err) {
+
+    console.log(err);
+
+    Swal.fire({
+      icon: "error",
+      title: "Payment Failed",
+      text: "Please try again.",
+    });
+
+  }
+};
 
   return (
     <>

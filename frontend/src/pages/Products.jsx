@@ -1,134 +1,230 @@
-import Navbar from "../components/Navbar";
-import Footer from "../components/Footer";
-import { useNavigate, useSearchParams } from "react-router-dom";
-import { featuredProducts } from "../data/products";
-import "./Products.css";
+        import { useEffect, useState } from "react";
+        import Navbar from "../components/Navbar";
+        import Footer from "../components/Footer";
+        import { useNavigate, useSearchParams } from "react-router-dom";
+        import api from "../services/api";
+        import "./Products.css";
+        import { toast } from "react-toastify";
 
-function Products() {
-    const navigate = useNavigate();
-    
-    // Step 1: Read search parameters from URL
-    const [searchParams] = useSearchParams();
-    
-    // Step 2: Extract the selected category and search query from URL
-    // Example: /products?category=Electronics or /products?search=headphones
-    const selectedCategory = searchParams.get("category");
-    const searchQuery = searchParams.get("search");
-    
-    // Step 3: Filter products based on category and/or search query
-    let filteredProducts = featuredProducts;
-    
-    // Filter by category if selected
-    if (selectedCategory) {
-        filteredProducts = filteredProducts.filter(
-            product => product.category === selectedCategory
-        );
-    }
-    
-    // Filter by search query if provided
-    if (searchQuery) {
-        filteredProducts = filteredProducts.filter(product =>
-            product.name.toLowerCase().includes(searchQuery.toLowerCase())
-        );
-    }
-    
-    // Step 4: Determine the page heading dynamically
-    // Show filtered title based on both category and search
-    let pageTitle = "All Products";
-    if (selectedCategory && searchQuery) {
-        pageTitle = `${selectedCategory} - "${searchQuery}"`;
-    } else if (selectedCategory) {
-        pageTitle = `${selectedCategory} Products`;
-    } else if (searchQuery) {
-        pageTitle = `Search Results for "${searchQuery}"`;
-    }
+        function Products() {
+        const navigate = useNavigate();
 
-    return (
+        const [searchParams] = useSearchParams();
+
+        const selectedCategory = searchParams.get("category");
+        const searchQuery = searchParams.get("search");
+
+        const [products, setProducts] = useState([]);
+        const [loading, setLoading] = useState(true);
+        const [error, setError] = useState("");
+
+        useEffect(() => {
+        const fetchProducts = async () => {
+            setLoading(true);
+            setError("");
+
+            try {
+                let url = "products/";
+
+                if (selectedCategory) {
+                    url += `?category=${selectedCategory}`;
+                }
+
+                const response = await api.get(url);
+
+                const productData = Array.isArray(response.data)
+                    ? response.data
+                    : response.data.results || [];
+
+                setProducts(productData);
+            } catch (err) {
+                console.error(err);
+                setError("Unable to load products.");
+            } finally {
+                setLoading(false);
+            }
+        };
+
+    fetchProducts();
+}, [selectedCategory]);
+
+        const addToCart = async (productId) => {
+            try {
+                const token = localStorage.getItem("access");
+
+                if (!token) {
+                navigate("/login");
+                return;
+                }
+            await api.post(
+                "cart/",
+                {
+                product: productId,
+                },
+                {
+                headers: {
+                    Authorization: `Bearer ${token}`,
+                },
+                }
+            );
+
+            toast.success("Product added to cart successfully!");
+            } catch (err) {
+            console.error(err);
+            toast.error("Failed to add product.");
+            }
+        };
+
+        let filteredProducts = products;
+
+        if (searchQuery) {
+            filteredProducts = filteredProducts.filter((product) =>
+            product.product_name
+                .toLowerCase()
+                .includes(searchQuery.toLowerCase())
+            );
+        }
+
+        let pageTitle = "All Products";
+
+        if (selectedCategory && searchQuery) {
+            pageTitle = `Search Results`;
+        } else if (selectedCategory) {
+            pageTitle = "Category Products";
+        } else if (searchQuery) {
+            pageTitle = `Search Results for "${searchQuery}"`;
+        }
+        return (
         <>
         <Navbar />
 
         <div className="products-container">
-            {/* Dynamic heading based on selected category or search */}
             <h1>{pageTitle}</h1>
 
-            {/* Show clear filters button if filters are active */}
             {(selectedCategory || searchQuery) && (
-                <button 
-                    onClick={() => navigate("/home")}
+            <button
+                onClick={() => navigate("/products", {replace : true})}
+                style={{
+                padding: "10px 20px",
+                marginBottom: "20px",
+                background: "#9b1648",
+                color: "#fff",
+                border: "none",
+                borderRadius: "6px",
+                cursor: "pointer",
+                display: "block",
+                margin: "0 auto 20px",
+                width: "170px",
+                }}
+            >
+                ← Clear Filters
+            </button>
+            )}
+
+            {loading && (
+            <div
+                style={{
+                textAlign: "center",
+                padding: "40px",
+                fontSize: "18px",
+                }}
+            >
+                Loading Products...
+            </div>
+            )}
+
+            {error && (
+            <div
+                style={{
+                textAlign: "center",
+                color: "red",
+                padding: "20px",
+                }}
+            >
+                {error}
+            </div>
+            )}
+
+            {!loading && (
+            <div className="products-grid">
+                {filteredProducts.length > 0 ? (
+                filteredProducts.map((product) => (
+                    <div className="product-card" key={product.id}>
+                    <div className="img-wrap">
+                        <img
+                        src={
+                            product.image
+                                ? product.image
+                                : "https://via.placeholder.com/250x220?text=No+Image"
+                        }
+                        alt={product.product_name}
+                        />
+                    </div>
+
+                    <h3>{product.product_name}</h3>
+
+                    <p className="category">
+                        {product.category_name}
+                    </p>
+
+                    <p className="price">
+                        ₹{parseFloat(product.price).toLocaleString("en-IN")}
+                    </p>
+                                    <div className="product-buttons">
+                    <button type="button" onClick={() => navigate(`/product-details/${product.id}`)}>
+                        View Details
+                    </button>
+
+                        <button
+                        className="add-cart-btn"
+                        onClick={() => addToCart(product.id)}
+                        >
+                        Add to Cart
+                        </button>
+                    </div>
+                    </div>
+                ))
+                ) : (
+                <div
                     style={{
+                    gridColumn: "1 / -1",
+                    textAlign: "center",
+                    padding: "40px 20px",
+                    color: "#666",
+                    }}
+                >
+                    <h3>No Products Found</h3>
+
+                    <p>
+                    {searchQuery
+                    ? `No products found for "${searchQuery}".`
+                    : "No products available in this category."}
+                </p>
+
+                <button
+                    onClick={() => navigate("/products",{replace: true})}
+                    style={{
+                        marginTop: "20px",
                         padding: "10px 20px",
-                        marginBottom: "20px",
                         background: "#9b1648",
-                        color: "white",
+                        color: "#fff",
                         border: "none",
                         borderRadius: "6px",
                         cursor: "pointer",
-                        fontSize: "14px",
-                        display: "block",
-                        margin: "0 auto 20px",
-                        width : "150px"
+                        width: "180px",
                     }}
-                >
-                    ← Clear Filters
-                </button>
-            )}
-
-            {/* Show product grid if products exist in selected category */}
-            <div className="products-grid">
-                {filteredProducts.length > 0 ? (
-                    // Step 5: Render filtered products with preserved UI
-                    // Each product maintains its image, name, price, and View Details button
-                    filteredProducts.map((product) => (
-                        <div className="product-card" key={product.id}>
-                            <div className="img-wrap">
-                                <img src={product.image} alt={product.name} />
-                            </div>
-                            <h3>{product.name}</h3>
-                            <p>{product.price}</p>
-                            {/* Preserve navigation to Product Details page */}
-                            <button onClick={() => navigate(`/product-details/${product.id}`)}>
-                                View Details
-                            </button>
-                        </div>
-                    ))
-                ) : (
-                    // Step 6: Show message when no products found
-                    <div style={{
-                        gridColumn: "1 / -1",
-                        textAlign: "center",
-                        padding: "40px 20px",
-                        fontSize: "18px",
-                        color: "#666"
-                    }}>
-                        <p>
-                            {searchQuery 
-                                ? `No products found for "${searchQuery}".`
-                                : "No products available in this category."
-                            }
-                        </p>
-                        <button 
-                            onClick={() => navigate("/products")}
-                            style={{
-                                marginTop: "20px",
-                                padding: "10px 20px",
-                                background: "#9b1648",
-                                color: "white",
-                                border: "none",
-                                borderRadius: "6px",
-                                cursor: "pointer",
-                                fontSize: "16px",
-                                width : "200px"
-                            }}
-                        >
-                            View All Products
-                        </button>
-                    </div>
+                    >
+                    View All Products
+                    </button>
+                </div>
                 )}
             </div>
+            )}
         </div>
+
         <Footer />
         </>
     );
-}
+    }
 
 export default Products;

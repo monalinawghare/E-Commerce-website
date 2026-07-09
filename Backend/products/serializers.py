@@ -4,7 +4,10 @@ from .models import Product
 
 class ProductSerializer(serializers.ModelSerializer):
     vendor = serializers.SerializerMethodField(read_only=True)
-
+    category_name = serializers.CharField(
+        source="category.category_name",
+        read_only=True
+    )
     def get_vendor(self, obj):
         if obj.vendor is None:
             return None
@@ -22,6 +25,7 @@ class ProductSerializer(serializers.ModelSerializer):
             "id",
             "vendor",
             "category",
+            "category_name",
             "product_name",
             "description",
             "price",

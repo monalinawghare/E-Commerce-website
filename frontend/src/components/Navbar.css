@@ -1,63 +1,70 @@
-* {
-    margin: 0;
-    padding: 0;
-    box-sizing: border-box;
-    font-family: "Segoe UI", Arial, sans-serif;
+*{
+    margin:0;
+    padding:0;
+    box-sizing:border-box;
+    font-family:"Segoe UI",Arial,sans-serif;
 }
 
-.navbar {
-    --navbar-h: 75px;
-    height: var(--navbar-h);
-    background: linear-gradient(90deg, #9b1648, #ed4b0a, #cdd13f);
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    padding: 0 45px;
-    position: fixed;
-    top: 0;
-    width: 100%;
-    z-index: 1000;
-    box-shadow: 0 8px 20px rgba(0,0,0,.15);
+.navbar{
+    position:fixed;
+    top:0;
+    left:0;
+    width:100%;
+    height:75px;
+    background:linear-gradient(90deg,#9b1648,#ed4b0a,#cdd13f);
+    display:flex;
+    align-items:center;
+    justify-content:space-between;
+    gap:20px;
+    padding:0 25px;
+    z-index:1000;
+    box-shadow:0 8px 20px rgba(0,0,0,.15);
 }
 
-/* Logo */
+.logo{
+    flex-shrink:0;
+}
 
 .logo a{
     display:flex;
     align-items:center;
-    gap:12px;
     text-decoration:none;
+    gap:12px;
 }
 
 .logo img{
-    width:55px;
-    height:55px;
+    width:52px;
+    height:52px;
     border-radius:12px;
-    background:white;
+    background:#fff;
     padding:4px;
 }
 
 .logo span{
-    color:white;
-    font-size:30px;
-    font-weight:bold;
+    color:#fff;
+    font-size:28px;
+    font-weight:700;
+    white-space:nowrap;
 }
 
-/* Search */
-
 .search-bar{
+    flex:1;
     display:flex;
     align-items:center;
     gap:8px;
+    min-width:0;
+    max-width:550px;
 }
 
 .search-bar input{
-    width:350px;
+    flex:1;
+    width:100%;
+    min-width:0;
     padding:12px 15px;
     border:none;
     outline:none;
     border-radius:10px;
-    font-size:14px;
+    font-size:15px;
 }
 
 .search-btn{
@@ -65,9 +72,10 @@
     height:48px;
     border:none;
     border-radius:10px;
-    background:white;
+    background:#fff;
     cursor:pointer;
     font-size:18px;
+    flex-shrink:0;
     transition:.3s;
 }
 
@@ -75,25 +83,24 @@
     transform:scale(1.05);
 }
 
-/* Navigation */
-
 .nav-links{
     display:flex;
     align-items:center;
-    gap:22px;
+    gap:20px;
+    flex-shrink:0;
 }
 
 .nav-links a{
-    color:white;
+    color:#fff;
     text-decoration:none;
-    font-weight:600;
     font-size:16px;
-    transition:.3s;
+    font-weight:600;
     position:relative;
+    transition:.3s;
 }
 
 .nav-links a:hover{
-    color:#fff5b0;
+    color:#fff3b0;
 }
 
 .nav-links a::after{
@@ -101,9 +108,9 @@
     position:absolute;
     left:0;
     bottom:-5px;
-    width:0%;
+    width:0;
     height:2px;
-    background:white;
+    background:#fff;
     transition:.3s;
 }
 
@@ -111,92 +118,119 @@
     width:100%;
 }
 
-/* Logout */
-
 .logout-btn{
-    background:#ffffff;
-    color:#9b1648;
     border:none;
-    border-radius:25px;
+    background:#fff;
+    color:#9b1648;
     padding:10px 22px;
-    font-size:15px;
+    border-radius:25px;
     font-weight:600;
     cursor:pointer;
     transition:.3s;
-    display:flex;
-    align-items:center;
-    justify-content:center;
 }
 
 .logout-btn:hover{
     background:#9b1648;
-    color:white;
-    transform:translateY(-2px);
+    color:#fff;
 }
-
-/* Hamburger */
 
 .hamburger{
     display:none;
     flex-direction:column;
     gap:5px;
-    background:none;
     border:none;
+    background:none;
     cursor:pointer;
 }
 
 .hamburger span{
-    width:26px;
-    height:3px;
-    background:white;
+    width:20px;
+    height:2px;
+    background:#fff;
+    border-radius:5px;
 }
+/* ================= TABLET ================= */
 
-/* Tablet */
-
-@media(max-width:992px){
+@media (max-width:992px){
 
 .navbar{
-    padding:0 25px;
-}
-
-.search-bar input{
-    width:220px;
-}
-
-.nav-links{
-    gap:16px;
+    padding:0 20px;
 }
 
 .logo span{
-    font-size:24px;
-}
-
-}
-
-/* Mobile */
-
-@media(max-width:768px){
-
-.navbar{
-    padding:0 15px;
+    display:none;
 }
 
 .logo img{
-    width:45px;
-    height:45px;
+    width:46px;
+    height:46px;
 }
 
-.logo span{
-    font-size:20px;
+.search-bar{
+    flex:1;
+    max-width:none;
+    margin:0 10px;
 }
 
 .search-bar input{
-    width:140px;
-    padding:9px;
+    font-size:14px;
+}
+
+.nav-links{
+    gap:15px;
+}
+
+.nav-links a{
+    font-size:15px;
+}
+
+.logout-btn{
+    padding:8px 16px;
+}
+
+}
+
+/* ================= MOBILE ================= */
+
+@media (max-width:768px){
+
+.navbar{
+    padding:0 10px;
+    gap:10px;
+}
+
+.logo img{
+    width:40px;
+    height:40px;
+}
+
+.logo span{
+    display:none;
+}
+
+.search-bar{
+    flex:1;
+    margin:0;
+    max-width:none;
+}
+
+.search-bar input{
+    flex:1;
+    min-width:100px;
+    width:auto;
+    padding:9px 10px;
+    font-size:13px;
+}
+
+.search-btn{
+    width:40px;
+    height:40px;
+    font-size:16px;
 }
 
 .hamburger{
     display:flex;
+    flex-shrink:0;
 }
 
 .nav-links{
@@ -208,8 +242,9 @@
     background:linear-gradient(135deg,#9b1648,#ed4b0a);
     flex-direction:column;
     align-items:center;
-    padding:20px 0;
     gap:18px;
+    padding:20px 0;
+    box-shadow:0 8px 20px rgba(0,0,0,.18);
 }
 
 .nav-links.active{
@@ -222,30 +257,106 @@
 
 .logout-btn{
     width:180px;
-    justify-content:center;
 }
 
 }
 
-/* Small Mobile */
+/* ================= SMALL MOBILE ================= */
 
-@media(max-width:480px){
+@media (max-width:480px){
 
-.logo span{
-    display:none;
+.navbar{
+    padding:0 8px;
+}
+
+.logo img{
+    width:36px;
+    height:36px;
+}
+
+.search-bar{
+    flex:1;
 }
 
 .search-bar input{
-    width:110px;
+    min-width:70px;
+    font-size:12px;
+    padding:8px;
 }
 
 .search-btn{
-    width:40px;
-    height:40px;
+    width:36px;
+    height:36px;
+    font-size:14px;
 }
 
 .logout-btn{
-    width:160px;
+    width:150px;
+}
+
+}
+
+/* ================= EXTRA SMALL ================= */
+
+@media (max-width:360px){
+
+.logo img{
+    width:34px;
+    height:34px;
+}
+
+.search-bar input{
+    min-width:50px;
+    font-size:11px;
+}
+
+.search-btn{
+    width:34px;
+    height:34px;
+}
+
+}
+
+/* ================= LARGE SCREEN ================= */
+
+@media (min-width:1400px){
+
+.navbar{
+    padding:0 70px;
+}
+
+.logo img{
+    width:60px;
+    height:60px;
+}
+
+.logo span{
+    display:block;
+    font-size:34px;
+}
+
+.search-bar{
+    max-width:650px;
+}
+
+.search-bar input{
+    padding:14px 18px;
+    font-size:16px;
+}
+
+.search-btn{
+    width:54px;
+    height:54px;
+    font-size:20px;
+}
+
+.nav-links{
+    gap:28px;
+}
+
+.logout-btn{
+    padding:12px 24px;
+    font-size:16px;
 }
 
 }

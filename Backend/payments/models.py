@@ -14,6 +14,11 @@ class Payment(models.Model):
         ('Completed', 'Completed'),
         ('Failed', 'Failed'),
     )
+    razorpay_order_id = models.CharField(
+    max_length=100,
+    blank=True,
+    null=True
+)
 
     user = models.ForeignKey(
         settings.AUTH_USER_MODEL,
@@ -33,7 +38,7 @@ class Payment(models.Model):
         default='Pending'
     )
     transaction_id = models.CharField(
-        max_length=100,
+        max_length=200,
         blank=True,
         null=True
     )

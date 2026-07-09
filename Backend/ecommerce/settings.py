@@ -1,7 +1,7 @@
 """
 Django settings for ecommerce project.
 """
-
+from datetime import timedelta
 from pathlib import Path
 
 BASE_DIR = Path(__file__).resolve().parent.parent
@@ -111,3 +111,11 @@ REST_FRAMEWORK = {
 }
 MEDIA_URL = "/media/"
 MEDIA_ROOT = BASE_DIR / "media"
+
+
+SIMPLE_JWT = {
+    "ACCESS_TOKEN_LIFETIME": timedelta(minutes=25),
+    "REFRESH_TOKEN_LIFETIME": timedelta(days=7),
+}
+RAZORPAY_KEY_ID = "rzp_test_TAzsJRQls5dcD1"
+RAZORPAY_KEY_SECRET = "m7eArkBHaU0Zgc8uHO0z0LKo"

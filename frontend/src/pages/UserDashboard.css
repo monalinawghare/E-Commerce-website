@@ -91,6 +91,26 @@ html, body {
   margin-top: 3px;
 }
 
+.profile-details {
+    text-align: left;
+    margin-top: 20px;
+}
+
+.profile-details p {
+    color: #fcf5f5;
+    font-size: 16px;
+    margin: 12px 0 3px;
+    font-weight: 400;
+}
+
+.profile-details span {
+    display: block;
+    color: #f8f8f8;
+    font-size: 13px;
+    word-break: break-word;
+}
+
+
 /* MENU */
 .menu {
   margin-top: 30px;
@@ -117,41 +137,53 @@ html, body {
   transform: translateX(4px);
 }
 
-/* SIDEBAR STATS CARD - fills empty space */
-.sidebar-stats {
-  margin-top: 35px;
-  background: rgba(255, 255, 255, 0.12);
-  border: 1px solid rgba(255, 255, 255, 0.25);
-  border-radius: 14px;
-  padding: 20px;
+.modal-overlay {
+    position: fixed;
+    inset: 0;
+    background: rgba(0,0,0,.5);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    z-index: 1000;
 }
 
-.sidebar-stats h4 {
-  font-size: 13px;
-  text-transform: uppercase;
-  letter-spacing: 0.5px;
-  opacity: 0.85;
-  margin-bottom: 15px;
+.modal {
+    width: 420px;
+    background: white;
+    border-radius: 12px;
+    padding: 25px;
 }
 
-.stat-row {
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-  padding: 8px 0;
-  font-size: 14px;
+.modal h2 {
+    margin-bottom: 20px;
 }
 
-.stat-row:not(:last-child) {
-  border-bottom: 1px solid rgba(255, 255, 255, 0.15);
+.modal label {
+    display: block;
+    margin-top: 10px;
+    font-weight: 600;
 }
 
-.stat-row span:last-child {
-  font-weight: bold;
-  background: rgba(255, 255, 255, 0.2);
-  padding: 3px 10px;
-  border-radius: 20px;
-  font-size: 12px;
+.modal input {
+    width: 100%;
+    padding: 10px;
+    margin-top: 5px;
+    border: 1px solid #ccc;
+    border-radius: 8px;
+}
+
+.modal-buttons {
+    display: flex;
+    justify-content: space-between;
+    margin-top: 25px;
+}
+
+.modal-buttons button {
+    width: 48%;
+    padding: 10px;
+    border: none;
+    border-radius: 8px;
+    cursor: pointer;
 }
 
 /* Push logout to bottom */
@@ -229,6 +261,43 @@ html, body {
   font-weight: bold;
   color: #333;
   font-size: 18px;
+}
+.recent-orders {
+    margin-top: 35px;
+    background: white;
+    padding: 25px;
+    border-radius: 15px;
+    box-shadow: 0 5px 15px rgba(0,0,0,.08);
+}
+
+.recent-orders table {
+    width: 100%;
+    border-collapse: collapse;
+    margin-top: 20px;
+}
+
+.recent-orders th,
+.recent-orders td {
+    padding: 12px;
+    border-bottom: 1px solid #eee;
+    text-align: left;
+}
+
+.quick-actions {
+    display: grid;
+    grid-template-columns: repeat(2,1fr);
+    gap: 15px;
+    margin-top: 30px;
+}
+
+.quick-actions button {
+    padding: 15px;
+    border: none;
+    border-radius: 10px;
+    background: linear-gradient(90deg,#9b1648,#ed4b0a);
+    color: white;
+    font-weight: bold;
+    cursor: pointer;
 }
 
 /* ================= RESPONSIVE ================= */

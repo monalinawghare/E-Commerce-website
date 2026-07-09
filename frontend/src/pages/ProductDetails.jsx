@@ -1,9 +1,8 @@
-import { useState } from "react";
+import { useState , useEffect} from "react";
 import { useNavigate, useParams } from "react-router-dom";
 import Navbar from "../components/Navbar";
 import Footer from "../components/Footer";
 import api from "../services/api";
-import { featuredProducts } from "../data/products";
 import "./ProductDetails.css";
 
 function ProductDetails() {
@@ -13,7 +12,24 @@ function ProductDetails() {
     const [message, setMessage] = useState("");
     const [error, setError] = useState("");
 
-    const product = featuredProducts.find((item) => item.id === Number(id));
+    const [product, setProduct] = useState(null);
+    const [loading, setLoading] = useState(true);
+
+    useEffect(() => {
+        const fetchProduct = async () => {
+            setLoading(true);
+            try {
+                const response = await api.get(`products/${id}/`);
+                setProduct(response.data);
+            } catch (err) {
+                console.error("Error fetching product:", err);
+            } finally {
+                setLoading(false);
+            }
+        };
+
+        fetchProduct();
+    }, [id]);
 
     const handleAddToCart = async () => {
         const storedUser = localStorage.getItem("user");
@@ -47,6 +63,17 @@ function ProductDetails() {
             setMessage("");
         }
     };
+    if (loading) {
+        return (
+            <>
+                <Navbar />
+                <div className="product-details-container">
+                    <h2>Loading...</h2>
+                </div>
+                <Footer />
+            </>
+        );
+    }
 
     if (!product) {
         return (
@@ -55,6 +82,7 @@ function ProductDetails() {
                 <div className="product-details-container">
                     <h2>Product not found</h2>
                 </div>
+                <Footer />
             </>
         );
     }
@@ -75,7 +103,13 @@ function ProductDetails() {
                         <h1>{product.product_name}</h1>
                         <p className="price">₹{product.price}</p>
                         <p>
-                            <strong>Category:</strong> {product.category}
+                            <strong>Category:</strong> {product.category_name}
+                        </p>
+                        <p>
+                            <strong>Vendor:</strong>{" "}
+                            {product.vendor
+                                ? `${product.vendor.first_name} ${product.vendor.last_name}`
+                                : "N/A"}
                         </p>
                         <p>
                             <strong>Availability:</strong>

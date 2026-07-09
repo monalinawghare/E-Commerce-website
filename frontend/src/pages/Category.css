@@ -65,18 +65,28 @@
 
 .category-form {
   display: flex;
-  gap: 10px;
-  margin-bottom: 18px;
+  flex-direction: column;
+  gap: 15px;
+  margin-bottom: 20px;
 }
 
-.category-form input {
-  flex: 1;
-  padding: 8px 12px;
+.category-form input[type="text"] {
+  width: 100%;
+  padding: 12px;
   border: 1px solid #ddd;
   border-radius: 8px;
-  font-size: 14px;
-  outline: none;
-  transition: 0.2s;
+  font-size: 15px;
+}
+.category-form input[type="file"] {
+  width: 100%;
+  padding: 10px;
+  border: 1px solid #ddd;
+  border-radius: 8px;
+  background: #fff;
+  cursor: pointer;
+}
+.category-form button {
+  width: 100%;
 }
 
 .category-form input:focus {
@@ -148,6 +158,47 @@ table th {
 
 .delete-btn:hover {
   background: #f8d7d3;
+}
+.image-preview {
+  margin-top: 12px;
+  text-align: center;
+}
+
+.image-preview img {
+  width: 90px;
+  height: 90px;
+  object-fit: cover;
+  border-radius: 10px;
+  border: 1px solid #ddd;
+}
+
+.image-preview p {
+  margin-top: 8px;
+  font-size: 14px;
+  color: #555;
+}
+.category-image {
+  width: 60px;
+  height: 60px;
+  object-fit: cover;
+  border-radius: 8px;
+  border: 1px solid #ddd;
+}
+
+.no-image {
+  width: 60px;
+  height: 60px;
+  background: #f3f3f3;
+  border: 1px solid #ddd;
+  border-radius: 8px;
+
+  display: flex;
+  justify-content: center;
+  align-items: center;
+
+  font-size: 11px;
+  color: #777;
+  text-align: center;
 }
 
 @media (max-width: 500px) {

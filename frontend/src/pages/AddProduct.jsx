@@ -1,10 +1,12 @@
 import { useState, useEffect } from "react";
-import { useNavigate } from "react-router-dom";
+import { useNavigate ,useParams} from "react-router-dom";
 import Navbar from "../components/Navbar";
 import "./AddProduct.css";
 
 export default function AddProduct() {
   const navigate = useNavigate();
+  const { id } = useParams();
+  const isEdit = !!id; // Check if id is present to determine if it's edit mode
 
   const [categories, setCategories] = useState([]);
 
@@ -27,13 +29,16 @@ export default function AddProduct() {
       try {
         const token = localStorage.getItem("access");
 
-        const response = await fetch("http://127.0.0.1:8000/category_list/", {
+        const response = await fetch("http://127.0.0.1:8000/categories/", {
           headers: {
             Authorization: `Bearer ${token}`,
           },
         });
 
         const data = await response.json();
+        
+        console.log("Status:", response.status);
+        console.log("Categories API:", data);
 
         if (response.ok) {
           setCategories(data);
@@ -42,9 +47,42 @@ export default function AddProduct() {
         console.error(error);
       }
     };
-
     fetchCategories();
   }, []);
+  useEffect(() => {
+  if (!isEdit) return;
+
+  const fetchProduct = async () => {
+    try {
+      const token = localStorage.getItem("access");
+
+      const response = await fetch(
+        `http://127.0.0.1:8000/products/${id}/`,
+        {
+          headers: {
+            Authorization: `Bearer ${token}`,
+          },
+        }
+      );
+
+      const data = await response.json();
+
+      if (response.ok) {
+        setFormData({
+          product_name: data.product_name,
+          category: data.category,
+          price: data.price,
+          stock: data.stock,
+          description: data.description,
+        });
+      }
+    } catch (error) {
+      console.error(error);
+    }
+  };
+
+  fetchProduct();
+}, [id, isEdit]);
 
   // handle input
   const handleChange = (e) => {
@@ -87,8 +125,14 @@ export default function AddProduct() {
         data.append("image", productImage);
       }
 
-      const response = await fetch("http://127.0.0.1:8000/addproducts/", {
-        method: "POST",
+        const url = isEdit
+      ? `http://127.0.0.1:8000/products/${id}/`
+      : "http://127.0.0.1:8000/addproducts/";
+
+    const method = isEdit ? "PUT" : "POST";
+
+    const response = await fetch(url, {
+    method,
         headers: {
           Authorization: `Bearer ${token}`,
         },
@@ -96,7 +140,11 @@ export default function AddProduct() {
       });
 
       if (response.ok) {
-        setMessage("Product added successfully!");
+      setMessage(
+        isEdit
+          ? "Product updated successfully!"
+          : "Product added successfully!"
+      );
         setMessageType("success");
 
         setFormData({
@@ -131,7 +179,7 @@ export default function AddProduct() {
       <div className="add-product-page">
         <div className="add-product-card">
           <div className="add-product-header">
-            <h2>Add New Product</h2>
+            <h2>{isEdit ? "Edit Product" : "Add New Product"}</h2>
 
             <button
               className="back-btn"
@@ -232,7 +280,7 @@ export default function AddProduct() {
 
             <div className="form-actions">
               <button type="submit" className="submit-btn">
-                Add Product
+                  {isEdit ? "Update Product" : "Add Product"}
               </button>
 
               <button
