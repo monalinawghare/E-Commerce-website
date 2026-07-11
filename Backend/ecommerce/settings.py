@@ -114,8 +114,8 @@ MEDIA_ROOT = BASE_DIR / "media"
 
 
 SIMPLE_JWT = {
-    "ACCESS_TOKEN_LIFETIME": timedelta(minutes=25),
-    "REFRESH_TOKEN_LIFETIME": timedelta(days=7),
+    "ACCESS_TOKEN_LIFETIME": timedelta(hours=12),
+    "REFRESH_TOKEN_LIFETIME": timedelta(days=30),
 }
 RAZORPAY_KEY_ID = "rzp_test_TAzsJRQls5dcD1"
 RAZORPAY_KEY_SECRET = "m7eArkBHaU0Zgc8uHO0z0LKo"
