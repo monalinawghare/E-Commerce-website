@@ -107,6 +107,27 @@
     transform: translateY(-4px) scale(1.02);
     box-shadow: 0 12px 25px rgba(155, 22, 72, 0.35);
     }
+.stock {
+    color: green;
+    font-weight: 600;
+    margin: 8px 0;
+}
+
+.out-stock {
+    color: red;
+    font-weight: bold;
+    margin: 8px 0;
+}
+
+.out-of-stock-btn {
+    width: 100%;
+    padding: 12px;
+    border: none;
+    border-radius: 10px;
+    background: #bdbdbd;
+    color: white;
+    cursor: not-allowed;
+}
 
 /* Responsive tweaks */
 @media (min-width: 1200px) {

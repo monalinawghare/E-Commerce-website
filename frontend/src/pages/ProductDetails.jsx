@@ -14,6 +14,13 @@ function ProductDetails() {
 
     const [product, setProduct] = useState(null);
     const [loading, setLoading] = useState(true);
+    useEffect(() => {
+    window.scrollTo({
+        top: 0,
+        left: 0,
+        behavior: "smooth",
+    });
+}, []);
 
     useEffect(() => {
         const fetchProduct = async () => {

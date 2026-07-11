@@ -170,18 +170,32 @@
                     <p className="price">
                         ₹{parseFloat(product.price).toLocaleString("en-IN")}
                     </p>
-                                    <div className="product-buttons">
-                    <button type="button" onClick={() => navigate(`/product-details/${product.id}`)}>
-                        View Details
-                    </button>
-
-                        <button
-                        className="add-cart-btn"
-                        onClick={() => addToCart(product.id)}
-                        >
-                        Add to Cart
+                    <p className={product.stock > 0 ? "stock" : "out-stock"}>
+                        {product.stock > 0
+                            ? `${product.stock} Available`
+                            : "Out of Stock"}
+                    </p>
+                    <div className="product-buttons">
+                        <button type="button" onClick={() => navigate(`/product-details/${product.id}`)}>
+                            View Details
                         </button>
-                    </div>
+
+                        {product.stock > 0 ? (
+                            <button
+                                className="add-cart-btn"
+                                onClick={() => addToCart(product.id)}
+                            >
+                                Add to Cart
+                            </button>
+                        ) : (
+                            <button
+                                className="out-of-stock-btn"
+                                disabled
+                            >
+                                Out of Stock
+                            </button>
+                        )}
+                        </div>
                     </div>
                 ))
                 ) : (

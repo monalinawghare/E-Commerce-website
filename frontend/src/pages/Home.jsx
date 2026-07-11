@@ -1,21 +1,17 @@
-    import { useEffect, useState } from "react";
-    import { useNavigate } from "react-router-dom";
-    import Navbar from "../components/Navbar";
-    import Footer from "../components/Footer";
-    import api from "../services/api";
-    import "./Home.css";
-
+import { useEffect, useState } from "react";
+import { useNavigate } from "react-router-dom";
+import Navbar from "../components/Navbar";
+import Footer from "../components/Footer";
+import api from "../services/api";
+import "./Home.css";
     function Home() {
     const navigate = useNavigate();
-
     const [categories, setCategories] = useState([]);
     const [featuredProducts, setFeaturedProducts] = useState([]);
-
     useEffect(() => {
         fetchCategories();
         fetchFeaturedProducts();
     }, []);
-
     const fetchCategories = async () => {
         try {
         const response = await api.get("categories/");
@@ -24,7 +20,6 @@
         console.error("Failed to load categories:", error);
         }
     };
-
     const fetchFeaturedProducts = async () => {
         try {
         const response = await api.get("products/");
@@ -33,23 +28,17 @@
         console.error("Failed to load products:", error);
         }
     };
-
     return (
         <>
         <Navbar />
-
         <div className="home-container">
-
             {/* Hero Section */}
-
             <section className="hero-section">
             <div className="hero-content">
                 <h1>Welcome to GrandMart</h1>
-
                 <p>
                 Discover premium products with exciting offers and fast delivery.
                 </p>
-
                 <div className="hero-buttons">
                 <button
                     className="outline-btn"
@@ -60,12 +49,9 @@
                 </div>
             </div>
             </section>
-
             {/* Categories */}
-
             <section className="category-section">
             <h2>Browse by Category</h2>
-
             <div className="category-grid">
                 {categories.length > 0 ? (
                 categories.map((category) => (
@@ -85,7 +71,6 @@
                     ) : (
                         <div className="category-placeholder">📂</div>
                     )}
-
                     <h3>{category.category_name}</h3>
                     </div>
                 ))
@@ -94,12 +79,9 @@
                 )}
             </div>
             </section>
-
             {/* Featured Products */}
-
             <section className="featured-products">
             <h2>Featured Products</h2>
-
             <div className="product-grid">
                 {featuredProducts.length > 0 ? (
                 featuredProducts.slice(0, 4).map((product) => (
@@ -114,17 +96,18 @@
                         alt={product.product_name}
                         />
                     </div>
-
                     <h3>{product.product_name}</h3>
-
                     <p className="category">
                         {product.category_name || "Category"}
                     </p>
-
                     <p className="price">
                         ₹{Number(product.price).toLocaleString("en-IN")}
                     </p>
-
+                    <p className={product.stock > 0 ? "stock" : "out-stock"}>
+                        {product.stock > 0
+                            ? `In Stock (${product.stock})`
+                            : "Out of Stock"}
+                    </p>
                     <button
                         onClick={() =>
                         navigate(`/product-details/${product.id}`)
@@ -139,24 +122,17 @@
                 )}
             </div>
             </section>
-
             {/* Offer Banner */}
-
             <section className="offer-banner">
             <h2>🔥 Grand Sale - Up to 70% OFF 🔥</h2>
-
             <p>Grab today's best deals before they are gone.</p>
-
             <button onClick={() => navigate("/products")}>
                 Shop Deals
             </button>
             </section>
-
         </div>
-
         <Footer />
         </>
     );
-    }
-
-    export default Home;
+}
+export default Home;
