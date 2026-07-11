@@ -14,15 +14,18 @@
     background:linear-gradient(90deg,#9b1648,#ed4b0a,#cdd13f);
     display:flex;
     align-items:center;
-    justify-content:space-between;
-    gap:20px;
+    justify-content:flex-start;
+    gap: 20px;
+    gap:clamp(10px,2vw,20px);
     padding:0 25px;
     z-index:1000;
     box-shadow:0 8px 20px rgba(0,0,0,.15);
 }
 
 .logo{
-    flex-shrink:0;
+    display:flex;
+    align-items:center;
+    flex:0 ;
 }
 
 .logo a{
@@ -38,11 +41,14 @@
     border-radius:12px;
     background:#fff;
     padding:4px;
+    transition:0.3s;
 }
-
+.logo:hover img{
+    transform:rotate(-8deg) scale(1.05);
+}
 .logo span{
     color:#fff;
-    font-size:28px;
+    font-size:clamp(20px,2vw,30px);
     font-weight:700;
     white-space:nowrap;
 }
@@ -53,23 +59,25 @@
     align-items:center;
     gap:8px;
     min-width:0;
-    max-width:550px;
+    width:420px;
+    max-width:600px;
+    flex-shrink: 0;
 }
 
 .search-bar input{
     flex:1;
     width:100%;
     min-width:0;
-    padding:12px 15px;
-    border:none;
+    padding:0 15px;
     outline:none;
     border-radius:10px;
     font-size:15px;
+    height: 50px;
 }
 
 .search-btn{
-    width:48px;
-    height:48px;
+    width:50x;
+    height:50px;
     border:none;
     border-radius:10px;
     background:#fff;
@@ -137,17 +145,33 @@
 .hamburger{
     display:none;
     flex-direction:column;
+    justify-content:center;
+    align-items:center;
     gap:5px;
+    width:40px;
+    height:40px;
     border:none;
-    background:none;
+    background:transparent;
     cursor:pointer;
 }
-
 .hamburger span{
-    width:20px;
-    height:2px;
-    background:#fff;
+    display:block !important;
+    width:24px;
+    height:3px;
+    background:#e96e6e;
     border-radius:5px;
+    transition:0.3s ease;
+}
+.hamburger.active span:nth-child(1){
+    transform:rotate(45deg) translate(5px,5px);
+}
+
+.hamburger.active span:nth-child(2){
+    opacity:0;
+}
+
+.hamburger.active span:nth-child(3){
+    transform:rotate(-45deg) translate(5px,-5px);
 }
 /* ================= TABLET ================= */
 
@@ -216,7 +240,7 @@
 
 .search-bar input{
     flex:1;
-    min-width:100px;
+    min-width:60px;
     width:auto;
     padding:9px 10px;
     font-size:13px;
@@ -230,11 +254,13 @@
 
 .hamburger{
     display:flex;
-    flex-shrink:0;
+    width:40px;
+    height:40px;
+    flex:0 0 auto;
 }
 
 .nav-links{
-    display:none;
+    display:flex;
     position:absolute;
     top:75px;
     left:0;
@@ -244,11 +270,18 @@
     align-items:center;
     gap:18px;
     padding:20px 0;
-    box-shadow:0 8px 20px rgba(0,0,0,.18);
+    opacity:0;
+    visibility:hidden;
+    pointer-events:none;
+    transform:translateY(-20px);
+    transition:.3s ease;
 }
 
 .nav-links.active{
-    display:flex;
+    opacity:1;
+    visibility:visible;
+    pointer-events:auto;
+    transform:translateY(0);
 }
 
 .nav-links a{
@@ -279,9 +312,10 @@
 }
 
 .search-bar input{
-    min-width:70px;
-    font-size:12px;
-    padding:8px;
+    width:50%;
+    max-width:220px;
+    font-size:13px;
+    padding:8px 10px;
 }
 
 .search-btn{
@@ -306,8 +340,9 @@
 }
 
 .search-bar input{
-    min-width:50px;
-    font-size:11px;
+    width:100%;
+    max-width:170px;
+    font-size:12px;
 }
 
 .search-btn{

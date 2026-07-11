@@ -1,129 +1,128 @@
-    .site-footer {
-    background: linear-gradient(90deg, #9b1648, #ed4b0a, #cdd13f);
-    color: white;
-    margin-top: 50px;
-    box-shadow: 0 -8px 20px rgba(155, 22, 72, 0.2);
-    }
+.site-footer {
+background: linear-gradient(90deg, #9b1648, #ed4b0a, #cdd13f);
+color: white;
+box-shadow: 0 -8px 20px rgba(155, 22, 72, 0.2);
+}
 
-    .footer-container {
-    display: flex;
-    justify-content: space-between;
-    flex-wrap: wrap;
-    gap: 40px;
-    padding: 45px 60px;
-    }
+.footer-container {
+display: flex;
+justify-content: space-between;
+flex-wrap: wrap;
+gap: 40px;
+padding: 45px 60px;
+}
 
-    .footer-section {
-    flex: 1;
-    min-width: 220px;
-    }
+.footer-section {
+flex: 1;
+min-width: 220px;
+}
 
-    .footer-section h2,
-    .footer-section h3 {
-    color: white;
-    margin-bottom: 18px;
-    font-size: 22px;
-    }
+.footer-section h2,
+.footer-section h3 {
+color: white;
+margin-bottom: 18px;
+font-size: 22px;
+}
 
-    .footer-section p {
-    color: rgba(255, 255, 255, 0.95);
-    line-height: 1.8;
-    font-size: 15px;
-    }
+.footer-section p {
+color: rgba(255, 255, 255, 0.95);
+line-height: 1.8;
+font-size: 15px;
+}
 
-    /* Quick Links */
+/* Quick Links */
 
-    .footer-section ul {
-    list-style: none;
-    padding: 0;
-    margin: 0;
-    }
+.footer-section ul {
+list-style: none;
+padding: 0;
+margin: 0;
+}
 
-    .footer-section ul li {
-    margin-bottom: 12px;
-    }
+.footer-section ul li {
+margin-bottom: 12px;
+}
 
-    .footer-section ul li a {
-    color: white;
-    text-decoration: none;
-    font-size: 15px;
-    transition: 0.3s ease;
-    }
+.footer-section ul li a {
+color: white;
+text-decoration: none;
+font-size: 15px;
+transition: 0.3s ease;
+}
 
-    .footer-section ul li a:visited {
-    color: white;
-    }
+.footer-section ul li a:visited {
+color: white;
+}
 
-    .footer-section ul li a:hover {
-    color: #fff5b0;
-    padding-left: 5px;
-    }
+.footer-section ul li a:hover {
+color: #fff5b0;
+padding-left: 5px;
+}
 
-    /* Bottom */
+/* Bottom */
 
-    .footer-bottom {
+.footer-bottom {
+text-align: center;
+padding: 18px;
+border-top: 1px solid rgba(255, 255, 255, 0.25);
+font-size: 14px;
+color: rgba(255, 255, 255, 0.95);
+}
+
+/* Responsive */
+
+@media (max-width: 768px) {
+.footer-container {
+    flex-direction: column;
     text-align: center;
-    padding: 18px;
-    border-top: 1px solid rgba(255, 255, 255, 0.25);
-    font-size: 14px;
-    color: rgba(255, 255, 255, 0.95);
+    padding: 35px 25px;
+}
+
+.footer-section {
+    margin-bottom: 25px;
+}
+
+.footer-section ul li a:hover {
+    padding-left: 0;
+}
+}
+    /* ----- RESPONSIVE ----- */
+    @media screen and (max-width: 992px) {
+    .footer-container {
+        padding: 40px 40px;
+        gap: 30px;
+    }
+    .footer-section {
+        min-width: 180px;
+    }
     }
 
-    /* Responsive */
-
-    @media (max-width: 768px) {
+    @media screen and (max-width: 768px) {
     .footer-container {
         flex-direction: column;
-        text-align: center;
-        padding: 35px 25px;
+        padding: 35px 30px;
+        gap: 30px;
     }
-
     .footer-section {
-        margin-bottom: 25px;
+        width: 100%;
+        min-width: unset;
+    }
+    .footer-section h2::after,
+    .footer-section h3::after {
+        width: 30px;
+    }
     }
 
-    .footer-section ul li a:hover {
-        padding-left: 0;
+    @media screen and (max-width: 480px) {
+    .footer-container {
+        padding: 30px 20px;
+        gap: 25px;
+    }
+    .footer-section p,
+    .footer-section li {
+        font-size: 14px;
+    }
+    .footer-bottom {
+        font-size: 13px;
+        padding: 12px 10px;
     }
     }
-        /* ----- RESPONSIVE ----- */
-        @media screen and (max-width: 992px) {
-        .footer-container {
-            padding: 40px 40px;
-            gap: 30px;
-        }
-        .footer-section {
-            min-width: 180px;
-        }
-        }
-
-        @media screen and (max-width: 768px) {
-        .footer-container {
-            flex-direction: column;
-            padding: 35px 30px;
-            gap: 30px;
-        }
-        .footer-section {
-            width: 100%;
-            min-width: unset;
-        }
-        .footer-section h2::after,
-        .footer-section h3::after {
-            width: 30px;
-        }
-        }
-
-        @media screen and (max-width: 480px) {
-        .footer-container {
-            padding: 30px 20px;
-            gap: 25px;
-        }
-        .footer-section p,
-        .footer-section li {
-            font-size: 14px;
-        }
-        .footer-bottom {
-            font-size: 13px;
-            padding: 12px 10px;
-        }
-        }

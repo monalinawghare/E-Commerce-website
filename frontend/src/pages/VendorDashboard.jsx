@@ -275,6 +275,9 @@ export default function VendorDashboard() {
                         <div className="box">
 
                             <h3>Recent Orders</h3>
+
+                            {/* ✅ Table wrapped in orders-scroll — this is the ONLY scroll area */}
+                            <div className="orders-scroll">
                             <table>
                     <thead>
                         <tr>
@@ -347,6 +350,7 @@ export default function VendorDashboard() {
                 )}
             </tbody>
             </table>
+            </div>
         </div>
 
         <div className="box">
@@ -397,6 +401,7 @@ export default function VendorDashboard() {
 
         <h3>Revenue Details</h3>
 
+        <div className="orders-scroll">
         <table>
 
             <thead>
@@ -443,6 +448,7 @@ export default function VendorDashboard() {
             </tbody>
                     </table>
                     </div>
+                    </div>
                     
                     </>
                     )}
@@ -462,6 +468,7 @@ export default function VendorDashboard() {
                     + Add Product
                 </button>
 
+                <div className="orders-scroll">
                 <table>
                     <thead>
                         <tr>
@@ -512,6 +519,7 @@ export default function VendorDashboard() {
                         )}
                     </tbody>
                 </table>
+                </div>
             </div>
         </>
     )}

@@ -1,6 +1,6 @@
-        import { Link, useNavigate } from "react-router-dom";
-        import { useState } from "react";
-        import "./Navbar.css";
+import { Link, useNavigate } from "react-router-dom";
+import { useState,useEffect,useRef } from "react";
+import "./Navbar.css";
 
         function Navbar() {
         const navigate = useNavigate();
@@ -9,12 +9,15 @@
         const [searchQuery, setSearchQuery] = useState("");
 
         const handleLogout = () => {
-            navigate("/login");
+            localStorage.removeItem("access");
+            localStorage.removeItem("refresh");
+            localStorage.removeItem("user");
             setIsMenuOpen(false);
+            navigate("/login");
         };
 
         const toggleMenu = () => {
-            setIsMenuOpen(!isMenuOpen);
+            setIsMenuOpen(prev => !prev);
         };
 
         const handleSearch = (e) => {
@@ -31,9 +34,30 @@
             }
             }
         };
+        const menuRef = useRef();
+        useEffect(() => {
+            document.body.style.overflow = isMenuOpen ? "hidden" : "auto";
+
+            return () => {
+                document.body.style.overflow = "auto";
+            };
+            }, [isMenuOpen]);
+
+useEffect(() => {
+    const handleClickOutside = (e) => {
+        if (menuRef.current && !menuRef.current.contains(e.target)) {
+            setIsMenuOpen(false);
+        }
+    };
+
+    document.addEventListener("click", handleClickOutside);
+
+    return () =>
+        document.removeEventListener("click", handleClickOutside);
+}, []);
 
     return (
-    <nav className="navbar">
+    <nav className="navbar" ref={menuRef}>
 
         {/* Logo */}
         <div className="logo">
@@ -64,10 +88,10 @@
 
         {/* Hamburger */}
         <button
-        className="hamburger"
-        onClick={toggleMenu}
-        aria-label="Menu"
-        >
+            className={`hamburger ${isMenuOpen ? "active" : ""}`}
+            onClick={toggleMenu}
+            aria-label="Menu"
+            >
         <span></span>
         <span></span>
         <span></span>
