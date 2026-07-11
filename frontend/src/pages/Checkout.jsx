@@ -217,20 +217,27 @@ function Checkout() {
     <>
       <Navbar />
 
-      <div className="checkout-container">
+      <div className="checkout-page">
         <div className="checkout-box">
 
+          <span className="checkout-eyebrow">Secure Checkout</span>
           <h2>Checkout</h2>
+          <p className="checkout-subtitle">
+            Review your order before you pay
+          </p>
 
           {loading ? (
-            <h3 style={{ textAlign: "center", marginTop: "30px" }}>
-              Loading checkout...
-            </h3>
+            <div className="checkout-loading">
+              <span className="dots">Loading checkout</span>
+            </div>
           ) : (
             <>
-              
+
               <div className="cart-summary">
-                <h3>Order Summary</h3>
+                <div className="section-step">
+                  <span className="step-num">01</span>
+                  <h3>Order Summary</h3>
+                </div>
 
                 {cartItems.length === 0 ? (
                   <p>Your cart is empty.</p>
@@ -243,38 +250,30 @@ function Checkout() {
                     const subtotal = price * quantity;
 
                     return (
-                      <div
-                        key={item.id}
-                        className="cart-item"
-                        style={{
-                          borderBottom: "1px solid #ddd",
-                          marginBottom: "15px",
-                          paddingBottom: "15px",
-                        }}
-                      >
+                      <div key={item.id} className="cart-item">
                         <h4>{item.product_name}</h4>
 
-                        <p>
-                          <strong>Price:</strong> ₹{price.toFixed(2)}
-                        </p>
-
-                        <p>
-                          <strong>Quantity:</strong> {quantity}
-                        </p>
-
-                        <p>
-                          <strong>Subtotal:</strong> ₹
-                          {subtotal.toFixed(2)}
-                        </p>
+                        <div className="ledger-line">
+                          <span>
+                            ₹{price.toFixed(2)} &times; {quantity}
+                          </span>
+                          <span className="leader"></span>
+                          <span className="subtotal">
+                            ₹{subtotal.toFixed(2)}
+                          </span>
+                        </div>
                       </div>
                     );
                   })
                 )}
               </div>
 
-              
+
               <div className="address-box">
-                <h3>Delivery Address</h3>
+                <div className="section-step">
+                  <span className="step-num">02</span>
+                  <h3>Delivery Address</h3>
+                </div>
 
                 <textarea
                   placeholder="Enter complete delivery address..."
@@ -283,9 +282,12 @@ function Checkout() {
                 />
               </div>
 
-            
+
               <div className="payment-box">
-                <h3>Select Payment Method</h3>
+                <div className="section-step">
+                  <span className="step-num">03</span>
+                  <h3>Select Payment Method</h3>
+                </div>
 
                 <label>
                   <input
@@ -307,20 +309,11 @@ function Checkout() {
                   UPI
                 </label>
               </div>
-              <div
-                className="total-box"
-                style={{
-                  marginTop: "20px",
-                  padding: "15px",
-                  border: "1px solid #ddd",
-                  borderRadius: "8px",
-                  background: "#f8f9fa",
-                  textAlign: "center",
-                }}
-              >
+
+              <div className="total-box">
                 <h2>Total Amount</h2>
 
-                <h1 style={{ color: "green" }}>
+                <h1>
                   ₹
                   {total.toLocaleString("en-IN", {
                     minimumFractionDigits: 2,
@@ -332,7 +325,6 @@ function Checkout() {
               <button
                 className="place-order-btn"
                 onClick={placeOrder}
-                style={{ marginTop: "20px" }}
               >
                 Place Order (
                 ₹
