@@ -6,8 +6,10 @@ import api from "../services/api";
 import "./Home.css";
     function Home() {
     const navigate = useNavigate();
+
     const [categories, setCategories] = useState([]);
     const [featuredProducts, setFeaturedProducts] = useState([]);
+
     useEffect(() => {
         fetchCategories();
         fetchFeaturedProducts();
@@ -108,6 +110,7 @@ import "./Home.css";
                             ? `In Stock (${product.stock})`
                             : "Out of Stock"}
                     </p>
+
                     <button
                         onClick={() =>
                         navigate(`/product-details/${product.id}`)
@@ -122,17 +125,25 @@ import "./Home.css";
                 )}
             </div>
             </section>
+
             {/* Offer Banner */}
+
             <section className="offer-banner">
             <h2>🔥 Grand Sale - Up to 70% OFF 🔥</h2>
+
             <p>Grab today's best deals before they are gone.</p>
+
             <button onClick={() => navigate("/products")}>
                 Shop Deals
             </button>
             </section>
+
         </div>
+
         <Footer />
+        
         </>
     );
-}
-export default Home;
+    }
+
+    export default Home;

@@ -48,7 +48,12 @@
     fetchProducts();
 }, [selectedCategory]);
 
-        const addToCart = async (productId) => {
+        const addToCart = async (product) => {
+            if (product.stock <= 0) {
+                toast.error("Product is out of stock!");
+                return;
+            }
+
             try {
                 const token = localStorage.getItem("access");
 
@@ -56,24 +61,30 @@
                 navigate("/login");
                 return;
                 }
-            await api.post(
+
+                await api.post(
                 "cart/",
                 {
-                product: productId,
+                    product: product.id,
                 },
                 {
-                headers: {
+                    headers: {
                     Authorization: `Bearer ${token}`,
-                },
+                    },
                 }
-            );
+                );
 
-            toast.success("Product added to cart successfully!");
+                toast.success("Product added to cart successfully!");
             } catch (err) {
-            console.error(err);
-            toast.error("Failed to add product.");
+                console.error(err);
+
+                if (err.response?.data?.error) {
+                toast.error(err.response.data.error);
+                } else {
+                toast.error("Failed to add product.");
+                }
             }
-        };
+            };
 
         let filteredProducts = products;
 
@@ -180,21 +191,13 @@
                             View Details
                         </button>
 
-                        {product.stock > 0 ? (
-                            <button
-                                className="add-cart-btn"
-                                onClick={() => addToCart(product.id)}
-                            >
-                                Add to Cart
-                            </button>
-                        ) : (
-                            <button
-                                className="out-of-stock-btn"
-                                disabled
-                            >
-                                Out of Stock
-                            </button>
-                        )}
+                        <button
+                            className={product.stock > 0 ? "add-cart-btn" : "out-of-stock-btn"}
+                            onClick={() => addToCart(product)}
+                            disabled={product.stock <= 0}
+                        >
+                            {product.stock > 0 ? "Add to Cart" : "Out of Stock"}
+                        </button>
                         </div>
                     </div>
                 ))

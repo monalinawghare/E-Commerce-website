@@ -129,15 +129,23 @@ function ProductDetails() {
                             <input
                                 type="number"
                                 min="1"
+                                max={product.stock}
                                 value={quantity}
                                 onChange={(e) => setQuantity(e.target.value)}
-                            />
+                                disabled={product.stock === 0}
+                                />
                         </div>
 
                         {message && <p style={{ color: "green" }}>{message}</p>}
                         {error && <p style={{ color: "#ed4b0a" }}>{error}</p>}
 
-                        <button onClick={handleAddToCart}>Add to Cart</button>
+                        <button
+                                className="add-cart-btn"
+                                onClick={handleAddToCart}
+                                disabled={product.stock === 0}
+                                >
+                                {product.stock === 0 ? "Out of Stock" : "Add to Cart"}
+                        </button>
                     </div>
                 </div>
             </div>
