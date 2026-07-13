@@ -318,6 +318,45 @@
   font-size: 15px;
   font-weight: 700;
   letter-spacing: 0.03em;
+}
+
+@media (max-width: 768px) {
+  .checkout-page {
+    padding: 110px 14px 50px;
+  }
+
+  .checkout-box {
+    padding: 28px 20px 24px;
+  }
+
+  .checkout-box h2 {
+    font-size: 32px;
+  }
+
+  .total-box h1 {
+    font-size: 32px;
+  }
+}
+
+@media (max-width: 480px) {
+  .checkout-box {
+    padding: 24px 16px 20px;
+  }
+
+  .checkout-box h2 {
+    font-size: 26px;
+  }
+
+  .section-step h3 {
+    font-size: 16px;
+  }
+
+  .payment-box label {
+    align-items: flex-start;
+  }
+}
+
+.place-order-btn {
   text-transform: uppercase;
   cursor: pointer;
   box-shadow: 0 12px 25px -8px rgba(237, 75, 10, 0.45);

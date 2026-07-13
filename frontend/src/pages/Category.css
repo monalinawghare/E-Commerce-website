@@ -201,8 +201,27 @@ table th {
   text-align: center;
 }
 
-@media (max-width: 500px) {
+@media (max-width: 700px) {
+  .category-page {
+    padding: 100px 14px 24px;
+  }
+
+  .category-card {
+    padding: 16px;
+  }
+
+  .category-header {
+    flex-direction: column;
+    align-items: flex-start;
+  }
+
   .category-form {
     flex-direction: column;
+  }
+
+  table {
+    display: block;
+    overflow-x: auto;
+    white-space: nowrap;
   }
 }
