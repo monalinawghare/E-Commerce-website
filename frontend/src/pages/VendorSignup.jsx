@@ -1,6 +1,6 @@
     import { useState } from "react";
     import { Link, useNavigate } from "react-router-dom";
-    import "./VendorSignup.css";
+    import "./VendorSignup.css";  
     import api from "../services/api";
 
     function VendorSignup() {
@@ -87,165 +87,158 @@
         </nav>
 
         <div className="login-container">
-            <div className="login-box">
-            <h1>Vendor Sign Up</h1>
+            <div className="login-box split-layout">
+            {/* ---- Brand Side ---- */}
+            <div className="login-brand">
+                <img
+                src="public/images/vendor_signup.jpg"
+                alt="Vendor registration"
+                className="brand-image"
+                />
+                <div className="brand-text">
+                <h2>Become a Vendor</h2>
+                <p>Reach thousands of customers – list your products with us today!</p>
+                </div>
+            </div>
 
-            <form onSubmit={handleSignup}>
+            {/* ---- Form Side ---- */}
+            <div className="login-form">
+                <h1>Vendor Sign Up</h1>
+
+                <form onSubmit={handleSignup}>
                 <div className="form-grid">
-                <div className="form-group">
+                    <div className="form-group">
                     <label>Username</label>
                     <input
-                    type="text"
-                    placeholder="Enter username"
-                    value={username}
-                    onChange={(e) => {
+                        type="text"
+                        placeholder="Enter username"
+                        value={username}
+                        onChange={(e) => {
                         setUsername(e.target.value);
                         clearError();
-                    }}
+                        }}
                     />
-                </div>
+                    </div>
 
-                <div className="form-group">
+                    <div className="form-group">
                     <label>First Name</label>
                     <input
-                    type="text"
-                    placeholder="Enter first name"
-                    value={firstName}
-                    onChange={(e) => {
+                        type="text"
+                        placeholder="Enter first name"
+                        value={firstName}
+                        onChange={(e) => {
                         setFirstName(e.target.value);
                         clearError();
-                    }}
+                        }}
                     />
-                </div>
+                    </div>
 
-                <div className="form-group">
+                    <div className="form-group">
                     <label>Last Name</label>
                     <input
-                    type="text"
-                    placeholder="Enter last name"
-                    value={lastName}
-                    onChange={(e) => {
+                        type="text"
+                        placeholder="Enter last name"
+                        value={lastName}
+                        onChange={(e) => {
                         setLastName(e.target.value);
                         clearError();
-                    }}
+                        }}
                     />
-                </div>
+                    </div>
 
-                <div className="form-group">
+                    <div className="form-group">
                     <label>Email</label>
                     <input
-                    type="email"
-                    placeholder="Enter your email"
-                    value={email}
-                    onChange={(e) => {
+                        type="email"
+                        placeholder="Enter your email"
+                        value={email}
+                        onChange={(e) => {
                         setEmail(e.target.value);
                         clearError();
-                    }}
+                        }}
                     />
-                </div>
+                    </div>
 
-                <div className="form-group">
+                    <div className="form-group">
                     <label>Phone</label>
                     <input
-                    type="text"
-                    placeholder="Enter phone number"
-                    value={phone}
-                    onChange={(e) => {
+                        type="text"
+                        placeholder="Enter phone number"
+                        value={phone}
+                        onChange={(e) => {
                         setPhone(e.target.value);
                         clearError();
-                    }}
+                        }}
                     />
-                </div>
+                    </div>
 
-                <div className="form-group">
+                    <div className="form-group">
                     <label>Shop Name</label>
                     <input
-                    type="text"
-                    placeholder="Enter shop name"
-                    value={shopName}
-                    onChange={(e) => {
+                        type="text"
+                        placeholder="Enter shop name"
+                        value={shopName}
+                        onChange={(e) => {
                         setShopName(e.target.value);
                         clearError();
-                    }}
+                        }}
                     />
-                </div>
+                    </div>
 
-                <div className="form-group">
+                    <div className="form-group">
                     <label>Shop Address</label>
                     <input
-                    type="text"
-                    placeholder="Enter shop address"
-                    value={shopAddress}
-                    onChange={(e) => {
+                        type="text"
+                        placeholder="Enter shop address"
+                        value={shopAddress}
+                        onChange={(e) => {
                         setShopAddress(e.target.value);
                         clearError();
-                    }}
+                        }}
                     />
-                </div>
+                    </div>
 
-                <div className="form-group">
+                    <div className="form-group">
                     <label>GST Number</label>
                     <input
-                    type="text"
-                    placeholder="Enter GST number (optional)"
-                    value={gstNumber}
-                    onChange={(e) => {
+                        type="text"
+                        placeholder="Enter GST number (optional)"
+                        value={gstNumber}
+                        onChange={(e) => {
                         setGstNumber(e.target.value);
                         clearError();
-                    }}
+                        }}
                     />
-                </div>
+                    </div>
 
-                <div className="form-group">
+                    <div className="form-group">
                     <label>Password</label>
                     <input
-                    type="password"
-                    placeholder="Enter password"
-                    value={password}
-                    onChange={(e) => {
+                        type="password"
+                        placeholder="Enter password"
+                        value={password}
+                        onChange={(e) => {
                         setPassword(e.target.value);
                         clearError();
-                    }}
+                        }}
                     />
-                </div>
+                    </div>
                 </div>
 
-                {error && (
-                <p
-                    style={{
-                    color: "#ed4b0a",
-                    fontSize: "13px",
-                    marginTop: "15px",
-                    textAlign: "center",
-                    }}
-                >
-                    {error}
-                </p>
-                )}
-
-                {successMessage && (
-                <p
-                    style={{
-                    color: "green",
-                    fontSize: "13px",
-                    marginTop: "15px",
-                    textAlign: "center",
-                    }}
-                >
-                    {successMessage}
-                </p>
-                )}
+                {error && <p className="error-message">{error}</p>}
+                {successMessage && <p className="success-message">{successMessage}</p>}
 
                 <button type="submit">Register as Vendor</button>
 
                 <p className="signup-text">
-                Already have an account? <Link to="/login">Login</Link>
+                    Already have an account? <Link to="/login">Login</Link>
                 </p>
-            </form>
+                </form>
+            </div>
             </div>
         </div>
         </>
     );
     }
 
-export default VendorSignup;
+    export default VendorSignup;

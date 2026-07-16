@@ -111,8 +111,7 @@ function Cart() {
     return sum + Number(item.price) * Number(item.quantity);
   }, 0);
 
-  const deliveryFee = subtotal > 0 ? 0 : 0;
-
+  const deliveryFee = 0; // Free delivery
   const total = subtotal + deliveryFee;
 
   return (
@@ -162,16 +161,11 @@ function Cart() {
                   key={item.id}
                 >
                   <img
-                      src={item.image || "https://via.placeholder.com/120"}
-                      alt={item.product_name}
+                    src={item.image || "https://via.placeholder.com/120"}
+                    alt={item.product_name}
                   />
                   <div className="item-details">
                     <h3>{item.product_name}</h3>
-
-                    <p>
-                      Qty : {item.quantity}
-                    </p>
-
                     <p className="item-price">
                       ₹{Number(item.price).toLocaleString()}
                     </p>

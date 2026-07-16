@@ -3,9 +3,6 @@ import { Link, useNavigate } from "react-router-dom";
 import "./Login.css";
 import api from "../services/api";
 
-// const VENDOR_EMAIL = "vendor@grandmart.com";
-// const VENDOR_PASSWORD = "vendor123";
-
 function Login() {
   const navigate = useNavigate();
   const [email, setEmail] = useState("");
@@ -64,62 +61,68 @@ function Login() {
       </nav>
 
       <div className="login-container">
-        <div className="login-box">
-
-          <h1>Log-in</h1>
-          <p>Welcome to GrandMart</p>
-
-          <form onSubmit={handleLogin}>
-
-            <label>Email or Username</label>
-            <input
-              type="text"
-              placeholder="Enter your email or username"
-              value={email}
-              onChange={(e) => {
-                setEmail(e.target.value);
-                if (error) setError("");
-              }}
+        <div className="login-box split-layout"> {/* added class */}
+          {/* ---- LEFT SIDE: IMAGE & BRANDING ---- */}
+          <div className="login-brand">
+            <img
+              src="public/images/login.jpg"
+              alt="Shopping illustration"
+              className="brand-image"
             />
-
-            <label>Password</label>
-            <input
-              type="password"
-              placeholder="Enter your password"
-              value={password}
-              onChange={(e) => {
-                setPassword(e.target.value);
-                if (error) setError("");
-              }}
-            />
-
-            <div className="forgot-password">
-              <Link to="/forgot-password">Forgot Password?</Link>
+            <div className="brand-text">
+              <h2>Welcome Back!</h2>
+              <p>Sign in to access your orders, wishlist, and exclusive deals.</p>
             </div>
+          </div>
 
-            {error && (
-              <p style={{ color: "#ed4b0a", fontSize: "13px", marginTop: "10px" }}>
-                {error}
+          {/* ---- RIGHT SIDE: FORM ---- */}
+          <div className="login-form">
+            <h1>Log-in</h1>
+            <p>Welcome to GrandMart</p>
+
+            <form onSubmit={handleLogin}>
+              <label>Email or Username</label>
+              <input
+                type="text"
+                placeholder="Enter your email or username"
+                value={email}
+                onChange={(e) => {
+                  setEmail(e.target.value);
+                  if (error) setError("");
+                }}
+              />
+
+              <label>Password</label>
+              <input
+                type="password"
+                placeholder="Enter your password"
+                value={password}
+                onChange={(e) => {
+                  setPassword(e.target.value);
+                  if (error) setError("");
+                }}
+              />
+
+              <div className="forgot-password">
+                <Link to="/forgot-password">Forgot Password?</Link>
+              </div>
+
+              {error && (
+                <p className="error-message">{error}</p>
+              )}
+
+              <button type="submit">Login</button>
+
+              <p className="signup-text">
+                Don't have an account? <Link to="/signup">Sign Up</Link>
               </p>
-            )}
-
-            <button type="submit">Login</button>
-
-            <p className="signup-text">
-              Don't have an account?{" "}
-              <Link to="/signup">Sign Up</Link>
-            </p>
-
-            <p className="signup-text">
-              Are you a vendor?{" "}
-              <Link to="/vendor-signup">Register as Vendor</Link>
-            </p>
-
-          </form>
-
+              <p className="signup-text">
+                Are you a vendor? <Link to="/vendor-signup">Register as Vendor</Link>
+              </p>
+            </form>
+          </div>
         </div>
       </div>
-
     </>
   );
 }

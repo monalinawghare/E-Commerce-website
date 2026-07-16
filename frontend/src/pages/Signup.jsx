@@ -61,7 +61,7 @@ function Signup() {
       });
 
       setSuccessMessage("Signup successful! Redirecting to login...");
-      setTimeout(() => navigate("/"), 1000); 
+      setTimeout(() => navigate("/"), 1000);
     } catch (err) {
       if (err.response?.data) {
         const serverErrors = err.response.data;
@@ -85,133 +85,119 @@ function Signup() {
       </nav>
 
       <div className="login-container">
-        <div className="login-box">
-          <h1>Create Account</h1>
-
-          <form onSubmit={handleSignup}>
-
-            <div className="form-grid">
-
-              <div className="form-group">
-                <label>Username</label>
-                <input
-                  type="text"
-                  placeholder="Enter username"
-                  value={username}
-                  onChange={(e) => {
-                    setUsername(e.target.value);
-                    clearError();
-                  }}
-                />
-              </div>
-
-              <div className="form-group">
-                <label>First Name</label>
-                <input
-                  type="text"
-                  placeholder="Enter first name"
-                  value={firstName}
-                  onChange={(e) => {
-                    setFirstName(e.target.value);
-                    clearError();
-                  }}
-                />
-              </div>
-
-              <div className="form-group">
-                <label>Last Name</label>
-                <input
-                  type="text"
-                  placeholder="Enter last name"
-                  value={lastName}
-                  onChange={(e) => {
-                    setLastName(e.target.value);
-                    clearError();
-                  }}
-                />
-              </div>
-
-              <div className="form-group">
-                <label>Email</label>
-                <input
-                  type="email"
-                  placeholder="Enter your email"
-                  value={email}
-                  onChange={(e) => {
-                    setEmail(e.target.value);
-                    clearError();
-                  }}
-                />
-              </div>
-
-              <div className="form-group">
-                <label>Phone</label>
-                <input
-                  type="text"
-                  placeholder="Enter phone number"
-                  value={phone}
-                  maxLength={10}
-                  onChange={(e) => {
-                    const digitsOnly = e.target.value.replace(/\D/g, "");
-                    setPhone(digitsOnly);
-                    clearError();
-                  }}
-                />
-              </div>
-
-              <div className="form-group">
-                <label>Password</label>
-                <input
-                  type="password"
-                  placeholder="Enter password"
-                  value={password}
-                  onChange={(e) => {
-                    setPassword(e.target.value);
-                    clearError();
-                  }}
-                />
-              </div>
-
+        <div className="login-box split-layout">
+          {/* ---- Brand Side ---- */}
+          <div className="login-brand">
+            <img
+              src="public/images/signup.jpg"
+              alt="Join GrandMart"
+              className="brand-image"
+            />
+            <div className="brand-text">
+              <h2>Join the GrandMart!</h2>
+              <p>Create your account and unlock exclusive deals & offers.</p>
             </div>
+          </div>
 
-            {error && (
-              <p
-                style={{
-                  color: "#ed4b0a",
-                  fontSize: "13px",
-                  marginTop: "15px",
-                  textAlign: "center",
-                }}
-              >
-                {error}
+          {/* ---- Form Side ---- */}
+          <div className="login-form">
+            <h1>Create Account</h1>
+
+            <form onSubmit={handleSignup}>
+              <div className="form-grid">
+                <div className="form-group">
+                  <label>Username</label>
+                  <input
+                    type="text"
+                    placeholder="Enter username"
+                    value={username}
+                    onChange={(e) => {
+                      setUsername(e.target.value);
+                      clearError();
+                    }}
+                  />
+                </div>
+
+                <div className="form-group">
+                  <label>First Name</label>
+                  <input
+                    type="text"
+                    placeholder="Enter first name"
+                    value={firstName}
+                    onChange={(e) => {
+                      setFirstName(e.target.value);
+                      clearError();
+                    }}
+                  />
+                </div>
+
+                <div className="form-group">
+                  <label>Last Name</label>
+                  <input
+                    type="text"
+                    placeholder="Enter last name"
+                    value={lastName}
+                    onChange={(e) => {
+                      setLastName(e.target.value);
+                      clearError();
+                    }}
+                  />
+                </div>
+
+                <div className="form-group">
+                  <label>Email</label>
+                  <input
+                    type="email"
+                    placeholder="Enter your email"
+                    value={email}
+                    onChange={(e) => {
+                      setEmail(e.target.value);
+                      clearError();
+                    }}
+                  />
+                </div>
+
+                <div className="form-group">
+                  <label>Phone</label>
+                  <input
+                    type="text"
+                    placeholder="Enter phone number"
+                    value={phone}
+                    maxLength={10}
+                    onChange={(e) => {
+                      const digitsOnly = e.target.value.replace(/\D/g, "");
+                      setPhone(digitsOnly);
+                      clearError();
+                    }}
+                  />
+                </div>
+
+                <div className="form-group">
+                  <label>Password</label>
+                  <input
+                    type="password"
+                    placeholder="Enter password"
+                    value={password}
+                    onChange={(e) => {
+                      setPassword(e.target.value);
+                      clearError();
+                    }}
+                  />
+                </div>
+              </div>
+
+              {error && <p className="error-message">{error}</p>}
+              {successMessage && <p className="success-message">{successMessage}</p>}
+
+              <button type="submit">Sign Up</button>
+
+              <p className="signup-text">
+                Already have an account? <Link to="/">Login</Link>
               </p>
-            )}
-
-            {successMessage && (
-              <p
-                style={{
-                  color: "green",
-                  fontSize: "13px",
-                  marginTop: "15px",
-                  textAlign: "center",
-                }}
-              >
-                {successMessage}
-              </p>
-            )}
-
-            <button type="submit">Sign Up</button>
-
-            <p className="signup-text">
-              Already have an account?{" "}
-              <Link to="/">Login</Link>
-            </p>
-
-          </form>
-
+            </form>
+          </div>
         </div>
       </div>
-
     </>
   );
 }

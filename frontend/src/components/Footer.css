@@ -1,128 +1,404 @@
+/* ============================================
+    FOOTER STYLES - Navy Blue & Gold Theme
+   ============================================ */
 .site-footer {
-background: linear-gradient(90deg, #9b1648, #ed4b0a, #cdd13f);
-color: white;
-box-shadow: 0 -8px 20px rgba(155, 22, 72, 0.2);
+    background: #0F1B3D;
+    color: var(--white);
+    border-top: 3px solid rgba(212, 175, 55, 0.2);
+    box-shadow: 0 -10px 50px rgba(10, 22, 40, 0.6);
+    position: relative;
+    overflow: hidden;
+}
+
+/* ---- Subtle gold glow overlay ---- */
+.site-footer::before {
+    content: '';
+    position: absolute;
+    top: -50%;
+    left: -50%;
+    width: 200%;
+    height: 200%;
+    background: radial-gradient(ellipse at 30% 0%, rgba(212, 175, 55, 0.03) 0%, transparent 60%);
+    pointer-events: none;
 }
 
 .footer-container {
-display: flex;
-justify-content: space-between;
-flex-wrap: wrap;
-gap: 40px;
-padding: 45px 60px;
+    display: flex;
+    justify-content: space-between;
+    flex-wrap: wrap;
+    gap: 40px;
+    padding: 50px 60px 40px;
+    position: relative;
+    z-index: 1;
 }
 
 .footer-section {
-flex: 1;
-min-width: 220px;
+    flex: 1;
+    min-width: 220px;
 }
 
 .footer-section h2,
 .footer-section h3 {
-color: white;
-margin-bottom: 18px;
-font-size: 22px;
+    color: var(--white);
+    margin-bottom: 18px;
+    font-size: 22px;
+    font-weight: 700;
+    position: relative;
+    display: inline-block;
+}
+
+/* ---- Gold underline for headings ---- */
+.footer-section h2::after,
+.footer-section h3::after {
+    content: '';
+    position: absolute;
+    left: 0;
+    bottom: -6px;
+    width: 40px;
+    height: 3px;
+    background: var(--gold-gradient);
+    border-radius: 3px;
+    transition: var(--transition);
+}
+
+.footer-section:hover h2::after,
+.footer-section:hover h3::after {
+    width: 60px;
+}
+
+.footer-section h2 {
+    font-size: 28px;
+    background: var(--gold-gradient);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+}
+
+.footer-section h2::after {
+    background: var(--gold-gradient);
 }
 
 .footer-section p {
-color: rgba(255, 255, 255, 0.95);
-line-height: 1.8;
-font-size: 15px;
+    color: rgba(255, 255, 255, 0.8);
+    line-height: 1.9;
+    font-size: 15px;
 }
 
-/* Quick Links */
-
+/* ---- Quick Links ---- */
 .footer-section ul {
-list-style: none;
-padding: 0;
-margin: 0;
+    list-style: none;
+    padding: 0;
+    margin: 0;
 }
 
 .footer-section ul li {
-margin-bottom: 12px;
+    margin-bottom: 12px;
 }
 
 .footer-section ul li a {
-color: white;
-text-decoration: none;
-font-size: 15px;
-transition: 0.3s ease;
+    color: rgba(255, 255, 255, 0.75);
+    text-decoration: none;
+    font-size: 15px;
+    transition: var(--transition);
+    position: relative;
+    display: inline-block;
+    padding: 2px 0;
+}
+
+.footer-section ul li a::before {
+    content: '▸';
+    color: var(--gold);
+    margin-right: 8px;
+    opacity: 0;
+    transform: translateX(-8px);
+    transition: var(--transition);
+    display: inline-block;
+}
+
+.footer-section ul li a:hover {
+    color: var(--gold-light);
+    padding-left: 6px;
+}
+
+.footer-section ul li a:hover::before {
+    opacity: 1;
+    transform: translateX(0);
 }
 
 .footer-section ul li a:visited {
-color: white;
+    color: rgba(255, 255, 255, 0.75);
 }
 
-.footer-section ul li a:hover {
-color: #fff5b0;
-padding-left: 5px;
+/* ---- Contact Info ---- */
+.footer-section .contact-item {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    margin-bottom: 12px;
+    color: rgba(255, 255, 255, 0.8);
+    font-size: 15px;
+    transition: var(--transition);
 }
 
-/* Bottom */
-
-.footer-bottom {
-text-align: center;
-padding: 18px;
-border-top: 1px solid rgba(255, 255, 255, 0.25);
-font-size: 14px;
-color: rgba(255, 255, 255, 0.95);
+.footer-section .contact-item:hover {
+    color: var(--gold-light);
+    transform: translateX(4px);
 }
 
-/* Responsive */
-
-@media (max-width: 768px) {
-.footer-container {
-    flex-direction: column;
+.footer-section .contact-item .icon {
+    color: var(--gold);
+    font-size: 18px;
+    width: 28px;
     text-align: center;
-    padding: 35px 25px;
+    flex-shrink: 0;
 }
 
-.footer-section {
-    margin-bottom: 25px;
+/* ---- Social Icons (optional extra) ---- */
+.social-links {
+    display: flex;
+    gap: 14px;
+    margin-top: 16px;
 }
 
-.footer-section ul li a:hover {
-    padding-left: 0;
+.social-links a {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 42px;
+    height: 42px;
+    border-radius: 50%;
+    border: 2px solid rgba(212, 175, 55, 0.2);
+    color: rgba(255, 255, 255, 0.7);
+    font-size: 18px;
+    transition: var(--transition);
+    text-decoration: none;
 }
+
+.social-links a:hover {
+    background: var(--gold-gradient);
+    color: var(--navy-dark);
+    border-color: var(--gold);
+    transform: translateY(-4px) scale(1.05);
+    box-shadow: 0 8px 30px rgba(212, 175, 55, 0.25);
 }
-    /* ----- RESPONSIVE ----- */
-    @media screen and (max-width: 992px) {
+
+/* ---- Footer Bottom ---- */
+.footer-bottom {
+    text-align: center;
+    padding: 20px 18px;
+    border-top: 1px solid rgba(212, 175, 55, 0.1);
+    font-size: 14px;
+    color: rgba(255, 255, 255, 0.6);
+    position: relative;
+    z-index: 1;
+    letter-spacing: 0.3px;
+}
+
+.footer-bottom span {
+    color: var(--gold-light);
+    font-weight: 600;
+}
+
+.footer-bottom .gold-dot {
+    display: inline-block;
+    width: 6px;
+    height: 6px;
+    border-radius: 50%;
+    background: var(--gold);
+    margin: 0 10px;
+    vertical-align: middle;
+    animation: pulse-dot 2s ease-in-out infinite;
+}
+
+@keyframes pulse-dot {
+    0%,
+    100% {
+        opacity: 0.4;
+        transform: scale(0.8);
+    }
+    50% {
+        opacity: 1;
+        transform: scale(1.2);
+    }
+}
+
+/* ============================================
+   RESPONSIVE - FOOTER
+   ============================================ */
+
+/* ---- Tablet (992px) ---- */
+@media screen and (max-width: 992px) {
     .footer-container {
-        padding: 40px 40px;
+        padding: 40px 40px 30px;
         gap: 30px;
     }
+
     .footer-section {
         min-width: 180px;
     }
+
+    .footer-section h2 {
+        font-size: 24px;
     }
 
-    @media screen and (max-width: 768px) {
+    .footer-section h3 {
+        font-size: 20px;
+    }
+}
+
+/* ---- Mobile (768px) ---- */
+@media screen and (max-width: 768px) {
     .footer-container {
         flex-direction: column;
-        padding: 35px 30px;
-        gap: 30px;
+        padding: 35px 30px 25px;
+        gap: 32px;
+        text-align: center;
     }
+
     .footer-section {
         width: 100%;
         min-width: unset;
     }
+
     .footer-section h2::after,
     .footer-section h3::after {
-        width: 30px;
-    }
+        left: 50%;
+        transform: translateX(-50%);
+        width: 50px;
     }
 
-    @media screen and (max-width: 480px) {
-    .footer-container {
-        padding: 30px 20px;
-        gap: 25px;
+    .footer-section:hover h2::after,
+    .footer-section:hover h3::after {
+        width: 70px;
     }
+
+    .footer-section ul li a::before {
+        display: none;
+    }
+
+    .footer-section ul li a:hover {
+        padding-left: 0;
+    }
+
+    .footer-section .contact-item {
+        justify-content: center;
+    }
+
+    .footer-section .contact-item:hover {
+        transform: translateX(0) scale(1.02);
+    }
+
+    .social-links {
+        justify-content: center;
+    }
+}
+
+/* ---- Small Mobile (480px) ---- */
+@media screen and (max-width: 480px) {
+    .footer-container {
+        padding: 30px 18px 20px;
+        gap: 28px;
+    }
+
     .footer-section p,
-    .footer-section li {
+    .footer-section ul li a,
+    .footer-section .contact-item {
         font-size: 14px;
     }
+
+    .footer-section h2 {
+        font-size: 22px;
+    }
+
+    .footer-section h3 {
+        font-size: 18px;
+    }
+
+    .footer-section h2::after,
+    .footer-section h3::after {
+        width: 40px;
+    }
+
+    .footer-section:hover h2::after,
+    .footer-section:hover h3::after {
+        width: 55px;
+    }
+
     .footer-bottom {
+        font-size: 12px;
+        padding: 14px 10px;
+    }
+
+    .footer-bottom .gold-dot {
+        width: 4px;
+        height: 4px;
+        margin: 0 6px;
+    }
+
+    .social-links a {
+        width: 36px;
+        height: 36px;
+        font-size: 15px;
+    }
+}
+
+/* ---- Extra Small (360px) ---- */
+@media screen and (max-width: 360px) {
+    .footer-container {
+        padding: 24px 14px 16px;
+        gap: 24px;
+    }
+
+    .footer-section p,
+    .footer-section ul li a,
+    .footer-section .contact-item {
         font-size: 13px;
-        padding: 12px 10px;
     }
+
+    .footer-section h2 {
+        font-size: 20px;
     }
+
+    .footer-section h3 {
+        font-size: 17px;
+    }
+
+    .social-links {
+        gap: 10px;
+    }
+
+    .social-links a {
+        width: 32px;
+        height: 32px;
+        font-size: 13px;
+    }
+}
+
+/* ---- Large Screen (1400px+) ---- */
+@media screen and (min-width: 1400px) {
+    .footer-container {
+        padding: 60px 80px 50px;
+        gap: 50px;
+        max-width: 1400px;
+        margin: 0 auto;
+    }
+
+    .footer-section h2 {
+        font-size: 32px;
+    }
+
+    .footer-section h3 {
+        font-size: 24px;
+    }
+
+    .footer-section p,
+    .footer-section ul li a,
+    .footer-section .contact-item {
+        font-size: 16px;
+    }
+
+    .footer-bottom {
+        font-size: 15px;
+        padding: 24px 18px;
+    }
+}

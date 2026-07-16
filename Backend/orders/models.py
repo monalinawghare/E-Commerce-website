@@ -27,15 +27,29 @@ class Order(models.Model):
         max_digits=10,
         decimal_places=2
     )
+    PAYMENT_CHOICES = (
+        ('COD', 'Cash on Delivery'),
+        ('ONLINE', 'Online Payment'),
+    )
+
+    payment_method = models.CharField(
+        max_length=10,
+        choices=PAYMENT_CHOICES,
+        default='COD'
+    )
+
+    STATUS_CHOICES = [
+        ('Pending', 'Pending'),
+        ('Accepted', 'Accepted'),
+        ('Rejected', 'Rejected'),
+        ('Cancelled', 'Cancelled'),
+        ('Shipped', 'Shipped'),
+        ('Delivered', 'Delivered'),
+    ]
 
     status = models.CharField(
         max_length=20,
-        choices=[
-            ('Pending', 'Pending'),
-            ('Accepted', 'Accepted'),
-            ('Shipped', 'Shipped'),
-            ('Delivered', 'Delivered')
-        ],
+        choices=STATUS_CHOICES,
         default='Pending'
     )
 

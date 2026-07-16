@@ -54,6 +54,7 @@ function ForgotPassword() {
       }
     }
   };
+
   return (
     <>
       <nav className="navbar">
@@ -61,57 +62,67 @@ function ForgotPassword() {
       </nav>
 
       <div className="login-container">
-        <div className="login-box">
-          <h1>Forgot Password</h1>
-
-          <form onSubmit={handleSubmit}>
-            <label>Email</label>
-            <input
-              type="email"
-              name="email"
-              placeholder="Enter your email"
-              value={formData.email}
-              onChange={handleChange}
-              required
+        <div className="login-box split-layout">
+          {/* ---- Brand Side ---- */}
+          <div className="login-brand">
+            <img
+              src="images/forgotpassword.jpg"
+              alt="Reset Password"
+              className="brand-image"
             />
+            <div className="brand-text">
+              <h2>Reset Your Password</h2>
+              <p>Enter your email and create a new secure password.</p>
+            </div>
+          </div>
 
-            <label>New Password</label>
-            <input
-              type="password"
-              name="new_password"
-              placeholder="Enter new password"
-              value={formData.new_password}
-              onChange={handleChange}
-              required
-            />
+          {/* ---- Form Side ---- */}
+          <div className="login-form">
+            <h1>Forgot Password</h1>
 
-            <label>Confirm Password</label>
-            <input
-              type="password"
-              name="confirmPassword"
-              placeholder="Confirm password"
-              value={formData.confirmPassword}
-              onChange={handleChange}
-              required
-            />
+            <form onSubmit={handleSubmit}>
+              <label>Email</label>
+              <input
+                type="email"
+                name="email"
+                placeholder="Enter your email"
+                value={formData.email}
+                onChange={handleChange}
+                required
+              />
 
-            {error && (
-              <p style={{ color: "#ed4b0a", fontSize: "13px" }}>{error}</p>
-            )}
+              <label>New Password</label>
+              <input
+                type="password"
+                name="new_password"
+                placeholder="Enter new password"
+                value={formData.new_password}
+                onChange={handleChange}
+                required
+              />
 
-            {message && (
-              <p style={{ color: "green", fontSize: "13px" }}>{message}</p>
-            )}
+              <label>Confirm Password</label>
+              <input
+                type="password"
+                name="confirmPassword"
+                placeholder="Confirm password"
+                value={formData.confirmPassword}
+                onChange={handleChange}
+                required
+              />
 
-            <button type="submit">Reset Password</button>
-          </form>
+              {error && <p className="error-message">{error}</p>}
+              {message && <p className="success-message">{message}</p>}
 
-          <p className="signup-text">
-            Remembered your password? <Link to="/">Login</Link>
-          </p>
+              <button type="submit">Reset Password</button>
+
+              <p className="signup-text">
+                Remembered your password? <Link to="/">Login</Link>
+              </p>
+            </form>
+          </div>
         </div>
       </div>
-
     </>
   );
 }

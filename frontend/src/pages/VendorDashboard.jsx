@@ -285,6 +285,7 @@ export default function VendorDashboard() {
                         <th>Customer</th>
                         <th>Product</th>
                         <th>Quantity</th>
+                        <th>Payment Method</th>
                         <th>Status</th>
                         <th>Total</th>
                         <th>Action</th>
@@ -300,6 +301,7 @@ export default function VendorDashboard() {
                     <td>{order.customer_name}</td>
                     <td>{order.product_name}</td>
                     <td>{order.quantity}</td>
+                    <td>{order.payment_method}</td>
 
                     <td
                         className={
@@ -343,7 +345,7 @@ export default function VendorDashboard() {
                 ))
                 ) : (
                 <tr>
-                    <td colSpan="7">
+                    <td colSpan="8">
                     No Orders Found
                     </td>
                 </tr>

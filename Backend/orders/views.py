@@ -23,11 +23,15 @@ class OrderListCreateView(generics.ListCreateAPIView):
 
     def get_queryset(self):
         user = self.request.user
-        if getattr(user, 'role', '') == 'vendor':
-            # orders that contain products belonging to this vendor
-            return Order.objects.filter(product__vendor=user)
-        # regular user: only their orders
-        return Order.objects.filter(user=user)
+
+        if getattr(user, "role", "") == "vendor":
+            return Order.objects.filter(
+                product__vendor=user
+            ).order_by("-id")
+
+        return Order.objects.filter(
+            user=user
+        ).order_by("-id")
 
     def perform_create(self, serializer):
 
@@ -101,14 +105,15 @@ class CancelOrder(APIView):
         product.stock += order.quantity
         product.save()
 
-        # Delete Order
-        order.delete()
+        order.status = "Cancelled"
+        order.save()
 
         return Response(
             {
-                "message": "Order cancelled successfully."
+                "message": "Order cancelled successfully.",
+                "status": order.status
             },
-            status=status.HTTP_200_OK
+            status=200
         )
 
 
@@ -138,6 +143,8 @@ class UpdateOrderStatus(APIView):
         valid_status = [
             "Pending",
             "Accepted",
+            "Rejected",
+            "Cancelled",
             "Shipped",
             "Delivered"
         ]

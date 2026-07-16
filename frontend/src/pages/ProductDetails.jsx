@@ -3,7 +3,7 @@ import { useNavigate, useParams } from "react-router-dom";
 import Navbar from "../components/Navbar";
 import Footer from "../components/Footer";
 import api from "../services/api";
-import "./ProductDetails.css";
+import "./Productdetails.css";
 
 function ProductDetails() {
     const { id } = useParams();

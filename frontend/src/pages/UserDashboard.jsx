@@ -154,6 +154,7 @@ import Swal from "sweetalert2";
 
     return (
         <>
+        <Navbar />
         <div className="dashboard-layout">
             {/* SIDEBAR */}
             <div className="sidebar">
@@ -321,7 +322,7 @@ import Swal from "sweetalert2";
                 </div>
             </div>
         </div>
-        <Navbar />
+        
         <Footer />
 
     </>

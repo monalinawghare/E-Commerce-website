@@ -302,11 +302,11 @@ function Checkout() {
                 <label>
                   <input
                     type="radio"
-                    value="UPI"
-                    checked={paymentMethod === "UPI"}
+                    value="Online"
+                    checked={paymentMethod === "Online"}
                     onChange={(e) => setPaymentMethod(e.target.value)}
                   />
-                  UPI
+                  Online
                 </label>
               </div>
 

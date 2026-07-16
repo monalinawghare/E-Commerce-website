@@ -36,21 +36,27 @@ import "./Home.css";
         <div className="home-container">
             {/* Hero Section */}
             <section className="hero-section">
-            <div className="hero-content">
-                <h1>Welcome to GrandMart</h1>
-                <p>
-                Discover premium products with exciting offers and fast delivery.
-                </p>
-                <div className="hero-buttons">
-                <button
-                    className="outline-btn"
-                    onClick={() => navigate("/products")}
-                >
-                    Explore Products
-                </button>
+                <div className="hero-content">
+                    <h1>Welcome to GrandMart</h1>
+                    <p>
+                        Discover premium products with exciting offers and fast delivery.
+                    </p>
+                    <div className="hero-buttons">
+                    <button
+                        className="outline-btn"
+                        onClick={() => navigate("/products")}
+                    >
+                        Explore Products
+                    </button>
                 </div>
             </div>
-            </section>
+            <div className="hero-image">
+                    <img
+                        src="/images/Hero image.jpg"
+                        alt="Shopping illustration"
+                        />
+            </div>
+        </section>
             {/* Categories */}
             <section className="category-section">
             <h2>Browse by Category</h2>

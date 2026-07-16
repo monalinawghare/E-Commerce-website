@@ -15,6 +15,7 @@ class OrderSerializer(serializers.ModelSerializer):
         source="product.product_name",
         read_only=True
     )
+    image = serializers.ImageField(source="product.image", read_only=True)
 
     def get_user(self, obj):
         if obj.user:
@@ -28,4 +29,4 @@ class OrderSerializer(serializers.ModelSerializer):
     class Meta:
         model = Order
         fields = "__all__"
-        read_only_fields = ('total_price', 'status', 'user', 'product_name')
+        read_only_fields = ('id','total_price', 'status', 'user','product_name', 'image')
