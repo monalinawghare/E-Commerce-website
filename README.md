@@ -25,7 +25,7 @@ This project combines a modern React frontend with a RESTful Django backend to c
 - Django REST Framework
 - Django REST Framework Simple JWT
 - CORS headers
-- SQLite (development)
+- postgresql (development)
 
 ### Frontend
 - React
