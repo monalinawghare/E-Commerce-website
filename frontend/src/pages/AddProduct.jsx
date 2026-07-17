@@ -6,7 +6,7 @@ import "./AddProduct.css";
 export default function AddProduct() {
   const navigate = useNavigate();
   const { id } = useParams();
-  const isEdit = !!id; // Check if id is present to determine if it's edit mode
+  const isEdit = !!id; 
 
   const [categories, setCategories] = useState([]);
 

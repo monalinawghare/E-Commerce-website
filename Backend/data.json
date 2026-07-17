@@ -1,0 +1,1366 @@
+[
+{
+  "model": "admin.logentry",
+  "pk": 1,
+  "fields": {
+    "action_time": "2026-07-04T09:55:37.658Z",
+    "user": 1,
+    "content_type": 6,
+    "object_id": "6",
+    "object_repr": "kajal",
+    "action_flag": 3,
+    "change_message": ""
+  }
+},
+{
+  "model": "admin.logentry",
+  "pk": 2,
+  "fields": {
+    "action_time": "2026-07-08T11:12:13.745Z",
+    "user": 1,
+    "content_type": 9,
+    "object_id": "8",
+    "object_repr": "jay12 - Trousers",
+    "action_flag": 3,
+    "change_message": ""
+  }
+},
+{
+  "model": "admin.logentry",
+  "pk": 3,
+  "fields": {
+    "action_time": "2026-07-08T11:12:13.745Z",
+    "user": 1,
+    "content_type": 9,
+    "object_id": "7",
+    "object_repr": "jay12 - Wireless Mouse",
+    "action_flag": 3,
+    "change_message": ""
+  }
+},
+{
+  "model": "admin.logentry",
+  "pk": 4,
+  "fields": {
+    "action_time": "2026-07-08T11:12:13.745Z",
+    "user": 1,
+    "content_type": 9,
+    "object_id": "6",
+    "object_repr": "jay12 - Trousers",
+    "action_flag": 3,
+    "change_message": ""
+  }
+},
+{
+  "model": "admin.logentry",
+  "pk": 5,
+  "fields": {
+    "action_time": "2026-07-08T11:12:13.745Z",
+    "user": 1,
+    "content_type": 9,
+    "object_id": "5",
+    "object_repr": "jay12 - Wireless Mouse",
+    "action_flag": 3,
+    "change_message": ""
+  }
+},
+{
+  "model": "admin.logentry",
+  "pk": 6,
+  "fields": {
+    "action_time": "2026-07-08T11:26:58.038Z",
+    "user": 1,
+    "content_type": 9,
+    "object_id": "18",
+    "object_repr": "jay12 - Wireless Mouse",
+    "action_flag": 3,
+    "change_message": ""
+  }
+},
+{
+  "model": "admin.logentry",
+  "pk": 7,
+  "fields": {
+    "action_time": "2026-07-08T11:26:58.038Z",
+    "user": 1,
+    "content_type": 9,
+    "object_id": "17",
+    "object_repr": "jay12 - Wireless Mouse",
+    "action_flag": 3,
+    "change_message": ""
+  }
+},
+{
+  "model": "admin.logentry",
+  "pk": 8,
+  "fields": {
+    "action_time": "2026-07-08T11:26:58.038Z",
+    "user": 1,
+    "content_type": 9,
+    "object_id": "16",
+    "object_repr": "jay12 - Trousers",
+    "action_flag": 3,
+    "change_message": ""
+  }
+},
+{
+  "model": "admin.logentry",
+  "pk": 9,
+  "fields": {
+    "action_time": "2026-07-08T11:26:58.038Z",
+    "user": 1,
+    "content_type": 9,
+    "object_id": "15",
+    "object_repr": "jay12 - Wireless Mouse",
+    "action_flag": 3,
+    "change_message": ""
+  }
+},
+{
+  "model": "admin.logentry",
+  "pk": 10,
+  "fields": {
+    "action_time": "2026-07-08T11:26:58.038Z",
+    "user": 1,
+    "content_type": 9,
+    "object_id": "14",
+    "object_repr": "jay12 - Trousers",
+    "action_flag": 3,
+    "change_message": ""
+  }
+},
+{
+  "model": "admin.logentry",
+  "pk": 11,
+  "fields": {
+    "action_time": "2026-07-08T11:26:58.038Z",
+    "user": 1,
+    "content_type": 9,
+    "object_id": "13",
+    "object_repr": "jay12 - Wireless Mouse",
+    "action_flag": 3,
+    "change_message": ""
+  }
+},
+{
+  "model": "admin.logentry",
+  "pk": 12,
+  "fields": {
+    "action_time": "2026-07-08T11:26:58.038Z",
+    "user": 1,
+    "content_type": 9,
+    "object_id": "12",
+    "object_repr": "jay12 - Trousers",
+    "action_flag": 3,
+    "change_message": ""
+  }
+},
+{
+  "model": "admin.logentry",
+  "pk": 13,
+  "fields": {
+    "action_time": "2026-07-08T11:26:58.038Z",
+    "user": 1,
+    "content_type": 9,
+    "object_id": "11",
+    "object_repr": "jay12 - Wireless Mouse",
+    "action_flag": 3,
+    "change_message": ""
+  }
+},
+{
+  "model": "admin.logentry",
+  "pk": 14,
+  "fields": {
+    "action_time": "2026-07-08T11:26:58.038Z",
+    "user": 1,
+    "content_type": 9,
+    "object_id": "10",
+    "object_repr": "jay12 - Trousers",
+    "action_flag": 3,
+    "change_message": ""
+  }
+},
+{
+  "model": "admin.logentry",
+  "pk": 15,
+  "fields": {
+    "action_time": "2026-07-08T11:26:58.038Z",
+    "user": 1,
+    "content_type": 9,
+    "object_id": "9",
+    "object_repr": "jay12 - Wireless Mouse",
+    "action_flag": 3,
+    "change_message": ""
+  }
+},
+{
+  "model": "admin.logentry",
+  "pk": 16,
+  "fields": {
+    "action_time": "2026-07-09T10:53:27.794Z",
+    "user": 1,
+    "content_type": 7,
+    "object_id": "1",
+    "object_repr": "Electronics",
+    "action_flag": 2,
+    "change_message": "[{\"changed\": {\"fields\": [\"Image\"]}}]"
+  }
+},
+{
+  "model": "admin.logentry",
+  "pk": 17,
+  "fields": {
+    "action_time": "2026-07-09T10:54:45.253Z",
+    "user": 1,
+    "content_type": 7,
+    "object_id": "2",
+    "object_repr": "Fashion",
+    "action_flag": 2,
+    "change_message": "[{\"changed\": {\"fields\": [\"Image\"]}}]"
+  }
+},
+{
+  "model": "admin.logentry",
+  "pk": 18,
+  "fields": {
+    "action_time": "2026-07-09T10:57:53.610Z",
+    "user": 1,
+    "content_type": 7,
+    "object_id": "3",
+    "object_repr": "Home decor",
+    "action_flag": 2,
+    "change_message": "[{\"changed\": {\"fields\": [\"Category name\", \"Image\"]}}]"
+  }
+},
+{
+  "model": "sessions.session",
+  "pk": "0m83zoxbuzzh0l0t1jsz0uohqc697sy6",
+  "fields": {
+    "session_data": ".eJxVjEEOwiAQRe_C2hBmcCi6dO8ZyAxQqRpISrsy3l2bdKHb_977LxV4XUpYe57DlNRZgTr8bsLxkesG0p3rrenY6jJPojdF77Tra0v5edndv4PCvXxrJAenKICDBeuiz0KYDRpjJFJyxGDRMsowonfkKAGgR5-PAhFZRvX-ALIaNuk:1whQ8z:hbLzXPTQcpuw3kyODaX6ujg4kdfanf5F-vRnq6dX1jk",
+    "expire_date": "2026-07-22T11:08:45.511Z"
+  }
+},
+{
+  "model": "sessions.session",
+  "pk": "vmo4gyhmkd4opobjaej0vo3348ysjf8r",
+  "fields": {
+    "session_data": ".eJxVjEEOwiAQRe_C2hBmcCi6dO8ZyAxQqRpISrsy3l2bdKHb_977LxV4XUpYe57DlNRZgTr8bsLxkesG0p3rrenY6jJPojdF77Tra0v5edndv4PCvXxrJAenKICDBeuiz0KYDRpjJFJyxGDRMsowonfkKAGgR5-PAhFZRvX-ALIaNuk:1wfwsL:JdY2CVcrWTQ_3q0BwZ10SRbLW97H__nomCAUmP1KEKc",
+    "expire_date": "2026-07-18T09:41:29.002Z"
+  }
+},
+{
+  "model": "accounts.customuser",
+  "pk": 1,
+  "fields": {
+    "password": "pbkdf2_sha256$1000000$75Lt1msyCmITrlTUwAlYY7$Kk+xzKO5Rr3yWMFUmNFPCU/74YfwyDxKc8ziIsh6VOg=",
+    "last_login": "2026-07-08T11:08:45.503Z",
+    "is_superuser": true,
+    "username": "monali",
+    "first_name": "monali",
+    "last_name": "nawghare",
+    "email": "monali@gmail.com",
+    "is_staff": true,
+    "is_active": true,
+    "date_joined": "2026-07-03T06:55:16.752Z",
+    "role": "user",
+    "phone": "8010496485",
+    "groups": [],
+    "user_permissions": []
+  }
+},
+{
+  "model": "accounts.customuser",
+  "pk": 2,
+  "fields": {
+    "password": "pbkdf2_sha256$1200000$bmmYqbpRuzDQYRmSrHsH05$l7IzrHuHxefCsiRnGAP7A1embZQBkZfit9Uj4TmFtdM=",
+    "last_login": null,
+    "is_superuser": false,
+    "username": "janvi",
+    "first_name": "",
+    "last_name": "",
+    "email": "janvi@gmail.com",
+    "is_staff": false,
+    "is_active": true,
+    "date_joined": "2026-07-03T07:10:38.290Z",
+    "role": "user",
+    "phone": "",
+    "groups": [],
+    "user_permissions": []
+  }
+},
+{
+  "model": "accounts.customuser",
+  "pk": 3,
+  "fields": {
+    "password": "pbkdf2_sha256$1200000$alTJLiVcZVMGvM2bEgpT3w$865quq8dcdBcLr9pa6ktM/Nj2BhiGFY7YRxdIZwaIik=",
+    "last_login": null,
+    "is_superuser": false,
+    "username": "archana",
+    "first_name": "",
+    "last_name": "",
+    "email": "archana@gmail.com",
+    "is_staff": false,
+    "is_active": true,
+    "date_joined": "2026-07-03T07:11:37.242Z",
+    "role": "user",
+    "phone": "",
+    "groups": [],
+    "user_permissions": []
+  }
+},
+{
+  "model": "accounts.customuser",
+  "pk": 4,
+  "fields": {
+    "password": "pbkdf2_sha256$1200000$65zCp2OEXf8clufYEeLpjJ$xUihcbnHq6QZKjdxv7vvXnSe/QRKUSTcPpp50VTHteE=",
+    "last_login": null,
+    "is_superuser": false,
+    "username": "mansi",
+    "first_name": "",
+    "last_name": "",
+    "email": "mansi@gmail.com",
+    "is_staff": false,
+    "is_active": true,
+    "date_joined": "2026-07-03T07:20:03.068Z",
+    "role": "user",
+    "phone": "",
+    "groups": [],
+    "user_permissions": []
+  }
+},
+{
+  "model": "accounts.customuser",
+  "pk": 5,
+  "fields": {
+    "password": "pbkdf2_sha256$1200000$qbkvO4nk3Fu1z8xqxOhexh$jdTzrpORvGVYgbaJ15IXj1sawNh6bFsWpU9XDbUKewQ=",
+    "last_login": null,
+    "is_superuser": false,
+    "username": "jay12",
+    "first_name": "jay",
+    "last_name": "rao",
+    "email": "jay12@gmail.com",
+    "is_staff": false,
+    "is_active": true,
+    "date_joined": "2026-07-03T09:52:46.552Z",
+    "role": "user",
+    "phone": "8983564175",
+    "groups": [],
+    "user_permissions": []
+  }
+},
+{
+  "model": "accounts.customuser",
+  "pk": 7,
+  "fields": {
+    "password": "pbkdf2_sha256$1200000$JVg7N9oVl9JhffvkM9wDIV$G09kg19YUPPeGwhl0300Sc5gQlNAQ3EvnpEE2uUbnrk=",
+    "last_login": null,
+    "is_superuser": false,
+    "username": "kunal01",
+    "first_name": "kunal",
+    "last_name": "nawghare",
+    "email": "kunal@gmail.com",
+    "is_staff": false,
+    "is_active": true,
+    "date_joined": "2026-07-04T09:38:54.411Z",
+    "role": "vendor",
+    "phone": "56987418955",
+    "groups": [],
+    "user_permissions": []
+  }
+},
+{
+  "model": "accounts.customuser",
+  "pk": 8,
+  "fields": {
+    "password": "pbkdf2_sha256$1200000$tjUdMVg7TXT9Sn4xWsVi8X$vs3RNA9Uzt7yNxEyFamDN+I+2JRl7u6HDhLSgWUW7aY=",
+    "last_login": null,
+    "is_superuser": false,
+    "username": "archana04",
+    "first_name": "archana",
+    "last_name": "chourawar",
+    "email": "archana@gmail.com",
+    "is_staff": false,
+    "is_active": true,
+    "date_joined": "2026-07-09T06:01:34.174Z",
+    "role": "user",
+    "phone": "9359515079",
+    "groups": [],
+    "user_permissions": []
+  }
+},
+{
+  "model": "accounts.customuser",
+  "pk": 9,
+  "fields": {
+    "password": "pbkdf2_sha256$1200000$3oh20G0O7EPsY9O4qjeOhA$ewLQ+Oo8YFTOhfFIzqrEY7uESIXFmjBX4Zt0tw/KSRM=",
+    "last_login": null,
+    "is_superuser": false,
+    "username": "archana17",
+    "first_name": "archana",
+    "last_name": "chourawar",
+    "email": "archana@gmail.com",
+    "is_staff": false,
+    "is_active": true,
+    "date_joined": "2026-07-13T05:07:45.521Z",
+    "role": "user",
+    "phone": "9359515079",
+    "groups": [],
+    "user_permissions": []
+  }
+},
+{
+  "model": "accounts.vendorprofile",
+  "pk": 2,
+  "fields": {
+    "user": 7,
+    "shop_name": "SS collection",
+    "shop_address": "nagpur",
+    "gst_number": "5887454489787"
+  }
+},
+{
+  "model": "categories.category",
+  "pk": 1,
+  "fields": {
+    "category_name": "Electronics",
+    "image": "categories/electronics.jpg",
+    "created_at": "2026-07-03T07:40:08.714Z"
+  }
+},
+{
+  "model": "categories.category",
+  "pk": 2,
+  "fields": {
+    "category_name": "Fashion",
+    "image": "categories/fashion.jpg",
+    "created_at": "2026-07-03T07:41:20.639Z"
+  }
+},
+{
+  "model": "categories.category",
+  "pk": 3,
+  "fields": {
+    "category_name": "Home decor",
+    "image": "categories/home_decor.jpg",
+    "created_at": "2026-07-06T10:09:33.607Z"
+  }
+},
+{
+  "model": "categories.category",
+  "pk": 5,
+  "fields": {
+    "category_name": "Footwear",
+    "image": "categories/Footwear_pic.jpg",
+    "created_at": "2026-07-07T08:14:13.793Z"
+  }
+},
+{
+  "model": "categories.category",
+  "pk": 6,
+  "fields": {
+    "category_name": "Mobile Accessories",
+    "image": "categories/category.jpg",
+    "created_at": "2026-07-11T09:19:58.004Z"
+  }
+},
+{
+  "model": "categories.category",
+  "pk": 7,
+  "fields": {
+    "category_name": "Health Care",
+    "image": "categories/health_care.jpg",
+    "created_at": "2026-07-11T09:21:40.863Z"
+  }
+},
+{
+  "model": "categories.category",
+  "pk": 8,
+  "fields": {
+    "category_name": "Furniture",
+    "image": "categories/furniture.jpg",
+    "created_at": "2026-07-11T09:32:31.307Z"
+  }
+},
+{
+  "model": "categories.category",
+  "pk": 9,
+  "fields": {
+    "category_name": "Toys & Kids",
+    "image": "categories/toys_and_kids.jpg",
+    "created_at": "2026-07-11T09:34:03.827Z"
+  }
+},
+{
+  "model": "categories.category",
+  "pk": 10,
+  "fields": {
+    "category_name": "Sports & Fitness",
+    "image": "categories/sports.jpg",
+    "created_at": "2026-07-11T09:36:17.153Z"
+  }
+},
+{
+  "model": "categories.category",
+  "pk": 11,
+  "fields": {
+    "category_name": "Books",
+    "image": "categories/books.jpg",
+    "created_at": "2026-07-11T09:37:27.015Z"
+  }
+},
+{
+  "model": "products.product",
+  "pk": 1,
+  "fields": {
+    "vendor": 7,
+    "category": 1,
+    "product_name": "Wireless Mouse",
+    "description": "HP Wireless Mouse",
+    "price": "799.00",
+    "stock": 5,
+    "image": "products/Mouse.jpg",
+    "created_at": "2026-07-03T07:43:51.242Z",
+    "updated_at": "2026-07-09T10:47:08.686Z"
+  }
+},
+{
+  "model": "products.product",
+  "pk": 2,
+  "fields": {
+    "vendor": 7,
+    "category": 3,
+    "product_name": "Curtains",
+    "description": "Elegant Blackout Curtains",
+    "price": "999.00",
+    "stock": 18,
+    "image": "products/curtain.jpg",
+    "created_at": "2026-07-06T11:13:13.939Z",
+    "updated_at": "2026-07-11T11:04:55.634Z"
+  }
+},
+{
+  "model": "products.product",
+  "pk": 4,
+  "fields": {
+    "vendor": 7,
+    "category": 2,
+    "product_name": "Trousers",
+    "description": "Comfortable trouser for women",
+    "price": "2156.00",
+    "stock": 0,
+    "image": "products/images.jpg",
+    "created_at": "2026-07-06T12:54:53.502Z",
+    "updated_at": "2026-07-08T11:21:41.034Z"
+  }
+},
+{
+  "model": "products.product",
+  "pk": 5,
+  "fields": {
+    "vendor": 7,
+    "category": 5,
+    "product_name": "Classic Running Shoes",
+    "description": "Experience comfort and performance with these lightweight running shoes, designed for everyday training and active lifestyles",
+    "price": "1000.00",
+    "stock": 11,
+    "image": "products/running_shoes.jpg",
+    "created_at": "2026-07-07T11:06:59.351Z",
+    "updated_at": "2026-07-11T07:58:04.452Z"
+  }
+},
+{
+  "model": "products.product",
+  "pk": 6,
+  "fields": {
+    "vendor": 7,
+    "category": 11,
+    "product_name": "Atomic Habits",
+    "description": "Best-selling self-improvement book by James Clear.",
+    "price": "599.00",
+    "stock": 24,
+    "image": "products/Atomic_Habits.jpg",
+    "created_at": "2026-07-11T09:42:42.440Z",
+    "updated_at": "2026-07-13T07:13:29.988Z"
+  }
+},
+{
+  "model": "products.product",
+  "pk": 7,
+  "fields": {
+    "vendor": 7,
+    "category": 11,
+    "product_name": "Python Programming",
+    "description": "Beginner-friendly Python programming book.",
+    "price": "799.00",
+    "stock": 18,
+    "image": "products/python.jpg",
+    "created_at": "2026-07-11T09:44:33.130Z",
+    "updated_at": "2026-07-11T09:44:33.130Z"
+  }
+},
+{
+  "model": "products.product",
+  "pk": 8,
+  "fields": {
+    "vendor": 7,
+    "category": 11,
+    "product_name": "The Alchemist",
+    "description": "Inspirational novel by Paulo Coelho",
+    "price": "425.00",
+    "stock": 20,
+    "image": "products/The_Alchemist.jpg",
+    "created_at": "2026-07-11T09:46:37.510Z",
+    "updated_at": "2026-07-11T09:46:37.510Z"
+  }
+},
+{
+  "model": "products.product",
+  "pk": 9,
+  "fields": {
+    "vendor": 7,
+    "category": 1,
+    "product_name": "HP Laptop",
+    "description": "Intel Core i5, 16GB RAM, 512GB SSD",
+    "price": "55999.00",
+    "stock": 10,
+    "image": "products/hp_laptop.jpg",
+    "created_at": "2026-07-11T09:49:34.530Z",
+    "updated_at": "2026-07-11T09:49:34.530Z"
+  }
+},
+{
+  "model": "products.product",
+  "pk": 10,
+  "fields": {
+    "vendor": 7,
+    "category": 1,
+    "product_name": "Samsung Galaxy A35",
+    "description": "5G smartphone with AMOLED display.",
+    "price": "28999.00",
+    "stock": 15,
+    "image": "products/Samsung_Galaxy_A35.jpg",
+    "created_at": "2026-07-11T09:56:27.502Z",
+    "updated_at": "2026-07-11T09:56:27.502Z"
+  }
+},
+{
+  "model": "products.product",
+  "pk": 11,
+  "fields": {
+    "vendor": 7,
+    "category": 1,
+    "product_name": "JBL Bluetooth Speaker",
+    "description": "Portable Bluetooth speaker",
+    "price": "350.00",
+    "stock": 10,
+    "image": "products/speaker.jpg",
+    "created_at": "2026-07-11T09:59:12.679Z",
+    "updated_at": "2026-07-11T09:59:12.679Z"
+  }
+},
+{
+  "model": "products.product",
+  "pk": 12,
+  "fields": {
+    "vendor": 7,
+    "category": 2,
+    "product_name": "Men's Casual Shirt",
+    "description": "Cotton slim-fit shirt.",
+    "price": "1299.00",
+    "stock": 24,
+    "image": "products/men_shirt.jpg",
+    "created_at": "2026-07-11T10:02:11.823Z",
+    "updated_at": "2026-07-11T11:04:55.662Z"
+  }
+},
+{
+  "model": "products.product",
+  "pk": 13,
+  "fields": {
+    "vendor": 7,
+    "category": 2,
+    "product_name": "Women's Kurti",
+    "description": "Comfortable printed kurti.",
+    "price": "999.00",
+    "stock": 29,
+    "image": "products/Womens_Kurti.jpg",
+    "created_at": "2026-07-11T10:03:14.962Z",
+    "updated_at": "2026-07-11T11:18:51.385Z"
+  }
+},
+{
+  "model": "products.product",
+  "pk": 14,
+  "fields": {
+    "vendor": 7,
+    "category": 2,
+    "product_name": "Zipped Hoodie Jacket",
+    "description": "Warm fleece hoodie.",
+    "price": "599.00",
+    "stock": 15,
+    "image": "products/hoodie.jpg",
+    "created_at": "2026-07-11T10:05:08.196Z",
+    "updated_at": "2026-07-11T10:05:08.196Z"
+  }
+},
+{
+  "model": "products.product",
+  "pk": 15,
+  "fields": {
+    "vendor": 7,
+    "category": 2,
+    "product_name": "Saree",
+    "description": "Elegant silk saree.",
+    "price": "3299.00",
+    "stock": 9,
+    "image": "products/Saree.jpg",
+    "created_at": "2026-07-11T10:06:42.443Z",
+    "updated_at": "2026-07-13T05:09:13.745Z"
+  }
+},
+{
+  "model": "products.product",
+  "pk": 16,
+  "fields": {
+    "vendor": 7,
+    "category": 5,
+    "product_name": "Casual Sneakers",
+    "description": "Comfortable everyday sneakers.",
+    "price": "2499.00",
+    "stock": 17,
+    "image": "products/Casual_Sneakers.jpg",
+    "created_at": "2026-07-11T10:31:56.360Z",
+    "updated_at": "2026-07-13T07:17:10.324Z"
+  }
+},
+{
+  "model": "products.product",
+  "pk": 17,
+  "fields": {
+    "vendor": 7,
+    "category": 5,
+    "product_name": "Women's Sandals",
+    "description": "Stylish and comfortable sandals.",
+    "price": "699.00",
+    "stock": 34,
+    "image": "products/Womens_Sandals.jpg",
+    "created_at": "2026-07-11T10:33:23.379Z",
+    "updated_at": "2026-07-13T07:53:10.367Z"
+  }
+},
+{
+  "model": "products.product",
+  "pk": 18,
+  "fields": {
+    "vendor": 7,
+    "category": 5,
+    "product_name": "Boots",
+    "description": "Durable ankle boots",
+    "price": "4499.00",
+    "stock": 4,
+    "image": "products/Boots.jpg",
+    "created_at": "2026-07-11T10:34:46.637Z",
+    "updated_at": "2026-07-13T10:18:45.301Z"
+  }
+},
+{
+  "model": "products.product",
+  "pk": 19,
+  "fields": {
+    "vendor": 7,
+    "category": 8,
+    "product_name": "Study Table",
+    "description": "Wooden study table.",
+    "price": "2999.00",
+    "stock": 10,
+    "image": "products/Wooden_study_table.jpg",
+    "created_at": "2026-07-11T10:36:31.952Z",
+    "updated_at": "2026-07-11T10:36:31.952Z"
+  }
+},
+{
+  "model": "products.product",
+  "pk": 20,
+  "fields": {
+    "vendor": 7,
+    "category": 8,
+    "product_name": "Sofa Set",
+    "description": "3-Seater premium sofa",
+    "price": "25995.00",
+    "stock": 5,
+    "image": "products/Sofa_Set.jpg",
+    "created_at": "2026-07-11T10:37:51.018Z",
+    "updated_at": "2026-07-11T10:37:51.018Z"
+  }
+},
+{
+  "model": "products.product",
+  "pk": 21,
+  "fields": {
+    "vendor": 7,
+    "category": 8,
+    "product_name": "Bookshelf",
+    "description": "Wooden bookshelf with shelves.",
+    "price": "4999.00",
+    "stock": 9,
+    "image": "products/Wooden_bookshelf_with_shelves..jpg",
+    "created_at": "2026-07-11T10:38:45.229Z",
+    "updated_at": "2026-07-11T11:15:23.109Z"
+  }
+},
+{
+  "model": "products.product",
+  "pk": 22,
+  "fields": {
+    "vendor": 7,
+    "category": 7,
+    "product_name": "Digital Thermometer",
+    "description": "Fast Temperature measurement",
+    "price": "499.00",
+    "stock": 30,
+    "image": "products/Digital_Thermometer.jpg",
+    "created_at": "2026-07-11T10:43:54.038Z",
+    "updated_at": "2026-07-11T10:43:54.038Z"
+  }
+},
+{
+  "model": "products.product",
+  "pk": 23,
+  "fields": {
+    "vendor": 7,
+    "category": 7,
+    "product_name": "Face Mask Pack",
+    "description": "Pack of disposable masks.",
+    "price": "250.00",
+    "stock": 50,
+    "image": "products/Face_Mask_Pack.jpg",
+    "created_at": "2026-07-11T10:44:51.132Z",
+    "updated_at": "2026-07-11T10:44:51.132Z"
+  }
+},
+{
+  "model": "products.product",
+  "pk": 24,
+  "fields": {
+    "vendor": 7,
+    "category": 3,
+    "product_name": "Table Lamp",
+    "description": "Decorative LED table lamp.",
+    "price": "2500.00",
+    "stock": 15,
+    "image": "products/lamp.jpg",
+    "created_at": "2026-07-11T10:45:56.607Z",
+    "updated_at": "2026-07-11T10:45:56.607Z"
+  }
+},
+{
+  "model": "products.product",
+  "pk": 25,
+  "fields": {
+    "vendor": 7,
+    "category": 6,
+    "product_name": "Phone Case",
+    "description": "Shockproof mobile cover",
+    "price": "299.00",
+    "stock": 100,
+    "image": "products/Phone_Case.jpg",
+    "created_at": "2026-07-11T10:46:51.602Z",
+    "updated_at": "2026-07-11T10:46:51.603Z"
+  }
+},
+{
+  "model": "products.product",
+  "pk": 26,
+  "fields": {
+    "vendor": 7,
+    "category": 6,
+    "product_name": "Selfie Stick",
+    "description": "Bluetooth selfie stick.",
+    "price": "150.00",
+    "stock": 17,
+    "image": "products/Selfie_Stick.jpg",
+    "created_at": "2026-07-11T10:48:16.576Z",
+    "updated_at": "2026-07-11T10:48:16.576Z"
+  }
+},
+{
+  "model": "products.product",
+  "pk": 27,
+  "fields": {
+    "vendor": 7,
+    "category": 10,
+    "product_name": "Cricket Bat",
+    "description": "English willow cricket bat.",
+    "price": "1500.00",
+    "stock": 9,
+    "image": "products/Cricket_Bat.jpg",
+    "created_at": "2026-07-11T10:49:29.203Z",
+    "updated_at": "2026-07-13T07:35:36.249Z"
+  }
+},
+{
+  "model": "products.product",
+  "pk": 28,
+  "fields": {
+    "vendor": 7,
+    "category": 10,
+    "product_name": "Gym Gloves",
+    "description": "Comfortable workout gloves.",
+    "price": "465.00",
+    "stock": 10,
+    "image": "products/Gym_Gloves.jpg",
+    "created_at": "2026-07-11T10:50:28.336Z",
+    "updated_at": "2026-07-11T10:50:28.336Z"
+  }
+},
+{
+  "model": "products.product",
+  "pk": 29,
+  "fields": {
+    "vendor": 7,
+    "category": 9,
+    "product_name": "Teddy Bear",
+    "description": "Soft plush teddy bear.",
+    "price": "300.00",
+    "stock": 20,
+    "image": "products/Teddy_Bear.jpg",
+    "created_at": "2026-07-11T10:51:45.295Z",
+    "updated_at": "2026-07-11T10:51:45.295Z"
+  }
+},
+{
+  "model": "orders.order",
+  "pk": 1,
+  "fields": {
+    "user": 1,
+    "customer_name": "monali",
+    "product": 1,
+    "quantity": 1,
+    "total_price": "799.00",
+    "payment_method": "COD",
+    "status": "Delivered",
+    "order_date": "2026-07-03T07:59:38.166Z"
+  }
+},
+{
+  "model": "orders.order",
+  "pk": 2,
+  "fields": {
+    "user": 1,
+    "customer_name": "mansi",
+    "product": 1,
+    "quantity": 2,
+    "total_price": "1598.00",
+    "payment_method": "COD",
+    "status": "Delivered",
+    "order_date": "2026-07-03T08:11:51.673Z"
+  }
+},
+{
+  "model": "orders.order",
+  "pk": 3,
+  "fields": {
+    "user": 1,
+    "customer_name": "archana",
+    "product": 1,
+    "quantity": 3,
+    "total_price": "2397.00",
+    "payment_method": "COD",
+    "status": "Delivered",
+    "order_date": "2026-07-03T08:12:51.088Z"
+  }
+},
+{
+  "model": "orders.order",
+  "pk": 4,
+  "fields": {
+    "user": 5,
+    "customer_name": "jay12",
+    "product": 2,
+    "quantity": 2,
+    "total_price": "1998.00",
+    "payment_method": "COD",
+    "status": "Delivered",
+    "order_date": "2026-07-07T11:44:36.440Z"
+  }
+},
+{
+  "model": "orders.order",
+  "pk": 19,
+  "fields": {
+    "user": 5,
+    "customer_name": "jay12",
+    "product": 1,
+    "quantity": 1,
+    "total_price": "799.00",
+    "payment_method": "COD",
+    "status": "Delivered",
+    "order_date": "2026-07-08T11:27:11.570Z"
+  }
+},
+{
+  "model": "orders.order",
+  "pk": 20,
+  "fields": {
+    "user": 5,
+    "customer_name": "jay12",
+    "product": 5,
+    "quantity": 1,
+    "total_price": "1000.00",
+    "payment_method": "COD",
+    "status": "Shipped",
+    "order_date": "2026-07-08T11:28:27.764Z"
+  }
+},
+{
+  "model": "orders.order",
+  "pk": 21,
+  "fields": {
+    "user": 1,
+    "customer_name": "monali",
+    "product": 2,
+    "quantity": 1,
+    "total_price": "999.00",
+    "payment_method": "COD",
+    "status": "Rejected",
+    "order_date": "2026-07-09T05:26:04.431Z"
+  }
+},
+{
+  "model": "orders.order",
+  "pk": 22,
+  "fields": {
+    "user": 1,
+    "customer_name": "monali",
+    "product": 5,
+    "quantity": 1,
+    "total_price": "1000.00",
+    "payment_method": "COD",
+    "status": "Delivered",
+    "order_date": "2026-07-09T05:26:59.390Z"
+  }
+},
+{
+  "model": "orders.order",
+  "pk": 23,
+  "fields": {
+    "user": 5,
+    "customer_name": "jay12",
+    "product": 5,
+    "quantity": 1,
+    "total_price": "1000.00",
+    "payment_method": "COD",
+    "status": "Shipped",
+    "order_date": "2026-07-09T05:30:14.294Z"
+  }
+},
+{
+  "model": "orders.order",
+  "pk": 24,
+  "fields": {
+    "user": 5,
+    "customer_name": "jay12",
+    "product": 2,
+    "quantity": 1,
+    "total_price": "999.00",
+    "payment_method": "COD",
+    "status": "Accepted",
+    "order_date": "2026-07-09T05:33:19.926Z"
+  }
+},
+{
+  "model": "orders.order",
+  "pk": 25,
+  "fields": {
+    "user": 5,
+    "customer_name": "jay12",
+    "product": 1,
+    "quantity": 1,
+    "total_price": "799.00",
+    "payment_method": "COD",
+    "status": "Shipped",
+    "order_date": "2026-07-09T05:36:41.408Z"
+  }
+},
+{
+  "model": "orders.order",
+  "pk": 26,
+  "fields": {
+    "user": 5,
+    "customer_name": "jay12",
+    "product": 1,
+    "quantity": 1,
+    "total_price": "799.00",
+    "payment_method": "COD",
+    "status": "Pending",
+    "order_date": "2026-07-09T05:38:07.714Z"
+  }
+},
+{
+  "model": "orders.order",
+  "pk": 27,
+  "fields": {
+    "user": 2,
+    "customer_name": "janvi",
+    "product": 2,
+    "quantity": 1,
+    "total_price": "999.00",
+    "payment_method": "COD",
+    "status": "Delivered",
+    "order_date": "2026-07-09T05:58:45.597Z"
+  }
+},
+{
+  "model": "orders.order",
+  "pk": 28,
+  "fields": {
+    "user": 5,
+    "customer_name": "jay12",
+    "product": 5,
+    "quantity": 1,
+    "total_price": "1000.00",
+    "payment_method": "COD",
+    "status": "Accepted",
+    "order_date": "2026-07-11T07:58:04.465Z"
+  }
+},
+{
+  "model": "orders.order",
+  "pk": 29,
+  "fields": {
+    "user": 1,
+    "customer_name": "monali",
+    "product": 2,
+    "quantity": 1,
+    "total_price": "999.00",
+    "payment_method": "COD",
+    "status": "Shipped",
+    "order_date": "2026-07-11T08:34:23.215Z"
+  }
+},
+{
+  "model": "orders.order",
+  "pk": 30,
+  "fields": {
+    "user": 1,
+    "customer_name": "monali",
+    "product": 2,
+    "quantity": 1,
+    "total_price": "999.00",
+    "payment_method": "COD",
+    "status": "Delivered",
+    "order_date": "2026-07-11T11:04:55.644Z"
+  }
+},
+{
+  "model": "orders.order",
+  "pk": 31,
+  "fields": {
+    "user": 1,
+    "customer_name": "monali",
+    "product": 12,
+    "quantity": 1,
+    "total_price": "1299.00",
+    "payment_method": "COD",
+    "status": "Pending",
+    "order_date": "2026-07-11T11:04:55.668Z"
+  }
+},
+{
+  "model": "orders.order",
+  "pk": 32,
+  "fields": {
+    "user": 1,
+    "customer_name": "monali",
+    "product": 18,
+    "quantity": 1,
+    "total_price": "4499.00",
+    "payment_method": "COD",
+    "status": "Shipped",
+    "order_date": "2026-07-11T11:04:55.692Z"
+  }
+},
+{
+  "model": "orders.order",
+  "pk": 33,
+  "fields": {
+    "user": 1,
+    "customer_name": "monali",
+    "product": 21,
+    "quantity": 1,
+    "total_price": "4999.00",
+    "payment_method": "COD",
+    "status": "Pending",
+    "order_date": "2026-07-11T11:15:23.124Z"
+  }
+},
+{
+  "model": "orders.order",
+  "pk": 34,
+  "fields": {
+    "user": 1,
+    "customer_name": "monali",
+    "product": 13,
+    "quantity": 1,
+    "total_price": "999.00",
+    "payment_method": "COD",
+    "status": "Rejected",
+    "order_date": "2026-07-11T11:18:51.394Z"
+  }
+},
+{
+  "model": "orders.order",
+  "pk": 35,
+  "fields": {
+    "user": 9,
+    "customer_name": "archana17",
+    "product": 15,
+    "quantity": 1,
+    "total_price": "3299.00",
+    "payment_method": "COD",
+    "status": "Delivered",
+    "order_date": "2026-07-13T05:09:13.770Z"
+  }
+},
+{
+  "model": "orders.order",
+  "pk": 36,
+  "fields": {
+    "user": 1,
+    "customer_name": "monali",
+    "product": 6,
+    "quantity": 1,
+    "total_price": "599.00",
+    "payment_method": "COD",
+    "status": "Accepted",
+    "order_date": "2026-07-13T07:13:29.997Z"
+  }
+},
+{
+  "model": "orders.order",
+  "pk": 37,
+  "fields": {
+    "user": 1,
+    "customer_name": "monali",
+    "product": 18,
+    "quantity": 1,
+    "total_price": "4499.00",
+    "payment_method": "COD",
+    "status": "Cancelled",
+    "order_date": "2026-07-13T07:16:21.422Z"
+  }
+},
+{
+  "model": "orders.order",
+  "pk": 38,
+  "fields": {
+    "user": 1,
+    "customer_name": "monali",
+    "product": 16,
+    "quantity": 1,
+    "total_price": "2499.00",
+    "payment_method": "COD",
+    "status": "Delivered",
+    "order_date": "2026-07-13T07:17:10.331Z"
+  }
+},
+{
+  "model": "orders.order",
+  "pk": 39,
+  "fields": {
+    "user": 9,
+    "customer_name": "archana17",
+    "product": 27,
+    "quantity": 1,
+    "total_price": "1500.00",
+    "payment_method": "COD",
+    "status": "Rejected",
+    "order_date": "2026-07-13T07:35:36.259Z"
+  }
+},
+{
+  "model": "orders.order",
+  "pk": 40,
+  "fields": {
+    "user": 1,
+    "customer_name": "monali",
+    "product": 17,
+    "quantity": 1,
+    "total_price": "699.00",
+    "payment_method": "ONLINE",
+    "status": "Accepted",
+    "order_date": "2026-07-13T07:53:10.376Z"
+  }
+},
+{
+  "model": "cart.cart",
+  "pk": 33,
+  "fields": {
+    "user": 7,
+    "product": 6,
+    "quantity": 1,
+    "added_at": "2026-07-11T11:09:01.651Z"
+  }
+},
+{
+  "model": "cart.cart",
+  "pk": 34,
+  "fields": {
+    "user": 7,
+    "product": 18,
+    "quantity": 1,
+    "added_at": "2026-07-11T11:09:03.037Z"
+  }
+},
+{
+  "model": "cart.cart",
+  "pk": 44,
+  "fields": {
+    "user": 1,
+    "product": 16,
+    "quantity": 1,
+    "added_at": "2026-07-15T11:19:22.926Z"
+  }
+},
+{
+  "model": "cart.cart",
+  "pk": 45,
+  "fields": {
+    "user": 1,
+    "product": 2,
+    "quantity": 1,
+    "added_at": "2026-07-15T11:30:05.297Z"
+  }
+},
+{
+  "model": "cart.cart",
+  "pk": 46,
+  "fields": {
+    "user": 1,
+    "product": 22,
+    "quantity": 1,
+    "added_at": "2026-07-15T11:30:06.318Z"
+  }
+},
+{
+  "model": "cart.cart",
+  "pk": 47,
+  "fields": {
+    "user": 1,
+    "product": 23,
+    "quantity": 1,
+    "added_at": "2026-07-15T11:30:07.343Z"
+  }
+},
+{
+  "model": "cart.cart",
+  "pk": 48,
+  "fields": {
+    "user": 1,
+    "product": 12,
+    "quantity": 1,
+    "added_at": "2026-07-15T11:30:09.113Z"
+  }
+}
+]
