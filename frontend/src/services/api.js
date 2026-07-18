@@ -1,4 +1,4 @@
-        import axios from "axios";
+import axios from "axios";
 
         const api = axios.create({
             baseURL: "https://e-commerce-website-omik.onrender.com/",
@@ -16,4 +16,4 @@
         return config;
         });
 
-        export default api;
+export default api;
