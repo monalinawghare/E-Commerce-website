@@ -38,19 +38,35 @@ function Login() {
         payload.username = email;
       }
 
+      // const response = await api.post("login/", payload);
+
+      console.log("Payload:", payload);
+
       const response = await api.post("login/", payload);
+
+      console.log("Response:", response.data);
 
       localStorage.setItem("access", response.data.access);
       localStorage.setItem("refresh", response.data.refresh);
       localStorage.setItem("user", JSON.stringify(response.data.user));
 
       navigate("/home");
-    } catch (err) {
-      if (err.response) {
-        setError("Invalid email or password.");
-      } else {
-        setError("Server Error");
-      }
+    // } catch (err) {
+    //   if (err.response) {
+    //     setError("Invalid email or password.");
+    //   } else {
+    //     setError("Server Error");
+    //   }
+    // }
+      }catch (err) {
+        console.log("Error:", err.response?.data);
+        console.log("Status:", err.response?.status);
+
+        if (err.response) {
+            setError(JSON.stringify(err.response.data));
+        } else {
+            setError("Server Error");
+        }
     }
   };
 
@@ -65,7 +81,7 @@ function Login() {
           {/* ---- LEFT SIDE: IMAGE & BRANDING ---- */}
           <div className="login-brand">
             <img
-              src="public/images/login.jpg"
+              src="/images/login.jpg"
               alt="Shopping illustration"
               className="brand-image"
             />
