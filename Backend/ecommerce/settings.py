@@ -5,7 +5,7 @@ from datetime import timedelta
 from pathlib import Path
 import os
 import dj_database_url
-
+import cloudinary
 
 BASE_DIR = Path(__file__).resolve().parent.parent
 
@@ -131,7 +131,7 @@ RAZORPAY_KEY_ID = os.getenv("RAZORPAY_KEY_ID")
 RAZORPAY_KEY_SECRET = os.getenv("RAZORPAY_KEY_SECRET")
 
 
-import cloudinary
+
 
 cloudinary.config(
     cloud_name=os.getenv("CLOUDINARY_CLOUD_NAME"),
