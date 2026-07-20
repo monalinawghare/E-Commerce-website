@@ -67,7 +67,7 @@ import "./Home.css";
             <h2>Browse by Category</h2>
             <div className="category-grid">
                 {categories.length > 0 ? (
-                categories.map((category) => 
+                categories.map((category) => (
                     <div
                     className="category-card"
                     key={category.id}
