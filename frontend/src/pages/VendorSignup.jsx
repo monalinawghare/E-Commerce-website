@@ -91,7 +91,7 @@
             {/* ---- Brand Side ---- */}
             <div className="login-brand">
                 <img
-                src="public/images/vendor_signup.jpg"
+                src="/images/vendor_signup.jpg"
                 alt="Vendor registration"
                 className="brand-image"
                 />

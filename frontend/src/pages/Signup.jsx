@@ -89,7 +89,7 @@ function Signup() {
           {/* ---- Brand Side ---- */}
           <div className="login-brand">
             <img
-              src="public/images/signup.jpg"
+              src="/images/signup.jpg"
               alt="Join GrandMart"
               className="brand-image"
             />

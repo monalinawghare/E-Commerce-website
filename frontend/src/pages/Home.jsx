@@ -5,10 +5,14 @@ import Footer from "../components/Footer";
 import api from "../services/api";
 import "./Home.css";
     function Home() {
+        console.log("Home component rendered");
     const navigate = useNavigate();
 
     const [categories, setCategories] = useState([]);
     const [featuredProducts, setFeaturedProducts] = useState([]);
+
+    console.log(categories)
+
 
     useEffect(() => {
         fetchCategories();
@@ -26,6 +30,7 @@ import "./Home.css";
         try {
         const response = await api.get("products/");
         setFeaturedProducts(response.data);
+        console.log(setFeaturedProducts)
         } catch (error) {
         console.error("Failed to load products:", error);
         }
@@ -62,7 +67,7 @@ import "./Home.css";
             <h2>Browse by Category</h2>
             <div className="category-grid">
                 {categories.length > 0 ? (
-                categories.map((category) => (
+                categories.map((category) => 
                     <div
                     className="category-card"
                     key={category.id}
