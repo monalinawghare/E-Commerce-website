@@ -2,6 +2,8 @@
 
 A full-stack e-commerce application built with Django REST Framework for the backend and React + Vite for the frontend. It provides a simple shopping experience with authentication, product browsing, cart management, checkout, order history, and vendor product management.
 
+**#Deployment Link**
+https://e-commerce-website-ten-pink.vercel.app/
 ## Overview
 
 This project combines a modern React frontend with a RESTful Django backend to create a complete online store experience. Users can sign up, browse products by category, add items to their cart, place orders, and view their order history. Vendors can manage their products through dedicated dashboard flows.
