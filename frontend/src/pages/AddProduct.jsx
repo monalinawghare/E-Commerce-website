@@ -1,6 +1,7 @@
 import { useState, useEffect } from "react";
 import { useNavigate ,useParams} from "react-router-dom";
 import Navbar from "../components/Navbar";
+import api from "../services/api";
 import "./AddProduct.css";
 
 export default function AddProduct() {
@@ -29,20 +30,13 @@ export default function AddProduct() {
       try {
         const token = localStorage.getItem("access");
 
-        const response = await fetch("http://127.0.0.1:8000/categories/", {
+        const response = await api.get("categories/", {
           headers: {
             Authorization: `Bearer ${token}`,
           },
         });
 
-        const data = await response.json();
-        
-        console.log("Status:", response.status);
-        console.log("Categories API:", data);
-
-        if (response.ok) {
-          setCategories(data);
-        }
+        setCategories(response.data);
       } catch (error) {
         console.error(error);
       }
@@ -56,26 +50,21 @@ export default function AddProduct() {
     try {
       const token = localStorage.getItem("access");
 
-      const response = await fetch(
-        `http://127.0.0.1:8000/products/${id}/`,
-        {
-          headers: {
-            Authorization: `Bearer ${token}`,
-          },
-        }
-      );
+      const response = await api.get(`products/${id}/`, {
+        headers: {
+          Authorization: `Bearer ${token}`,
+        },
+      });
 
-      const data = await response.json();
+      const data = response.data;
 
-      if (response.ok) {
-        setFormData({
-          product_name: data.product_name,
-          category: data.category,
-          price: data.price,
-          stock: data.stock,
-          description: data.description,
-        });
-      }
+      setFormData({
+        product_name: data.product_name,
+        category: data.category,
+        price: data.price,
+        stock: data.stock,
+        description: data.description,
+      });
     } catch (error) {
       console.error(error);
     }
@@ -126,20 +115,21 @@ export default function AddProduct() {
       }
 
         const url = isEdit
-      ? `http://127.0.0.1:8000/products/${id}/`
-      : "http://127.0.0.1:8000/addproducts/";
+      ? `products/${id}/`
+      : "addproducts/";
 
     const method = isEdit ? "PUT" : "POST";
 
-    const response = await fetch(url, {
-    method,
+    const response = await api({
+      url,
+      method,
         headers: {
           Authorization: `Bearer ${token}`,
         },
-        body: data,
+        data,
       });
 
-      if (response.ok) {
+      if (response.status >= 200 && response.status < 300) {
       setMessage(
         isEdit
           ? "Product updated successfully!"
@@ -159,7 +149,7 @@ export default function AddProduct() {
 
         setTimeout(() => navigate("/vendor-dashboard"), 1200);
       } else {
-        const errorData = await response.json().catch(() => ({}));
+        const errorData = response.data || {};
         console.error(errorData);
 
         setMessage("Failed to add product. Please check details.");

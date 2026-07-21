@@ -8,6 +8,9 @@ import "./Navbar.css";
         const [isMenuOpen, setIsMenuOpen] = useState(false);
         const [searchQuery, setSearchQuery] = useState("");
 
+        const user = JSON.parse(localStorage.getItem("user"));
+        const isVendor = user?.role === "vendor";
+
         const handleLogout = () => {
             localStorage.removeItem("access");
             localStorage.removeItem("refresh");
@@ -128,12 +131,21 @@ useEffect(() => {
             Orders
         </Link>
 
+        {isVendor ? (
+        <Link
+            to="/vendor-dashboard"
+            onClick={() => setIsMenuOpen(false)}
+        >
+            My Shop
+        </Link>
+        ) : (
         <Link
             to="/dashboard"
             onClick={() => setIsMenuOpen(false)}
         >
             Profile
         </Link>
+        )}
 
         <button
             className="logout-btn"

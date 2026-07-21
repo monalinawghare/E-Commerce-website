@@ -58,7 +58,6 @@ export default function Category() {
       await api.post("categories/", formData, {
         headers: {
           Authorization: `Bearer ${token}`,
-          "Content-Type": "multipart/form-data",
         },
       });
 

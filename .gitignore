@@ -1,0 +1,4 @@
+﻿__pycache__/
+*.pyc
+frontend/.env
+.env copy

@@ -4,11 +4,13 @@ from .models import Product
 from .serializers import ProductSerializer
 from accounts.permissions import IsVendor
 from rest_framework.exceptions import PermissionDenied
+from rest_framework.parsers import MultiPartParser, FormParser
 
 
 class ProductListCreateView(generics.ListCreateAPIView):
 
     serializer_class = ProductSerializer
+    parser_classes = [MultiPartParser, FormParser]
 
     def get_permissions(self):
         if self.request.method == 'GET':
@@ -53,6 +55,7 @@ class ProductDetailView(generics.RetrieveUpdateDestroyAPIView):
 
     queryset = Product.objects.all()
     serializer_class = ProductSerializer
+    parser_classes = [MultiPartParser, FormParser]
 
     def get_permissions(self):
         if self.request.method in ('GET',):

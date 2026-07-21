@@ -50,7 +50,12 @@ function Login() {
       localStorage.setItem("refresh", response.data.refresh);
       localStorage.setItem("user", JSON.stringify(response.data.user));
 
-      navigate("/home");
+      const role = response.data.user?.role;
+      if (role === "vendor") {
+        navigate("/vendor-dashboard");
+      } else {
+        navigate("/home");
+      }
     // } catch (err) {
     //   if (err.response) {
     //     setError("Invalid email or password.");
